@@ -2318,9 +2318,12 @@ function paintWatermark(){
   el.innerHTML=h;
 }
 function startWatermark(){
-  const el=document.getElementById('wmLayer');if(!el)return;
-  el.style.display='block';paintWatermark();
-  clearInterval(wmTimer);wmTimer=setInterval(paintWatermark,20000);
+  // Marca de agua desactivada a peticion del usuario: afeaba la interfaz.
+  // Se mantiene el resto de la proteccion: bloqueo de copia, seleccion,
+  // arrastre, menu contextual, impresion y velado al perder el foco.
+  const el=document.getElementById('wmLayer');
+  if(el){el.style.display='none';el.innerHTML=''}
+  clearInterval(wmTimer);wmTimer=null;
   document.body.classList.add('protected');
 }
 function stopWatermark(){
