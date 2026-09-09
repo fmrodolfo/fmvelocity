@@ -1,0 +1,103 @@
+rules_version = '2';
+
+// =====================================================================
+//  RODOVELOCITY — Reglas de seguridad de Cloud Firestore
+//  ---------------------------------------------------------------------
+//  ESTE FICHERO ES LA AUTORIDAD REAL DEL SISTEMA DE ACCESO.
+//  El frontend sólo pinta lo que estas reglas dejan leer. Manipular el
+//  navegador, el localStorage, las URLs o las llamadas a la API no sirve
+//  de nada: sin permiso aquí, Firestore deniega la lectura de las claves
+//  y el contenido de los planes queda cifrado e inservible.
+//
+//  El rol de administrador se decide POR EL CORREO DEL TOKEN DE AUTH,
+//  que emite y firma Firebase. No existe ningún campo en la base de
+//  datos que otorgue admin, así que no se puede conceder ni retirar
+//  escribiendo documentos, ni por error ni a propósito.
+// =====================================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function admin() {
+      return request.auth != null
+          && request.auth.token.email == 'rodolfojosefigueredo@gmail.com';
+    }
+    function signedIn() { return request.auth != null; }
+    function me(uid)    { return request.auth != null && request.auth.uid == uid; }
+
+    function ent(uid) {
+      return get(/databases/$(database)/documents/entitlements/$(uid)).data;
+    }
+    // Activo = estado activo + dentro del periodo autorizado.
+    // El panel escribe siempre los cinco campos, así que nunca faltan.
+    function entActive(uid) {
+      let e = ent(uid);
+      return e.status == 'active'
+          && (e.startAt == null || request.time.toMillis() >= e.startAt)
+          && (e.indefinite == true || e.endAt == null || request.time.toMillis() <= e.endAt);
+    }
+    function canPlan(uid, planId) {
+      return entActive(uid) && planId in ent(uid).plans;
+    }
+
+    // ---- datos de entrenamiento del propio usuario (ya existía) ----
+    match /users/{uid} {
+      allow read, write: if me(uid) || admin();
+    }
+
+    // ---- cuentas: alta propia y latido de presencia ----
+    // El usuario NO puede tocar nada más que su marca de actividad.
+    match /accounts/{uid} {
+      allow read:   if me(uid) || admin();
+      allow create: if me(uid)
+                    && request.resource.data.email == request.auth.token.email
+                    && request.resource.data.keys().hasOnly(
+                         ['email','createdAt','lastLogin','lastSeen','loginCount']);
+      allow update: if admin()
+                    || ( me(uid)
+                      && request.resource.data.email == resource.data.email
+                      && request.resource.data.diff(resource.data).affectedKeys()
+                           .hasOnly(['lastLogin','lastSeen','loginCount']) );
+      allow delete: if admin();
+    }
+
+    // ---- permisos: SÓLO el administrador escribe ----
+    match /entitlements/{uid} {
+      allow read:                 if me(uid) || admin();
+      allow create, update, delete: if admin();
+    }
+
+    // ---- solicitudes de acceso ----
+    // El usuario sólo puede crear la suya, en estado 'open'.
+    match /accessRequests/{uid} {
+      allow read:   if me(uid) || admin();
+      allow create: if me(uid)
+                    && request.resource.data.email == request.auth.token.email
+                    && request.resource.data.state == 'open'
+                    && request.resource.data.keys().hasOnly(['email','createdAt','state']);
+      allow update, delete: if admin();
+    }
+
+    // ---- historial administrativo: sólo el admin, y no se puede alterar ----
+    match /adminLog/{id} {
+      allow read, create:   if admin();
+      allow update, delete: if false;
+    }
+
+    // ---- claves de descifrado del contenido protegido ----
+    // Aquí es donde se protegen de verdad las rutinas: sin estas claves
+    // el HTML descargado sólo contiene un bloque cifrado AES-256-GCM.
+    match /secure/{docId} {
+      allow read: if admin()
+        || ( signedIn() && docId == 'common' && entActive(request.auth.uid) )
+        || ( signedIn() && docId.matches('^plan_[a-z0-9]+$')
+             && canPlan(request.auth.uid, docId.split('_')[1]) );
+      allow write: if admin();
+    }
+
+    // ---- todo lo demás, denegado ----
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

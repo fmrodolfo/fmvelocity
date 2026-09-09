@@ -570,6 +570,64 @@ textarea.input{text-align:left;font-weight:500;font-size:13px;font-family:monosp
 .flip-hint{font-size:11px;color:var(--muted);margin-top:8px}
 .flip-back p{font-size:13px;line-height:1.45;color:var(--txt)}
 .flip-back .btn{margin-top:10px}
+/* ---- pantalla de acceso / bloqueo ---- */
+#accessGate{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:26px;
+  background:radial-gradient(700px 420px at 50% 0%,rgba(225,6,0,.16),transparent 70%),var(--bg)}
+.ag-box{max-width:420px;width:100%;text-align:center;animation:fadeUp .5s both}
+.ag-ico{font-size:54px;margin-bottom:10px;animation:pop .5s both}
+.ag-t{font-size:23px;font-weight:900;margin:6px 0 8px}
+.ag-m{color:var(--muted);font-size:14.5px;line-height:1.6}
+.ag-mail{margin-top:14px;font-size:12px;color:var(--muted);background:var(--card2);border:1px solid var(--line);
+  border-radius:999px;padding:8px 14px;display:inline-block;word-break:break-all}
+/* ---- panel admin ---- */
+.adm-tabs{display:flex;gap:8px;margin-bottom:12px}
+.adm-tab{flex:1;padding:10px 6px;border-radius:12px;background:var(--card2);border:1px solid var(--line);
+  color:var(--muted);font-weight:800;font-size:12.5px;transition:.15s;position:relative}
+.adm-tab.on{color:#fff;border-color:var(--red);background:linear-gradient(180deg,rgba(225,6,0,.22),rgba(225,6,0,.06))}
+.adm-badge{display:inline-block;margin-left:5px;min-width:17px;padding:1px 5px;border-radius:999px;
+  background:var(--red);color:#fff;font-size:10.5px;font-weight:900}
+.adm-fils{display:flex;gap:7px;overflow-x:auto;padding-bottom:10px;margin-bottom:4px}
+.adm-fils .chip{flex:0 0 auto;cursor:pointer}
+.adm-fils .chip.on{color:#fff;border-color:var(--red);background:rgba(225,6,0,.16)}
+.adm-row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 13px;margin-bottom:8px;
+  border-radius:14px;background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);color:var(--txt)}
+.adm-row:active{transform:scale(.99)}
+.adm-av{flex:0 0 auto;width:38px;height:38px;border-radius:50%;display:grid;place-items:center;
+  font-weight:900;font-size:15px;position:relative}
+.adm-av.big{width:52px;height:52px;font-size:20px}
+.adm-info{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.adm-info b{font-size:14px;word-break:break-all;line-height:1.2}
+.adm-info .sub{font-size:11.5px}
+.adm-st{flex:0 0 auto;font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;
+  border:1px solid;border-radius:999px;padding:4px 9px}
+.adm-crown{font-size:9.5px;background:var(--red);color:#fff;border-radius:4px;padding:1px 5px;vertical-align:middle}
+.dot-on{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-right:6px;
+  box-shadow:0 0 8px var(--ok);animation:glowdot 1.8s infinite}
+@keyframes glowdot{0%,100%{opacity:1}50%{opacity:.45}}
+.adm-av .dot-on{position:absolute;top:-1px;right:-1px;margin:0;border:2px solid var(--bg2)}
+.adm-empty{text-align:center;padding:38px 10px;color:var(--muted)}
+.adm-empty p{margin-top:10px;font-size:14px}
+.spin{width:30px;height:30px;border:3px solid var(--line);border-top-color:var(--red);border-radius:50%;
+  margin:0 auto;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.adm-dates{display:flex;gap:10px}
+.adm-lab{flex:1;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);font-weight:700}
+.adm-lab .input{width:100%}
+.adm-check{display:flex;align-items:center;gap:9px;padding:9px 2px;font-size:13.5px;font-weight:600;cursor:pointer}
+.adm-check input{width:18px;height:18px;accent-color:var(--red);flex:0 0 auto}
+.adm-plans{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:6px 12px}
+input[type=date].input{color-scheme:dark;font-family:inherit}
+/* ---- marca de agua ---- */
+#wmLayer{position:fixed;inset:0;z-index:99999;pointer-events:none;display:none;overflow:hidden}
+.wm-i{position:absolute;transform:translate(-50%,-50%) rotate(-28deg);white-space:nowrap;
+  font-size:12px;font-weight:800;letter-spacing:.5px;color:rgba(255,255,255,.085);
+  text-shadow:0 1px 0 rgba(0,0,0,.15);user-select:none}
+body.protected .screen,body.protected #workout,body.protected #modalCard{
+  -webkit-user-select:none;user-select:none;-webkit-touch-callout:none}
+body.protected input,body.protected textarea{-webkit-user-select:text;user-select:text}
+body.veiled #app,body.veiled #workout,body.veiled #modal{filter:blur(22px);transition:filter .12s}
+@media print{html,body{display:none!important}}
+
 </style>
 </head>
 <body>
@@ -627,6 +685,7 @@ textarea.input{text-align:left;font-weight:500;font-size:13px;font-family:monosp
   <section class="screen" id="exercises"></section>
   <section class="screen" id="progress"></section>
   <section class="screen" id="profile"></section>
+  <section class="screen" id="admin"></section>
 </div>
 
 <!-- ============ NAV ============ -->
@@ -642,6 +701,9 @@ textarea.input{text-align:left;font-weight:500;font-size:13px;font-family:monosp
   <button class="nav-b" data-s="profile" onclick="go('profile')">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span id="navProfL">Perfil</span></button>
 </div>
+
+<div id="accessGate"></div>
+<div id="wmLayer" aria-hidden="true"></div>
 
 <!-- ============ WORKOUT ============ -->
 <div id="workout">
@@ -714,6 +776,29 @@ const FIREBASE_CONFIG={
 let LANG=(function(){try{return localStorage.getItem('rodo_lang')||'es'}catch(e){return 'es'}})();
 const I18N={
  es:{
+  acc_noPlan:'No tienes ningún plan autorizado. Habla con el administrador.',
+  admin_btn:'Administrador',
+  st_pending:'Pendiente',st_active:'Activa',st_scheduled:'Programada',st_expired:'Vencida',st_blocked:'Bloqueada',st_offline:'Sin conexión',
+  acc_pendTitle:'Cuenta pendiente',acc_pendMsg:'Solicitando autorización al administrador.',
+  acc_schedTitle:'Acceso programado',acc_schedMsg:'Tu acceso comenzará el {d}.',
+  acc_blockedTitle:'Acceso bloqueado',acc_blockedMsg:'Aplicación bloqueada. Consulta con el administrador.',
+  acc_offTitle:'Sin conexión',acc_offMsg:'Necesitas conexión a internet para abrir tus planes.',
+  acc_recheck:'Comprobar de nuevo',acc_checking:'Comprobando…',acc_updated:'Tu acceso se ha actualizado',
+  adm_title:'Administrador',adm_users:'Usuarios',adm_requests:'Solicitudes',adm_history:'Historial',
+  adm_online:'conectados',adm_accounts:'cuentas',adm_onlineNow:'conectado ahora',adm_now:'ahora',
+  adm_search:'Buscar por correo…',adm_all:'Todas',adm_none:'No hay cuentas que coincidan',
+  adm_loading:'Cargando…',adm_error:'Error',adm_saved:'Guardado correctamente',
+  adm_lastSeen:'Última vez',adm_lastLogin:'Último inicio',adm_created:'Alta',adm_logins:'Inicios de sesión',
+  adm_plansShort:'planes',adm_period:'Periodo de acceso',adm_from:'Desde',adm_to:'Hasta',
+  adm_indef:'Acceso indefinido',adm_plans:'Planes autorizados',adm_activity:'Actividad',
+  adm_saveActive:'Guardar y activar',adm_block:'Bloquear cuenta',adm_unblock:'Desbloquear cuenta',
+  adm_approve:'Aprobar',adm_reject:'Rechazar',adm_approved:'Aprobada',adm_rejected:'Rechazada',
+  adm_pendingReqs:'Solicitudes pendientes',adm_noPending:'No hay solicitudes pendientes',adm_handled:'Gestionadas',
+  adm_noReqs:'Todavía no hay solicitudes',adm_noLog:'Sin actividad registrada',
+  adm_confirmSave:'¿Guardar el acceso de esta cuenta?',adm_confirmBlock:'¿Bloquear esta cuenta?',adm_confirmReject:'¿Rechazar esta solicitud?',
+  adm_needPlan:'Selecciona al menos un plan',adm_badDates:'La fecha final es anterior a la inicial',
+  adm_isAdmin:'Cuenta administradora',adm_isAdminMsg:'Esta cuenta no se puede bloquear ni limitar.',
+  adm_a_access_granted:'Acceso concedido',adm_a_blocked:'Cuenta bloqueada',adm_a_rejected:'Solicitud rechazada',adm_a_unblocked:'Cuenta desbloqueada',
   nav_home:'Inicio',nav_plans:'Planes',nav_progress:'Progreso',nav_profile:'Perfil',nav_exercises:'Ejercicios',
   exLibSub:'Ejercicios individuales por parte del cuerpo · explicación y vídeo',
   chooseProfile:'Elige tu perfil',newProfile:'Nuevo perfil',createProfile:'Crear perfil',np_desc:'Cada perfil guarda sus propios máximos y progreso.',name:'Nombre',color:'Color',
@@ -739,6 +824,29 @@ const I18N={
   fixedLight:'Peso ligero fijo · ajústalo a cómo te sientas',phBase:'Base',phVolume:'Volumen',phRecovery:'Recuperación',phPerformance:'Rendimiento',phMax:'Máx',phMaint:'Mantenimiento',adaptsPhase:'sube y baja según la fase',throwing:'Tiro',flipHint:'Toca para ver la explicación',watchVideo:'▶ Ver vídeo',videoSoon:'Vídeo próximamente',howTo:'Cómo',
  },
  en:{
+  acc_noPlan:'You have no authorised plan. Contact the administrator.',
+  admin_btn:'Administrator',
+  st_pending:'Pending',st_active:'Active',st_scheduled:'Scheduled',st_expired:'Expired',st_blocked:'Blocked',st_offline:'Offline',
+  acc_pendTitle:'Account pending',acc_pendMsg:'Requesting authorisation from the administrator.',
+  acc_schedTitle:'Access scheduled',acc_schedMsg:'Your access starts on {d}.',
+  acc_blockedTitle:'Access blocked',acc_blockedMsg:'Application blocked. Contact the administrator.',
+  acc_offTitle:'No connection',acc_offMsg:'You need an internet connection to open your plans.',
+  acc_recheck:'Check again',acc_checking:'Checking…',acc_updated:'Your access has been updated',
+  adm_title:'Administrator',adm_users:'Users',adm_requests:'Requests',adm_history:'History',
+  adm_online:'online',adm_accounts:'accounts',adm_onlineNow:'online now',adm_now:'now',
+  adm_search:'Search by email…',adm_all:'All',adm_none:'No matching accounts',
+  adm_loading:'Loading…',adm_error:'Error',adm_saved:'Saved',
+  adm_lastSeen:'Last seen',adm_lastLogin:'Last login',adm_created:'Created',adm_logins:'Logins',
+  adm_plansShort:'plans',adm_period:'Access period',adm_from:'From',adm_to:'To',
+  adm_indef:'Unlimited access',adm_plans:'Authorised plans',adm_activity:'Activity',
+  adm_saveActive:'Save and activate',adm_block:'Block account',adm_unblock:'Unblock account',
+  adm_approve:'Approve',adm_reject:'Reject',adm_approved:'Approved',adm_rejected:'Rejected',
+  adm_pendingReqs:'Pending requests',adm_noPending:'No pending requests',adm_handled:'Handled',
+  adm_noReqs:'No requests yet',adm_noLog:'No activity recorded',
+  adm_confirmSave:'Save access for this account?',adm_confirmBlock:'Block this account?',adm_confirmReject:'Reject this request?',
+  adm_needPlan:'Select at least one plan',adm_badDates:'End date is before the start date',
+  adm_isAdmin:'Administrator account',adm_isAdminMsg:'This account cannot be blocked or limited.',
+  adm_a_access_granted:'Access granted',adm_a_blocked:'Account blocked',adm_a_rejected:'Request rejected',adm_a_unblocked:'Account unblocked',
   nav_home:'Home',nav_plans:'Plans',nav_progress:'Progress',nav_profile:'Profile',nav_exercises:'Exercises',
   exLibSub:'Individual exercises by body part · explanation and video',
   chooseProfile:'Choose your profile',newProfile:'New profile',createProfile:'Create profile',np_desc:'Each profile keeps its own maxes and progress.',name:'Name',color:'Color',
@@ -764,6 +872,29 @@ const I18N={
   fixedLight:'Fixed light weight · adjust it to how you feel',phBase:'Base',phVolume:'Volume',phRecovery:'Recovery',phPerformance:'Performance',phMax:'Max',phMaint:'Maintenance',adaptsPhase:'rises and drops with the phase',throwing:'Throwing',flipHint:'Tap to see the explanation',watchVideo:'▶ Watch video',videoSoon:'Video coming soon',howTo:'How',
  },
  fr:{
+  acc_noPlan:'Aucun plan autorisé. Contacte l\'administrateur.',
+  admin_btn:'Administrateur',
+  st_pending:'En attente',st_active:'Active',st_scheduled:'Programmée',st_expired:'Expirée',st_blocked:'Bloquée',st_offline:'Hors ligne',
+  acc_pendTitle:'Compte en attente',acc_pendMsg:'Demande d\'autorisation à l\'administrateur.',
+  acc_schedTitle:'Accès programmé',acc_schedMsg:'Ton accès commence le {d}.',
+  acc_blockedTitle:'Accès bloqué',acc_blockedMsg:'Application bloquée. Contacte l\'administrateur.',
+  acc_offTitle:'Pas de connexion',acc_offMsg:'Une connexion internet est nécessaire pour ouvrir tes plans.',
+  acc_recheck:'Vérifier à nouveau',acc_checking:'Vérification…',acc_updated:'Ton accès a été mis à jour',
+  adm_title:'Administrateur',adm_users:'Utilisateurs',adm_requests:'Demandes',adm_history:'Historique',
+  adm_online:'en ligne',adm_accounts:'comptes',adm_onlineNow:'en ligne',adm_now:'maintenant',
+  adm_search:'Chercher par e-mail…',adm_all:'Toutes',adm_none:'Aucun compte correspondant',
+  adm_loading:'Chargement…',adm_error:'Erreur',adm_saved:'Enregistré',
+  adm_lastSeen:'Vu la dernière fois',adm_lastLogin:'Dernière connexion',adm_created:'Créé',adm_logins:'Connexions',
+  adm_plansShort:'plans',adm_period:'Période d\'accès',adm_from:'Du',adm_to:'Au',
+  adm_indef:'Accès illimité',adm_plans:'Plans autorisés',adm_activity:'Activité',
+  adm_saveActive:'Enregistrer et activer',adm_block:'Bloquer le compte',adm_unblock:'Débloquer le compte',
+  adm_approve:'Approuver',adm_reject:'Refuser',adm_approved:'Approuvée',adm_rejected:'Refusée',
+  adm_pendingReqs:'Demandes en attente',adm_noPending:'Aucune demande en attente',adm_handled:'Traitées',
+  adm_noReqs:'Pas encore de demandes',adm_noLog:'Aucune activité enregistrée',
+  adm_confirmSave:'Enregistrer l\'accès de ce compte ?',adm_confirmBlock:'Bloquer ce compte ?',adm_confirmReject:'Refuser cette demande ?',
+  adm_needPlan:'Sélectionne au moins un plan',adm_badDates:'La date de fin est antérieure à la date de début',
+  adm_isAdmin:'Compte administrateur',adm_isAdminMsg:'Ce compte ne peut être ni bloqué ni limité.',
+  adm_a_access_granted:'Accès accordé',adm_a_blocked:'Compte bloqué',adm_a_rejected:'Demande refusée',adm_a_unblocked:'Compte débloqué',
   nav_home:'Accueil',nav_plans:'Plans',nav_progress:'Progrès',nav_profile:'Profil',nav_exercises:'Exercices',
   exLibSub:'Exercices individuels par partie du corps · explication et vidéo',
   chooseProfile:'Choisis ton profil',newProfile:'Nouveau profil',createProfile:'Créer le profil',np_desc:'Chaque profil garde ses propres maxes et progrès.',name:'Nom',color:'Couleur',
@@ -831,374 +962,56 @@ function exName(e){return tName(e.n)}
 /* ---- Sistema de porcentajes TopVelocity (Fusion / Level 1) ---- */
 const REF={clean:m=>m.clean,clean85:m=>m.clean*0.85,squat:m=>m.squat,squat85:m=>m.squat*0.85,bench:m=>m.bench,bench85:m=>m.bench*0.85};
 const REF_LABEL={clean:'Power Clean',clean85:'85% Clean',squat:'Back Squat',squat85:'85% Squat',bench:'Bench Press',bench85:'85% Bench'};
-const ROUTINES={
-  bar:{t:'Bar Warm-Up',x:[['Behind the neck press','10'],['Back Squat','10'],['Snatch (Overhead) Squat','10'],['Romanian Deadlift','10']]},
-  sh:{t:'Shoulder Routine (3–8 lb)',x:[['Circle curls','10 × 3'],['Thumb Ups & Downs','10 × 3'],['Shoulder extension','10 × 3'],['Up and Outs','10 × 3'],['Wind Mills','10 × 3'],['Lawnmowers','10 × 3'],['Bent Up and Outs','10 × 3'],['Ext. Rotation Positive','10 × 3'],['Ext. Rotation Negative','10 × 3'],['Ext. Rotation Cross','10 × 3']]},
-  fa1:{t:'Forearm Routine #1',x:[['Reverse curl','15 × 4'],['Wrist flip','30 × 4'],['Behind back twist curl','15 × 4']]},
-  fa2:{t:'Forearm Routine #2',x:[['Hammer curl','15 × 4'],['DB grip hold','20 s × 4'],['Reverse wrist curl','15 × 4']]},
-  c1:{t:'Core Routine #1',x:[['Plate Wood Choppers','10 × 3'],['Swiss Ball V-ups','10 × 3'],['MB Russian Twist','20 × 3'],['MB Side Crunch','20 × 3'],['Hanging Leg Raise','10 × 3']]},
-  c2:{t:'Core Routine #2',x:[['Crunches','15 × 3'],['Twisting toe touch','15 × 3'],['Reverse crunch','15 × 3'],['Double leg jack knife','15 × 3'],['V-up','15 × 3'],['Frog oblique crunch','15 × 3'],['Crunch extensions','15 × 3'],['Back crunch','15 × 3'],['Alternating supermans','15 × 3'],['Pillar','20 s × 3']]},
-  mb1:{t:'MB Circuit — Nivel 1 (3 series)',x:[['Squat-to-press pass','4–6'],['Chest pass','4–6'],['MB Slams R/L','4–6'],['Overhead throw','4–6'],['Pitch simulation','4–6']]},
-  mb2:{t:'MB Circuit — Nivel 2 (3 series)',x:[['Squat-to-press pass','4–6'],['Granny Toss','4–6'],['Chest pass','4–6'],['Overhead throw','4–6'],['Pitch simulation','4–6']]},
-  /* ---- MOVILIDAD (calentamiento dinámico) ---- */
-  movDyn:{t:'Movilidad — Calentamiento dinámico',x:[['Walking Arm Circles','20 m'],['Swinging Arm Skip','20 m'],['3-Step Pick con giro','20 m'],['Runner Walks','20 m'],['High Kicks','20 m'],['Russian Skips','20 m'],['Step Overs','20 m'],['External Knee Rotation','20 m'],['Quad Finger Touch','20 m'],['Prime Time','20 m'],['Dyno-walk','20 m'],['One Leg Spiderman','20 m'],['Groin Skips','20 m'],['Standing Scorpion','20 m']]},
-  movL3:{t:'Movilidad — Dinámica + Cadera',x:[['Low High Groin Skips','20 m'],['Backward Skips','20 m'],['High Knee Skip Kick Through','20 m'],['High Knee Kareoke','20 m'],['Prime Time','20 m'],['Butt Kicks Fwd/Rev','20 m'],['Hip External Rotators','20 m'],['Lateral Lunge Overhead Reach','20 m'],['Lunge Triangle','20 m'],['Dyno-Walks','20 m'],['Inch Worm','20 m'],['Hip Mobility L1: Circles / Strides','5–10 × 3'],['Hip Mobility L2: Hurdle Overs/Unders','4 vallas × 6']]},
-  movPre:{t:'Movilidad — Pre/In-Season',x:[['Soft Tissue (foam roller)','5–10 rolls c/u'],['Knee Hugs on Toe','20 m'],['Side to Side Lateral Lunge','20 m'],['Low Walking Lunge','20 m'],['Straight Leg Elbow to Toe','20 m'],['Running High Knees','20 m'],['Rotating Lunges Hands Up','20 m'],['Reverse Lunge Reach Over','20 m'],['Frankensteins','20 m'],['Traveling Inchworms','10 m'],['Prime Time','20 m'],['High Knee Karaoke','20 m']]},
-  /* ---- TIRO ---- */
-  throwL1:{t:'Tiro — 3X Velocity System',x:[['Med Throws — Chest Up (Full/Knee/Momentum)','5–8 c/u'],['Med Throws — Separation (Full/Knee/Momentum)','5–8 c/u'],['Target Throws — Chest Up (todas)','10 c/u'],['Target Throws — Separation (todas)','10 c/u'],['3X Drive Drills (sem. altas)','10–15'],['2 Phase Delivery','10'],['Pitching Stretch (montículo)','10–20']]},
-  throwL2:{t:'Tiro — 3X Advanced Drills',x:[['Momentum Drills — 3 Step Walk','5–8'],['Momentum Drills — 3 Step Sprint','5–8'],['Momentum Drills — Drive','5–8'],['3X Ball Separation — Full Stride','5–8'],['3X Ball Separation — Momentum','5–8'],['Assistance Throws Sep — On Knee','5–8'],['Assistance Throws Sep — Full Stride','5–8'],['Assistance Throws Sep — Momentum','5–8']]},
-  throwL3:{t:'Tiro — 3X Torsion',x:[['Sled Torsion Loads','2–4 × 20 ft'],['Sled Torsion Drives','2–4 × 20 ft'],['FVTT — Hold','10 s × 10'],['FVTT — Seated','5–10 × 2–3'],['FVTT — Ankle+Ball (sem. altas)','5 × 2'],['FVTT — Assistance','5 × 2'],['FVTT — Release','5 × 2'],['FVTT Stretch (velocidad)','10 · radar']]},
-  throwPre:{t:'Tiro — 3X Pre-Season',x:[['3X Med Throws Lateral (Full/Momentum/Drives)','4–10 c/u'],['3X Load Series (montículo)','4–10 c/u'],['3X Power Throws (45→120 ft)','4–10 c/u'],['3X Lateral Drives Over Mound','4–10'],['Bull Pen: Fastballs 60% / 75%','10–20'],['Bull Pen: Changeups / Breaking 75%','6–10'],['Game Speed Fastballs','6–10']]},
-  throwIn:{t:'Tiro — 3X Mechanics Series',x:[['Serie #1 — Leg Extension Throws','baja→alta int.'],['Serie #2 — Full Stride Ext. Rotation','baja→alta int.'],['Serie #3 — Full Stride Separation','baja→alta int.'],['Serie #4 — Lateral Stride Separation','baja→alta int.'],['Serie #5 — Slide Step','baja→alta int.'],['Serie #6 — One Step Drive Over Mound','baja→alta int.'],['Serie #7 — Hip Thrust','baja→alta int.'],['3X Mirror Drills','diario'],['Bull Pen según rotación','—']]},
-  /* ---- VELOCIDAD / ANAERÓBICO (correr) ---- */
-  spdA:{t:'Velocidad — Anaeróbico (lineal)',x:[['Dynamic Warm-Up','20 yds'],['Speed Improvement Drills','2 × 10 yds'],['Hurdle Drills (6\" velocidad / 12\" altura)','5 vallas × 4'],['Sand Pit Plyos (Pogo/Bunny/Frog/Mogul)','30–45 s descanso'],['Sand Pit Sprints','3 (1:10)'],['Push-Up Start Sprints','3 × 10 yds (1:10)']]},
-  spdB:{t:'Velocidad — Anaeróbico (lateral)',x:[['Lateral Warm-Up','20 yds'],['Rapid Response','10 yds'],['Side Winders (defensa/45°/in-outs)','15 yds × 1'],['Ladder Drills','6 × 2'],['6-Cone Lateral Suicide','4 (1:10)'],['240 yd Shuttle','2 × (60 s, descanso 3 min)']]},
-  /* ---- CORRER — Anaeróbico: 3 rutinas oficiales, una por día de correr (día 2 / 3 / 5) ---- */
-  run1:{t:'Correr — Anaeróbico (Día 2)',x:[['Dynamic Warmup #1','1 × 1 · 20 yds'],['Speed Improvement Drills','1 × 2 · 10 yds'],['Hurdle Drills','4 × 1 · 20 yds'],['Plyometrics','2 × 1 · 20 yds'],['Sprints','3 × 1 · 20 yds'],['Push-Up Start Sprints','3 × 1 · 20 yds']]},
-  run2:{t:'Correr — Anaeróbico (Día 3)',x:[['Dynamic Warmup #1','1 × 1 · 20 yds'],['Rapid Response','1 × 1 · 10 yds'],['Side Winders','3 × 1 · 20 yds'],['Ladder Drills','1 × 1 · 20 yds'],['Suicide Sprints','2 × 1 · 20 yds'],['Shuttle Run','1 × 1 · 240 yds']]},
-  run3:{t:'Correr — Anaeróbico (Día 5)',x:[['Dynamic Warmup #1','1 × 1 · 20 yds'],['Speed Improvement Drills','1 × 2 · 10 yds'],['Sprints','3 × 1 · 20 yds'],['Resistance Sprints','3 × 1 · 20 yds'],['Push-Up Start Sprints','3 × 1 · 20 yds'],['Hurdle Drills','1 × 1 · 20 yds']]},
-  /* ---- PRE-SEASON oficial (app TopVelocity): movilidad 3X + anaeróbicos propios ---- */
-  mob3x:{t:'Movilidad 3X',x:[['Ankle Mobility','3 × 2 min'],['Hip Extension Internal Rotation Mobility','3 × 2 min'],['Hip Flexion External Rotation Mobility','3 × 2 min'],['Hip Abduction Mobility','3 × 2 min'],['Trunk Rotation Mobility','3 × 2 min'],['Shoulder Mobility','3 × 2 min']]},
-  anaJump:{t:'Anaeróbico — Comba y Shuttle',x:[['Jump Rope Routine','1 × 30 min'],['Plyometrics','6 × 20 yds'],['Shuttle Run','1 × 100 yds']]},
-  anaSpr:{t:'Anaeróbico — Sprints',x:[['Hurdle Step Overs','6'],['Rapid Response','1 × 10 yds'],['Sprints','3 × 20 yds']]}
-};
-const R=(name,ref,sets,note)=>({n:name,ref,s:sets,note});
-const B=(name,reps,note)=>({n:name,ref:'bw',s:reps,note});
-const RT=(key)=>({n:ROUTINES[key].t,ref:'routine',rk:key});
-const RTL=(name,list)=>({n:name,ref:'routine',list});
-function P(str){return str.trim().split(/\s+/).map(t=>{const[a,b]=t.split('x');return[a==='M'?'Máx':+a,b?+b:null];});}
-function BW(str){return str.trim().split(/\s+/).map(t=>{const m=t.match(/^(\d+)(.*)$/);return{r:+m[1],tag:m[2]||''};});}
-/* referencia automática de % según nombre del ejercicio (chart oficial TopVelocity) */
-function refOf(n){n=(n||'').toLowerCase();
-  if(/incline|close grip/.test(n))return 'bench85';
-  if(/board bench|bench press|flat bench|\bbench\b/.test(n))return 'bench';
-  if(/snatch/.test(n))return 'clean85';
-  if(/jerk|push press/.test(n))return 'clean85';
-  if(/clean|shrug/.test(n))return 'clean';
-  if(/front squat|box squat|overhead squat|good\s?morning/.test(n))return 'squat85';
-  if(/back squat|\bsquat\b/.test(n))return 'squat';
-  if(/lunge|step up|walkup|walk up|\brdl\b|romanian|deadlift|trunk rotation|scap pull/.test(n))return 'squat';
-  return 'squat';}
-const EXP=(name,str)=>({n:name,ref:refOf(name),s:P(str)});   // ejercicio con %
-const EXB=(name,str)=>({n:name,ref:'bw',s:BW(str)});          // peso corporal / accesorio
-/* ---- TIRO como ejercicios individuales (uno a uno) ---- */
-const TH=(name,reps,note)=>({n:name,ref:'throw',s:[{r:reps,tag:''}],note});   // un ejercicio de tiro
-const MEDBALL=['3X Med Ball Open Full Stride','3X Med Ball Open On Knee','3X Med Ball Open Momentum','3X Med Ball Separation Full Stride','3X Med Ball Separation On Knee','3X Med Ball Separation Momentum'];
-const TARGET=['Target Throw Open On Knee','Target Throw Open Full Stride','Target Throw Open Momentum','Target Throw Separation On Knee','Target Throw Separation Full Stride','Target Throw Separation Momentum'];
-function throwingExercises(key,tag){
-  const l=(tag||'').toLowerCase();
-  if(key==='throwL1'){
-    const medR=/base|recup/.test(l)?5:8;
-    const tgtR=/base/.test(l)?10:8;
-    let ex=MEDBALL.map(n=>TH(n,medR,'Medicine ball 2 lb · 45 ft'));
-    ex=ex.concat(TARGET.map(n=>TH(n,tgtR,'Pelota de béisbol · 45 ft')));
-    if(/volumen|rendim/.test(l)){ex.push(TH('3X Drive Drill — Chest Up',10,'60–90 ft'));ex.push(TH('3X Drive Drill — Separation',10,'60–90 ft'));ex.push(TH('2 Phase Delivery',10,'60 ft'));}
-    return ex;
+/* =====================================================================
+   CONTENIDO PROTEGIDO  (planes · rutinas · ejercicios · vídeos)
+   ---------------------------------------------------------------------
+   Los datos de entrenamiento NO viajan en claro dentro de este fichero.
+   Van cifrados con AES-256-GCM y la clave de cada plan sólo la entrega
+   Firestore cuando las reglas del SERVIDOR autorizan a ese usuario.
+   Descargar este HTML, leer el repo o llamar a la API no sirve de nada
+   sin la clave: el contenido sigue siendo un bloque ilegible.
+   ===================================================================== */
+const ENC={"common":{"i":"z5f7/M8ZW7CPTSGQ","c":"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"},"p_lvl1":{"i":"DckdmWA8R3a+ZXLd","c":"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"},"p_lvl2":{"i":"D6XBryYDiBIHRaMw","c":"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"},"p_lvl3":{"i":"7axBE5+TnMwJe6a1","c":"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"},"p_pre":{"i":"op3prOts3z4jxezX","c":"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"},"p_inseason":{"i":"WozKTJ6CJ5mxUdnz","c":"QjGcWIG63t1e4n90c4K7ITu8cH+cclndlrUSXJtcUuIdY1u7B0EaV3zA5pcekZAKeYD5LZyKFHtBtM+FtKmxIOUKQpwdVeABjY4wsIRDMsi4PxREmosWROIXVWaA7hG6fFZDP2hEjNV2v+jl54Iwpjwm6lgbIVBLwtHcH2w7kaKSHExPFg1GZ2/N7Rf7MGpgFDGHXbX3VnTmCUDT9UqdHppfOZF1qQ+XoCBbnh/0rGuWF63ySBApmiz+OpZn+ynN8Hjyb3tCu3CQbz7Etz8OHBaROZrtbbTDFd/HYJXqLcLzkiAC9lkLCAqY2yh+v1puZfenHsJPVnCrbsh7c3up4BkhMWSNZq5zsdwqKO3J2SGV1Fa8k/JKz/Hb3kBcPcvg6mDQ0u4JVxrhR1kJXKSRHv8kgaXyTH/wNJhZ7rcrVOVaMxvrw5Gthw0yrm4xXBJfwNhOZ6CKhIAvw0DZ8JNKb6m06gjhZFg/Fcb5H2fdF0HFhNF/Jj0dKBtCIX1uNmtmzx2lEGGMREjkkOYEO3IVvVKsDX3HojJEev7X7PhLTIDtyNiJwzlGjzr5Wom6AvoVJvPS6x0vYfuuUaW0NYeX7b42ZFhg0JgLDhW/e9+P561pxeFLPZcUG3Q2mwtzry2uOAs+AVEOd6El0SVk4tOG94ZJnyCDBZNqxmoUK3U5YleOvIg1j66FoIFqkCVR0Zqc5ym70zZUY++3o29vYFNrulaSOfyphhhH+XRAuVJMc0lh+KWUtl183LNHdxn4ssItnCc7rtZewFXUtU3omliqWTXF60v3gWMOOyGuzWHfurDKw/L3xM/ksrHlGQh0ndELnxXw342H/F0vbZa/wAPQgBBoGf0ZD0R62q8R+7KWjcMG+cEV9izkMLbyWutpWLZwWc69FUs3eWrvtgMbvlt0vamUGZlfSfwgdoMEageE+kczMGBgG+z6BcOK0kK0bdJJrldHz19IDNKsNv51308Eerdm0YHZn9LrlKyF5/ju0ZnTWCQMsg0ChCrvmDOgIpSlAXJnOb2nsBTnFmxumQy4xPLg/xVGvwYS1OdMWFsw/bTuiti5PiekBO+gEi8HTqrjIbnNMZTd4U+5UfV2ze9c8xkmpTDVbYaCA4UtZEIN4T5/0Rwn5JRqF4hOHsUi1R5su6Xw1UzJT4nW3uL3iiMy/xG49XIuLlvbn0VJ7Cp+l3qTsb72nvzvZ3Nd7JHlHv3WEZhwDifl4If3ozHyZ9e7b7GERu1YiGOQXgimImYa1vDtmu/awGGxkg1qbEA2CnFiNimN5LlNqZvu2wlVdBOq/iV74eRxeztfPrK4c2QKu/4RjFSCA/KRFxf1/D4SXWwRaAl7vMVaalo2JF1+Zpg4reuE35RKeq6YMHeIBs9MW5r+ChzVhL8oDon7GpYh/KwWPktMljeUj+Mg/rdMeRvG5nNWGhaRFtC2C9cS/Scq/dwSZtQ1YE+urLjmqs7Ug2oaJUfUgoys+mhUu091mjV1oz6iJcvWtcSwTw3ecJ9b3/AVRyKu+Jol0YLhyFfB1jaLMTsS1RmvgtFQ2DSCJ+T2hzicGCAA9ORxx9o+0dUIXEAVwqktarxUnYzfaSDPUbPm0FurP4Ln4pj8wdJv/Jl4h5wuqcsrFMuGffUmpvSQQp5Q70Cvd+OMmTNhL1CqL494vyomuBBFsQzUaHIgAmnk2BEc1hS0VvIzJW55zEEhDAOW9621BGyJBFCQ1d61OfWDggz3XvbSofhiSDBm4UNTctvabfdWItU6KFcnETUmu7pKzmyLYr0CVhf7mGZyvyZL0tK07tjgiN7cR+pn1dab40HPEsBWPMFsOUuxQhtRr0u21GEliaB5QrqTqQw6fNns7Llr9+Y2IZGSaHjdWN4XBtXaUQZ9g7P0fBC/Ioa2lov4+jMIO7/XivXMuOqdbeTOid0jOGEVnqBBhQ=="}};
+const ALL_PLAN_IDS=['lvl1','lvl2','lvl3','pre','inseason'];
+let PLANS=[],ROUTINES={},CATALOG=[],VIDEOS={},ROUTINE_BY_TITLE={};
+let CONTENT_READY=false;
+function b64b(s){const bin=atob(s);const u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);return u}
+async function unseal(blob,keyB64){
+  const key=await crypto.subtle.importKey('raw',b64b(keyB64),{name:'AES-GCM'},false,['decrypt']);
+  const plain=await crypto.subtle.decrypt({name:'AES-GCM',iv:b64b(blob.i)},key,b64b(blob.c));
+  const st=new Blob([plain]).stream().pipeThrough(new DecompressionStream('gzip'));
+  return JSON.parse(await new Response(st).text());
+}
+/* descarga las claves permitidas y descifra sólo lo autorizado */
+async function loadProtectedContent(){
+  if(!(CLOUD&&AUTH))return false;
+  const fs=firebase.firestore();
+  PLANS=[];ROUTINES={};CATALOG=[];VIDEOS={};ROUTINE_BY_TITLE={};CONTENT_READY=false;
+  try{
+    const ck=await fs.collection('secure').doc('common').get();
+    if(!ck.exists||!ck.data().k)return false;
+    const common=await unseal(ENC.common,ck.data().k);
+    ROUTINES=common.routines||{};CATALOG=common.catalog||[];VIDEOS=common.videos||{};
+    Object.keys(ROUTINES).forEach(k=>{ROUTINE_BY_TITLE[ROUTINES[k].t]=ROUTINES[k]});
+  }catch(e){console.warn('[RODO] contenido común:',e.message);return false}
+  const ids=IS_ADMIN?ALL_PLAN_IDS:((ENT&&ENT.plans)||[]);
+  for(const id of ALL_PLAN_IDS){
+    if(!ids.includes(id))continue;
+    try{
+      const kd=await fs.collection('secure').doc('plan_'+id).get();
+      if(!kd.exists||!kd.data().k)continue;
+      PLANS.push(await unseal(ENC['p_'+id],kd.data().k));
+    }catch(e){/* sin permiso para ese plan: simplemente no aparece */}
   }
-  // otros niveles: expandir la lista de la rutina en ejercicios individuales
-  const r=ROUTINES[key];if(!r)return[];
-  return r.x.map(it=>({n:it[0],ref:'throw',s:[{r:1,tag:''}],note:it[1]}));
+  CONTENT_READY=true;return true;
 }
-/* ---- VELOCIDAD como rutina (según día) ---- */
-function speedRoutineKey(dn,speedDays){return null} // (helper reservado)
-
-const LVL1={id:'lvl1',name:'Level 1 — Fusion System',weeks:[
-  {tag:'Base',days:[
-    {d:'Lunes',ex:[RT('bar'),R('Hang Clean','clean',P('5x60 5x65 5x65 5x70')),R('Clean Pull','clean',P('5x70 5x70 5x72')),R('Front Squat','squat85',P('10x60 8x65 6x70')),B('Pavel Squat / Towel Ham Slide',BW('8 8 8 8')),B('Glute-Ham Raise',BW('8 8 8')),R('RDL','squat',P('5x25 5x25 5x25')),RT('c1')]},
-    {d:'Martes',ex:[RT('sh'),RT('mb1'),R('3 Board Bench','bench',P('10x60 10x65 8x70 8x70')),B('Pull-up (fat grip)',BW('10 10 10 10')),B('DB DS SB Bench',BW('8 8 8')),B('Low Row (fat grip)',BW('10 10 10 10')),B('Towel Push Ups',BW('6 6 6 6')),RT('fa1')]},
-    {d:'Jueves',ex:[RT('bar'),RT('mb1'),R('Power Clean','clean',P('5x60 5x62 5x65 3x70')),R('Power Jerk','clean85',P('5x65 5x65 5x70')),R('Box Squat','squat85',P('10x60 8x65 6x70 6x70')),R('Step Up','squat',P('5x25 5x25 5x25')),B('Glute-Ham Raise negative',BW('8 8 8')),R('Goodmorning','squat85',P('5x25 5x25 5x25 5x25')),RT('c2')]},
-    {d:'Viernes',ex:[RT('sh'),R('Incline Bench','bench85',P('10x60 10x65 8x70 8x70')),B('Towel Pull up',BW('6 6 6 6')),B('Towel Clock Push Up',BW('3 3 3 3')),B('Fat Man Pull up (fat grip)',BW('10 10 10 10')),B('Stability Push Ups',BW('6 6 6 6')),RT('fa2')]}
-  ]},
-  {tag:'Volumen',days:[
-    {d:'Lunes',ex:[RT('bar'),R('Hang Clean','clean',P('5x65 5x70 4x75 3x80')),R('Clean Pull','clean',P('5x80 5x82 5x85')),R('Front Squat','squat85',P('8x65 8x65 6x70 6x75')),B('Pavel Squat / Towel Ham Slide',BW('8 8 8 8')),B('Glute-Ham Raise',BW('8 8 8')),R('RDL','squat',P('5x25 5x25 5x25')),RT('c1')]},
-    {d:'Martes',ex:[RT('sh'),RT('mb1'),R('3 Board Bench','bench',P('8x70 8x72 6x75 6x80')),B('Pull-up (fat grip)',BW('10 10 10 10')),B('DB DS SB Bench',BW('8 8 8 8')),B('Low Row (fat grip)',BW('10 10 10 10')),B('Towel Push Ups',BW('6 6 6 6')),RT('fa1')]},
-    {d:'Jueves',ex:[RT('bar'),RT('mb1'),R('Power Clean','clean',P('5x65 5x65 3x75 3x80')),R('Power Jerk','clean85',P('5x70 5x72 5x75')),R('Box Squat','squat85',P('8x70 8x75 6x80 6x85')),R('Step Up','squat',P('5x25 5x25 5x25')),B('Glute-Ham Raise negative',BW('8 8 8')),R('Goodmorning','squat85',P('5x25 5x25 5x25')),RT('c2')]},
-    {d:'Viernes',ex:[RT('sh'),R('Incline Bench','bench85',P('8x65 8x65 6x70 6x75')),B('Towel Pull up',BW('6 6 6 6')),B('Towel Clock Push Up',BW('3 3 3 3')),B('Fat Man Pull up (fat grip)',BW('10 10 10 10')),B('Stability Push Ups',BW('6 6 6 6')),RT('fa2')]}
-  ]},
-  {tag:'Recuperación',days:[
-    {d:'Lunes',ex:[RT('bar'),R('Hang Clean','clean',P('5x50 5x55 5x60 5x75')),R('Clean Pull','clean',P('5x70 5x70 5x70')),R('Front Squat','squat85',P('8x60 8x60 6x65 6x65')),B('Pavel Squat / Towel Ham Slide',BW('8 8 8 8')),B('Glute-Ham Raise',BW('8 8 8')),R('RDL','squat',P('5x25 5x25 5x25')),RT('c1')]},
-    {d:'Martes',ex:[RT('sh'),RT('mb1'),R('3 Board Bench','bench',P('8x50 8x55 8x60 6x65')),B('Pull-up (fat grip)',BW('10 10 10 10')),B('DB DS SB Bench',BW('8 8 8 8')),B('Low Row (fat grip)',BW('10 10 10 10')),B('Towel Push Ups',BW('6 6 6 6')),RT('fa1')]},
-    {d:'Jueves',ex:[RT('bar'),RT('mb1'),R('Power Clean','clean',P('5x60 5x60 5x65 5x65')),R('Power Jerk','clean85',P('5x60 5x60 5x65')),R('Box Squat','squat85',P('10x60 8x60 6x65 6x65')),R('Step Up','squat',P('5x25 5x25 5x25')),B('Glute-Ham Raise negative',BW('8 8 8')),R('Goodmorning (ligero)','squat85',P('5x25 5x25 5x25')),RT('c2')]},
-    {d:'Viernes',ex:[RT('sh'),R('Incline Bench','bench85',P('10x60 10x65 8x70 8x70')),B('Towel Pull up',BW('6 6 6 6')),B('Towel Clock Push Up',BW('3 3 3 3')),B('Fat Man Pull up',BW('10 10 10 10')),B('Stability Push Ups',BW('6 6 6 6')),RT('fa2')]}
-  ]},
-  {tag:'Rendimiento',days:[
-    {d:'Lunes',ex:[RT('bar'),R('Power Clean','clean',P('3x80 3x80 2x85 1x95')),R('Power Jerk','clean85',P('3x75 3x80')),R('Back Squat','squat',P('4x75 4x80 3x85 2x90 2x90')),B('Weighted Glute-Ham Raise',BW('6 6 6 6')),R('RDL','squat',P('5x35 5x35 5x35')),RT('c1')]},
-    {d:'Martes',ex:[RT('sh'),RT('mb1'),R('Flat Bench','bench',P('5x75 4x80 4x80 2x90 2x90')),B('Weighted Pull-up',BW('6 6 6 6')),B('DB DS SB Bench (pesado)',BW('6 6 4 2')),B('Low Row',BW('6 6 6 6')),B('Towel Push Ups',BW('6 6 6 6')),RT('fa1')]},
-    {d:'Jueves',ex:[RT('bar'),RT('mb1'),R('Hang Clean','clean',P('5x65 3x80 3x80 3x85')),R('Push Press','clean85',P('3x75 3x80 3x80')),R('Clean Pull','clean',P('3x85 3x90 3x95')),R('Front Squat','squat85',P('4x75 4x80 3x85 2x90 2x90')),R('Step Up','squat',P('5x30 5x30 5x30')),B('Glute/Ham Raise negative',BW('8 8 8')),R('Goodmorning','squat85',P('5x35 5x35 5x35')),RT('c2')]},
-    {d:'Viernes',ex:[RT('sh'),R('Incline Bench','bench85',P('10x60 10x65 8x70 8x70')),B('Towel Pull up',BW('6 6 6 6')),R('3 Board Bench (close grip)','bench85',P('4x80 4x80 2x85 2x85')),B('Towel Clock Push Up',BW('3 3 3 3')),B('Fat Man Pull up (fat grip)',BW('10 10 10 10')),B('Stability Push Ups',BW('6 6 6 6')),RT('fa2')]}
-  ]},
-  {tag:'Base',days:[
-    {d:'Lunes',ex:[RT('bar'),R('Hang Clean','clean',P('5x65 5x70 5x75 5x75')),R('Push Press','clean85',P('5x70 5x75 5x75')),R('Clean Pull','clean',P('6x75 6x75 6x75')),R('Back Squat','squat',P('8x70 8x72 6x75')),R('Front Squat','squat85',P('5x75 5x75 5x75')),B('Glute-Ham Raise',BW('8 8 8')),R('RDL','squat',P('5x35 5x35 5x35')),RT('c1')]},
-    {d:'Martes',ex:[RT('sh'),RT('mb1'),R('3 Board Bench','bench',P('8x65 8x70 6x75 4x80')),B('Weighted Pull-up (fat grip)',BW('6 6 6 6')),B('DB DS SB Bench',BW('6 6 6 6')),B('Low Row (fat grip)',BW('10 10 10 10')),B('Towel Push Ups',BW('6 6 6 6')),RT('fa1')]},
-    {d:'Jueves',ex:[RT('bar'),RT('mb2'),R('Power Clean','clean',P('5x60 5x65 5x65 5x70')),R('Split Jerk','clean85',P('5x65 5x65 5x70')),R('Box Squat','squat85',P('5x75 5x80 5x85 3x90')),R('2-Position Lunge','squat',P('5x35 5x35 5x35')),B('Glute-Ham Raise negative',BW('8 8 8')),R('Goodmorning','squat85',P('5x35 5x35 5x35')),RT('c2')]},
-    {d:'Viernes',ex:[RT('sh'),R('Incline Bench','bench85',P('10x60 10x65 8x70 8x70')),B('Towel Pull up',BW('6 6 6 6')),B('Towel Clock Push Up',BW('3 3 3 3')),B('Fat Man Pull up (fat grip)',BW('10 10 10 10')),B('Stability Push Ups',BW('6 6 6 6')),RT('fa2')]}
-  ]},
-  {tag:'Volumen',days:[
-    {d:'Lunes',ex:[RT('bar'),R('3-Position Clean','clean',P('1x75 1x80 1x80 1x85')),R('Push Press','clean85',P('5x75 5x80 5x80')),R('Back Squat','squat',P('6x80 6x80 4x85 3x88 2x90')),R('Front Squat','squat85',P('5x50 Mx55')),B('Glute-Ham Raise',BW('8 8 8')),R('RDL','squat',P('5x35 5x35 5x35')),RT('c1')]},
-    {d:'Martes',ex:[RT('sh'),RT('mb2'),R('Incline Bench','bench85',P('8x70 8x75 6x80 6x85')),B('Towel Pull-up (fat grip)',BW('6 6 6 6')),R('3 Board Bench (close grip)','bench85',P('8x75 6x80 6x85')),B('BB Bent over row',BW('10 10 10 10')),B('Towel Push Ups',BW('6 6 6 6')),RT('fa1')]},
-    {d:'Jueves',ex:[RT('bar'),RT('mb2'),R('Power Clean','clean',P('5x75 3x80 3x90 2x95')),R('Split Jerk','clean85',P('5x80 5x80 5x80')),R('Clean-grip Deadlift','clean',P('5x85 3x90 3x90')),R('Box Squat','squat85',P('6x80 6x80 6x85 6x88')),R('2-Position Lunge','squat',P('5x35 5x35 5x35')),B('Glute-Ham Raise (neg.)',BW('8 8 8')),R('WS Goodmorning','squat85',P('5x35 5x35 5x35'))]},
-    {d:'Viernes',ex:[RT('sh'),R('Flat Bench','bench',P('6x80 6x80 4x85 3x90')),B('Weighted Pull-up (fat grip)',BW('6 6 6 6')),B('DB DS SB Bench',BW('6 6 6 6')),B('Low Row (fat grip)',BW('10 10 10 10')),B('Towel Push Ups',BW('6 6 6 6')),RT('fa2')]}
-  ]},
-  {tag:'Recuperación',days:[
-    {d:'Lunes',ex:[RT('bar'),R('Hang Clean','clean',P('4x65 4x65 4x70 4x70')),R('Push Press','clean85',P('4x65 4x65 4x70')),R('Clean Pull','clean',P('5x70 5x70 5x70')),R('Back Squat','squat',P('5x70 5x75 5x75')),R('Front Squat','squat85',P('5x70 5x75 5x75')),B('Glute-Ham Raise',BW('6 6 6')),R('RDL','squat',P('5x25 5x25 5x25')),RT('c1')]},
-    {d:'Martes',ex:[RT('sh'),RT('mb2'),R('Incline Bench','bench85',P('6x70 6x70 6x75 6x75')),B('Lat Pull Down / Pull-up',BW('8 8 8 8')),R('3 Board Bench (close grip)','bench85',P('6x70 6x70 6x70')),B('BB Bent over row',BW('10 10 10 10')),RT('fa1')]},
-    {d:'Jueves',ex:[RT('bar'),RT('mb2'),R('Power Clean','clean',P('4x65 4x70 4x70 4x55')),R('Power Jerk','clean85',P('4x70 4x75 4x75')),R('Box Squat','squat85',P('5x70 5x75 5x75 5x75')),R('Step Up','squat',P('5x25 5x25 5x25')),B('Glute-Ham Raise',BW('8 8 8')),R('Goodmorning','squat85',P('5x25 5x25 5x25')),RT('c2')]},
-    {d:'Viernes',ex:[RT('sh'),R('Flat Bench','bench',P('6x70 6x70 6x75 4x75')),B('Lat Pull Down / Pull-up',BW('8 8 8')),B('DB Incline Bench',BW('6 6 5')),B('Fat Man Pull up',BW('8 8 8')),RT('fa2')]}
-  ]},
-  {tag:'MAX — Test',days:[
-    {d:'Lunes',ex:[R('Power Clean','clean',P('5x50 3x60 3x70 2x80 1x90 1x95 1x100 1x105 1x110 1x115 1x120'),'Semana de test: sube hasta un nuevo máximo con técnica perfecta.')]},
-    {d:'Martes',ex:[R('Bench Press','bench',P('5x60 3x70 2x80 1x85 1x90 1x95 1x100 1x105 1x110 1x115 1x120'),'Semana de test: busca un nuevo 1RM sin fallar la técnica.')]},
-    {d:'Miércoles',ex:[R('Back Squat','squat',P('5x60 3x70 3x80 1x90 1x100 1x105 1x110 1x115 1x120'),'Semana de test: nuevo 1RM. Actualiza tus máximos al terminar.')]}
-  ]}
-]};
-const AC2=RTL('Accesorios + Core',[['MB Circuit + Core Routine','3 series'],['Shoulder / Forearm Routine','ver PDF'],['Curls · Rows · Push/Pull · Hip Thrusters','8–10 reps']]);
-const D=(d,ex)=>({d,ex});
-const LVL2={id:'lvl2',name:'Level 2 — Off-Season',weeks:[
- {tag:'Base',days:[
-   D('Lunes',[EXP('3-Position Clean','2x50 2x55 2x60 2x60'),EXP('Back Squat','8x70 8x70 6x75'),EXP('Goodmorning','5x35 5x35 5x35'),EXP('3 Board Bench Press','10x60 10x65 8x70 8x70'),EXP('Power Shrugs','10x100 10x100 10x100'),AC2]),
-   D('Miércoles',[EXP('Split Jerk','5x65 5x65 5x70'),EXP('Power Clean','5x60 5x65 5x65 5x70'),EXP('Power Lunge','5x25 5x25 5x25'),EXP('RDL','5x25 5x25 5x25'),AC2]),
-   D('Viernes',[EXP('Clean Below the Knee','5x65 5x70 5x75 5x75'),EXP('Clean Pull','5x75 5x75 5x75'),EXP('Front Squat','10x60 8x65 6x70'),EXP('Step Ups','5x25 5x25 5x25'),EXP('3 Board Close Grip Bench','10x55 10x60 8x65 8x65'),AC2])]},
- {tag:'Volumen',days:[
-   D('Lunes',[EXP('3-Position Clean','2x55 2x60 2x65 2x65'),EXP('Back Squat','8x75 6x80 4x85'),EXP('Goodmorning','5x40 5x40 5x40'),EXP('3 Board Bench Press','8x70 8x70 6x75 6x80'),EXP('Power Shrugs','10x100 10x100 10x100'),AC2]),
-   D('Miércoles',[EXP('Split Jerk','5x70 5x70 5x75'),EXP('Power Clean','5x65 5x65 3x75 3x80'),EXP('Power Lunge','5x30 5x30 5x30'),EXP('RDL','5x30 5x30 5x30'),AC2]),
-   D('Viernes',[EXP('Clean Below the Knee','5x65 5x70 4x75 3x80'),EXP('Clean Pull','5x80 5x80 5x85'),EXP('Front Squat','8x65 8x65 6x70 6x75'),EXP('Step Ups','5x30 5x30 5x30'),EXP('3 Board Close Grip Bench','8x75 6x80 6x85'),AC2])]},
- {tag:'Recuperación',days:[
-   D('Lunes',[EXP('3-Position Clean','2x50 2x55 2x60 2x60'),EXP('Back Squat','5x70 5x75 5x75'),EXP('Goodmorning','5x35 5x35 5x35'),EXP('3 Board Bench Press','8x50 8x55 8x60 6x65'),EXP('Power Shrugs','10x100 10x100 10x100'),AC2]),
-   D('Miércoles',[EXP('Split Jerk','5x60 5x60 5x65'),EXP('Power Clean','5x60 5x60 5x65 5x65'),EXP('Power Lunge','5x25 5x25 5x25'),EXP('RDL','5x25 5x25 5x25'),AC2]),
-   D('Viernes',[EXP('Clean Below the Knee','5x65 5x70 5x75 5x75'),EXP('Clean Pull','6x75 6x75 6x75'),EXP('Front Squat','8x60 8x60 6x65 6x65'),EXP('Step Ups','5x25 5x25 5x25'),EXP('3 Board Close Grip Bench','10x50 10x55 8x60 8x60'),AC2])]},
- {tag:'Rendimiento',days:[
-   D('Lunes',[EXP('3-Position Clean','2x60 2x65 2x70 2x70'),EXP('Back Squat','4x75 4x80 3x85 2x90 2x90'),EXP('Goodmorning','3x45 3x45 3x45'),EXP('3 Board Bench Press','5x70 5x75 3x85 3x85'),EXP('Power Shrugs','10x100 10x100 10x100'),AC2]),
-   D('Miércoles',[EXP('Split Jerk','3x75 3x80'),EXP('Power Clean','3x80 3x80 2x85 2x90'),EXP('Power Lunge','5x35 5x35 5x35'),EXP('RDL','5x35 5x35 5x35'),AC2]),
-   D('Viernes',[EXP('Clean Below the Knee','3x80 3x80 2x85 2x90'),EXP('Clean Pull','3x85 3x90 3x95'),EXP('Front Squat','4x75 4x80 3x85 2x90 2x90'),EXP('Step Ups','5x35 5x35 5x35'),EXP('3 Board Close Grip Bench','6x80 6x85 3x90'),AC2])]},
- {tag:'Base',days:[
-   D('Lunes',[EXP('Power Clean','5x60 5x65 5x65 5x70'),EXP('Clean Below the Knee','5x60 5x65 5x65 5x70'),EXP('Clean Pull','6x75 6x75 6x75'),EXP('Power Jerk','5x65 5x65 5x70'),EXP('Power Shrugs','10x100 10x100 10x100'),EXP('RDL','5x35 5x35 5x35'),AC2]),
-   D('Miércoles',[EXP('Push Press','5x70 5x75 5x75'),EXP('Power Lunge','5x35 5x35 5x35'),EXP('Step Ups','5x25 5x25 5x25'),AC2]),
-   D('Viernes',[EXP('Overhead Squat','5x25 5x25 5x25'),EXP('Back Squat','8x70 8x70 6x75'),EXP('Front Squat','5x75 5x75 5x75'),EXP('RDL','5x35 5x35 5x35'),EXP('Incline Bench Press','10x60 10x65 8x70 8x70'),AC2])]},
- {tag:'Volumen',days:[
-   D('Lunes',[EXP('Power Clean','5x75 3x80 3x85 2x90'),EXP('Clean Below the Knee','5x75 3x80 3x85 2x90'),EXP('Clean Pull','5x80 5x80 5x85'),EXP('Power Jerk','5x80 5x80 5x80'),EXP('Power Shrugs','10x100 10x100 10x100'),EXP('RDL','5x40 5x40 5x40'),AC2]),
-   D('Miércoles',[EXP('Push Press','5x75 5x80 5x80'),EXP('Power Lunge','5x40 5x40 5x40'),EXP('Step Ups','5x30 5x30 5x30'),AC2]),
-   D('Viernes',[EXP('Overhead Squat','5x35 5x35 5x35'),EXP('Back Squat','6x80 6x80 4x85 3x90'),EXP('Front Squat','5x50 Mx55'),EXP('RDL','5x40 5x40 5x40'),EXP('Incline Bench Press','8x70 8x75 6x80 6x85'),AC2])]},
- {tag:'Recuperación',days:[
-   D('Lunes',[EXP('Power Clean','5x50 5x55 5x55 5x60'),EXP('Clean Below the Knee','5x50 5x55 5x55 5x60'),EXP('Clean Pull','6x65 6x65 6x65'),EXP('Power Jerk','5x55 5x55 5x60'),EXP('Power Shrugs','10x100 10x100 10x100'),EXP('RDL','5x35 5x35 5x35'),AC2]),
-   D('Miércoles',[EXP('Push Press','5x60 5x65 5x65'),EXP('Power Lunge','5x25 5x25 5x25'),EXP('Step Ups','5x25 5x25 5x25'),AC2]),
-   D('Viernes',[EXP('Overhead Squat','5x25 5x25 5x25'),EXP('Back Squat','8x60 8x60 6x65'),EXP('Front Squat','5x65 5x65 5x65'),EXP('RDL','5x35 5x35 5x35'),EXP('Incline Bench Press','10x50 10x55 8x60 8x60'),AC2])]},
- {tag:'MAX — Test',days:[
-   D('Lunes',[EXP('Power Clean','5x50 3x60 3x70 2x80 1x90 1x95 1x100 1x105 1x110 1x115 1x120')]),
-   D('Martes',[EXP('Bench Press','5x60 3x70 2x80 1x85 1x90 1x95 1x100 1x105 1x110 1x115 1x120')]),
-   D('Miércoles',[EXP('Back Squat','5x60 3x70 3x80 1x90 1x100 1x105 1x110 1x115 1x120')])]}
-]};
-const AC3=RTL('Accesorios · Anillas · Cadera',[['Ring work / Rocket Push Ups / Fat Mans','6 reps'],['Box Jumps · Med Ball · Ropes · Scap','ver PDF'],['Hip Mobility L1/L2 · Core · Shoulder','3 series']]);
-const LVL3={id:'lvl3',name:'Level 3 — Élite',weeks:[
- {tag:'Base',days:[
-   D('Lunes',[EXP('Below Knee Clean','5x60 5x65 5x65 5x70'),EXP('Front Squat (Chains)','1x100 10x60 8x65 6x70'),EXP('Overhead Squat','5x25 5x25 5x25 5x25'),EXP('Snatch Pulls (Chains)','6x75 6x75 6x75'),EXP('3X Lateral Lunge','5x25 5x25 5x25 5x25'),EXP('Good morning','5x25 5x25 5x25 5x25'),AC3]),
-   D('Martes',[EXP('Power Shrugs','10x100 10x100 10x100 10x100'),AC3]),
-   D('Jueves',[EXP('Power Clean','5x60 5x65 5x65 3x70'),EXP('Clean Pull (Chains)','6x75 6x75 6x75'),EXP('Back Squat (Chains)','1x100 10x60 8x65 6x70'),EXP('RDL','5x25 5x25 5x25 5x25'),AC3]),
-   D('Viernes',[EXP('3 Board Bench','1x100 10x60 10x65 8x70 8x70'),EXP('Power Shrugs','10x100 10x100 10x100 10x100'),AC3])]},
- {tag:'Volumen',days:[
-   D('Lunes',[EXP('Below Knee Clean','5x65 5x70 4x75 3x80'),EXP('Front Squat (Chains)','1x100 8x65 8x65 6x70 6x75'),EXP('Overhead Squat','5x30 5x30 5x30 5x30'),EXP('Snatch Pulls (Chains)','5x80 5x80 5x85'),EXP('3X Lateral Lunge','5x30 5x30 5x30 5x30'),EXP('Good morning','5x30 5x30 5x30 5x30'),AC3]),
-   D('Martes',[EXP('Power Shrugs','10x125 10x125 10x125 10x125'),AC3]),
-   D('Jueves',[EXP('Power Clean','5x65 5x65 3x75 3x80'),EXP('Clean Pull (Chains)','5x80 5x80 5x85'),EXP('Back Squat (Chains)','1x100 8x65 8x65 6x70 6x75'),EXP('RDL','5x30 5x30 5x30 5x30'),AC3]),
-   D('Viernes',[EXP('3 Board Bench','1x100 8x70 8x70 6x75 6x75'),EXP('Power Shrugs','10x125 10x125 10x125 10x125'),AC3])]},
- {tag:'Recuperación',days:[
-   D('Lunes',[EXP('Below Knee Clean','5x50 5x55 5x60 5x75'),EXP('Front Squat (Chains)','8x60 8x60 6x65 6x65'),EXP('Overhead Squat','5x25 5x25 5x25 5x25'),EXP('Snatch Pulls (Chains)','6x70 6x70 6x70'),EXP('3X Lateral Lunge','5x25 5x25 5x25 5x25'),EXP('Good morning','5x25 5x25 5x25 5x25'),AC3]),
-   D('Martes',[EXP('Power Shrugs','10x100 10x100 10x100 10x100'),AC3]),
-   D('Jueves',[EXP('Power Clean','5x60 5x60 5x65 5x65'),EXP('Clean Pull (Chains)','5x70 5x70 5x70'),EXP('Back Squat (Chains)','8x60 8x60 6x65 6x65'),EXP('RDL','5x25 5x25 5x25 5x25'),AC3]),
-   D('Viernes',[EXP('3 Board Bench','8x50 8x55 8x60 8x60'),EXP('Power Shrugs','10x100 10x100 10x100 10x100'),AC3])]},
- {tag:'Rendimiento',days:[
-   D('Lunes',[EXP('Below Knee Clean','5x65 3x80 3x80 3x85'),EXP('Front Squat (Chains)','1x100 4x75 4x80 3x85 2x90 2x90'),EXP('Overhead Squat','5x35 5x35 5x35 5x35'),EXP('Snatch Pulls (Chains)','3x85 3x90 3x95'),EXP('3X Lateral Lunge','5x35 5x35 5x35 5x35'),EXP('Good morning','5x35 5x35 5x35 5x35'),AC3]),
-   D('Martes',[EXP('Power Shrugs','10x150 10x150 10x150 10x150'),AC3]),
-   D('Jueves',[EXP('Power Clean','3x80 3x80 2x85 1x95'),EXP('Clean Pull (Chains)','3x85 3x90 3x95'),EXP('Back Squat (Chains)','1x100 4x75 4x80 3x85 2x90 2x90'),EXP('RDL','5x35 5x35 5x35 5x35'),AC3]),
-   D('Viernes',[EXP('3 Board Bench','1x100 5x75 4x80 4x80 2x90 2x90'),EXP('Power Shrugs','10x150 10x150 10x150 10x150'),AC3])]},
- {tag:'Base',days:[
-   D('Lunes',[EXP('Snatch','5x50 5x55 5x60 5x60'),EXP('Back Squat (Chains)','1x100 8x70 8x70 6x75'),EXP('Power Lunge','5x30 5x30 5x30 5x30'),EXP('3X Lateral Lunge','5x30 5x30 5x30 5x30'),EXP('BB Standing Trunk Rotation','5x25 5x25 5x25 5x25'),AC3]),
-   D('Martes',[EXP('Power Shrugs','10x120 10x120 10x120 10x120'),AC3]),
-   D('Jueves',[EXP('Power Clean Front Squat (Chains)','5x60 5x65 5x65 5x70'),EXP('Snatch Pull (Chains)','6x80 6x80 6x80'),EXP('Sumo Deadlift','6x75 3x80 3x80'),AC3]),
-   D('Viernes',[EXP('Incline Bench','1x100 10x60 10x65 8x70 8x70'),EXP('Power Shrugs','10x120 10x120 10x120 10x120'),AC3])]},
- {tag:'Volumen',days:[
-   D('Lunes',[EXP('Snatch','5x55 5x60 4x65 3x70'),EXP('Back Squat (Chains)','1x100 6x80 6x80 4x85 3x88 2x90'),EXP('Power Lunge','5x35 5x35 5x35 5x35'),EXP('3X Lateral Lunge','5x35 5x35 5x35 5x35'),EXP('BB Standing Trunk Rotation','5x30 5x30 5x30 5x30'),AC3]),
-   D('Martes',[EXP('Power Shrugs','10x130 10x130 10x130 10x130'),AC3]),
-   D('Jueves',[EXP('Power Clean Front Squat (Chains)','5x75 3x80 3x90 2x95'),EXP('Snatch Pull (Chains)','5x85 5x85 4x90'),EXP('Sumo Deadlift','5x80 3x85 3x85'),AC3]),
-   D('Viernes',[EXP('Incline Bench','1x100 8x70 8x75 6x80 6x80'),EXP('Hanging Scap Pulls','5x75 5x80 5x80'),EXP('Power Shrugs','10x130 10x130 10x130 10x130'),AC3])]},
- {tag:'Recuperación',days:[
-   D('Lunes',[EXP('Snatch','4x50 4x55 4x60 4x60'),EXP('Back Squat (Chains)','1x100 5x70 5x75 5x75'),EXP('Power Lunge','5x30 5x30 5x30 5x30'),EXP('3X Lateral Lunge','5x30 5x30 5x30 5x30'),EXP('BB Standing Trunk Rotation','5x25 5x25 5x25 5x25'),AC3]),
-   D('Martes',[EXP('Power Shrugs','10x120 10x120 10x120 10x120'),AC3]),
-   D('Jueves',[EXP('Power Clean Front Squat (Chains)','4x65 4x70 4x70 4x55'),EXP('Snatch Pull (Chains)','4x80 4x80 4x85'),EXP('Sumo Deadlift','3x75 3x80 3x80'),AC3]),
-   D('Viernes',[EXP('Incline Bench','1x100 10x65 8x70 8x70'),EXP('Power Shrugs','10x120 10x120 10x120 10x120'),AC3])]},
- {tag:'MAX — Test',days:[
-   D('Lunes',[EXP('Power Clean','5x50 3x60 3x70 2x80 1x90 1x95 1x100 1x105 1x110 1x115 1x120')]),
-   D('Martes',[EXP('Bench Press','5x60 3x70 2x80 1x85 1x90 1x95 1x100 1x105 1x110 1x115 1x120')]),
-   D('Miércoles',[EXP('Back Squat','5x60 3x70 3x80 1x90 1x100 1x105 1x110 1x115 1x120')])]}
-]};
-const ACP=RTL('Accesorios + Core',[['MB Circuit · Hughsten Series','2–3 series'],['DB Press · Pull Ups · Low Row · Hip Thrusters','10 reps'],['Shoulder / Forearm / Core Routine','ver PDF']]);
-/* =====================================================================
-   3X PRE-SEASON (Starter) — 28 días · 5 días/semana
-   Estructura EXACTA de la app oficial TopVelocity (Semana 1 · Base).
-   Día 1/3/5 = movilidad + drills de tiro · Día 2/4 = movilidad + gimnasio + anaeróbico
-   ===================================================================== */
-const MB='Balón medicinal 2 lb · 45 ft', PB='Pelota de béisbol · 45 ft';
-const PRE_D1=[RT('mob3x'),
-  TH('3X Med Ball Open Full Stride',5,MB),TH('3X Med Ball Open On Knee',5,MB),TH('3X Med Ball Open Momentum',5,MB),
-  TH('3X Med Ball Separation Full Stride',5,MB),TH('3X Med Ball Separation On Knee',5,MB),TH('3X Med Ball Separation Momentum',5,MB),
-  TH('Target Throw Open On Knee',10,PB),TH('Target Throw Open Full Stride',10,PB),TH('Target Throw Open Momentum',10,PB),
-  TH('Target Throw Separation On Knee',10,PB),TH('Target Throw Separation Full Stride',10,'Pelota de béisbol · 25 ft'),TH('Target Throw Separation Momentum',10,PB),
-  TH('3X Power Throws',6,'4 series · 45 → 60 → 75 → 90 ft')];
-const PRE_D2=[RT('mob3x'),RT('bar'),RT('mb1'),
-  R('Back Squat','squat',P('8x40 8x45 6x50')),
-  R('Clean Pull','clean',P('5x55 5x60 5x65 5x65')),
-  R('Good Morning','squat',P('5x30 5x30 5x30')),
-  B('Hughsten Series',BW('8 8')),
-  R('DB Stability Ball Double/Single Press','bench',P('10x15 10x15 10x15'),'Peso por mancuerna'),
-  B('Pull-Ups',BW('10 10 10')),
-  B('Shoulder Crossover Routine #1',BW('10'),'20 lb'),
-  RT('fa1'),RT('c1'),RT('anaJump')];
-const PRE_D3=[RT('mob3x'),
-  TH('3X Med Ball Open Full Stride',5,MB),TH('3X Med Ball Open On Knee',5,MB),
-  TH('3X Med Ball Separation Full Stride',5,MB),TH('3X Med Ball Separation Full Stride Lateral',5,MB),
-  TH('3X Med Ball Separation On Knee',5,MB),TH('3X Med Ball Separation On Knee Lateral',5,MB),
-  TH('3X Med Ball Separation Momentum Lateral',5,MB),
-  TH('Target Throw Open On Knee',5,PB),TH('Target Throw Open Full Stride',5,PB),
-  TH('Target Throw Separation On Knee',5,PB),TH('Target Throw Separation On Knee Lateral',5,PB),
-  TH('Target Throw Separation Full Stride',5,PB),TH('Target Throw Separation Full Stride Lateral',5,PB),
-  TH('Target Throw Separation Step Lateral',5,PB),TH('Target Throw Separation Momentum Lateral',5,PB),
-  TH('3X Power Step Throw',5,'60 ft'),TH('3X 2 Drive Throws',5,'60 ft'),
-  TH('Bull Pen',10,'4 series: 10 · 6 · 6 · 6 — 60 ft')];
-const PRE_D4=[RT('mob3x'),RT('bar'),RT('mb2'),
-  R('Power Clean','clean',P('5x40 5x45 5x50 5x55')),
-  R('Front Squat','squat',P('8x40 8x45 8x50')),
-  R('Power Lunge','squat',P('5x25 5x25 5x25')),
-  R('Romanian Deadlift','squat',P('5x25 5x25 5x25')),
-  R('Hip Thrusters','squat',P('8x65 8x65 8x65')),
-  B('3 Position Push-Ups',BW('10 10 10')),
-  R('BB Low Row','bench',P('10x25 10x25 10x25')),
-  B('Shoulder Crossover Routine #2',BW('8'),'25 lb'),
-  RT('fa2'),RT('c2'),RT('anaSpr')];
-const PRE_D5=[RT('mob3x'),
-  TH('3X Med Ball Open Full Stride',5,MB),TH('3X Med Ball Open On Knee',5,MB),TH('3X Med Ball Open Momentum',5,MB),
-  TH('3X Med Ball Separation Full Stride',5,MB),TH('3X Med Ball Separation On Knee',5,MB),
-  TH('3X Med Ball Separation On Knee Lateral',5,MB),TH('3X Med Ball Separation Momentum Lateral',5,MB),
-  TH('3X Overhead Loads',10,'Barra 45 lb'),TH('3X Overhead Drives',10,'Barra 45 lb'),
-  TH('Target Throw Open On Knee',5,PB),TH('Target Throw Open Full Stride',5,PB),TH('Target Throw Open Momentum',5,PB),
-  TH('Target Throw Separation On Knee',5,PB),TH('Target Throw Separation On Knee Lateral',5,PB),
-  TH('Target Throw Separation Momentum Lateral',5,PB),TH('Target Throw Separation Step Lateral',5,PB),
-  TH('Bull Pen',20,'60 ft')];
-/* semanas 2–4: misma estructura, los % suben/bajan según la fase */
-function shiftPct(ex,d){if(!d)return ex;return ex.map(e=>{
-  if(!e.s||!Array.isArray(e.s[0]))return e;
-  return Object.assign({},e,{s:e.s.map(p=>[p[0],typeof p[1]==='number'?Math.max(10,p[1]+d):p[1]])});});}
-const PRE_WEEK=(tag,d)=>({tag,days:[
-  D('Lunes',PRE_D1),D('Martes',shiftPct(PRE_D2,d)),D('Miércoles',PRE_D3),
-  D('Jueves',shiftPct(PRE_D4,d)),D('Viernes',PRE_D5)]});
-const PRE={id:'pre',name:'3X Pre-Season (Abridor)',weeks:[
- PRE_WEEK('Base',0),PRE_WEEK('Volumen',5),PRE_WEEK('Recuperación',-10),PRE_WEEK('Mantenimiento',10)
-]};
-const INSEA={id:'inseason',name:'In-Season (Mantenimiento)',weeks:[
- {tag:'Base',days:[
-   D('Lunes',[EXP('Back Squat','5x55 5x60 5x60'),EXP('Power Clean','4x55 4x60 3x65'),EXP('RDL','5x50 5x55'),ACP]),
-   D('Jueves',[EXP('Front Squat','5x55 5x60 5x60'),EXP('Clean Pull','5x60 5x65 3x70'),EXP('Power Lunge','5x50 5x55'),ACP])]},
- {tag:'Volumen',days:[
-   D('Lunes',[EXP('Back Squat','5x60 5x65 5x65'),EXP('Power Clean','4x60 4x65 3x70'),EXP('RDL','5x55 5x60'),ACP]),
-   D('Jueves',[EXP('Front Squat','5x60 5x65 5x65'),EXP('Clean Pull','5x65 5x70 3x75'),EXP('Power Lunge','5x55 5x60'),ACP])]},
- {tag:'Recuperación',days:[
-   D('Lunes',[EXP('Back Squat','5x45 5x50 5x50'),EXP('Power Clean','4x45 4x50 3x55'),EXP('RDL','5x45 5x50'),ACP]),
-   D('Jueves',[EXP('Front Squat','5x45 5x50 5x50'),EXP('Clean Pull','5x50 5x55 3x60'),EXP('Power Lunge','5x45'),ACP])]},
- {tag:'Mantenimiento',days:[
-   D('Lunes',[EXP('Back Squat','5x60 3x65 2x70'),EXP('Power Clean','3x65 2x70 2x75'),EXP('RDL','5x55'),ACP]),
-   D('Jueves',[EXP('Front Squat','5x60 3x65 2x70'),EXP('Clean Pull','3x70 2x75 2x80'),EXP('Power Lunge','5x55'),ACP])]}
-]};
-/* ---- ensamblado: movilidad → tiro → gimnasio, en días de calendario ---- */
-const WD=['Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'];
-/* correr = día 2 (Martes) → run1 · día 3 (Miércoles) → run2 · día 5 (Viernes) → run3 */
-const RUNMAP={'Martes':'run1','Miércoles':'run2','Viernes':'run3'};
-function assemble(cfg){
-  const weeks=cfg.src.weeks.map(w=>{
-    const gym={};w.days.forEach(d=>gym[d.d]=d.ex);
-    const set=new Set([...Object.keys(gym),...(cfg.throwDays||[]),...(cfg.speedDays||[])]);
-    const days=WD.filter(d=>set.has(d)).map(dn=>{
-      let ex=[];
-      if(cfg.mob)ex.push(RT(cfg.mob));
-      if((cfg.throwDays||[]).includes(dn)&&cfg.throw)ex=ex.concat(throwingExercises(cfg.throw,w.tag));
-      if(gym[dn])ex=ex.concat(gym[dn]);
-      /* correr / anaeróbico: rutina propia según el día (2·3·5) */
-      if((cfg.speedDays||[]).includes(dn)&&RUNMAP[dn]){ex.push(RT(RUNMAP[dn]))}
-      return {d:dn,ex};
-    });
-    return {tag:w.tag,days};
-  });
-  return {id:cfg.src.id,name:cfg.name||cfg.src.name,weeks,note:cfg.note};
+/* borra de memoria todo el contenido protegido */
+function wipeProtectedContent(){
+  PLANS=[];ROUTINES={};CATALOG=[];VIDEOS={};ROUTINE_BY_TITLE={};CONTENT_READY=false;
+  try{Object.keys(localStorage).forEach(k=>{if(k.indexOf('rodo_sess_')===0)localStorage.removeItem(k)})}catch(e){}
 }
-const PLANS=[
-  assemble({src:LVL1,name:'Level 1 — Off-Season',mob:'movDyn',throwDays:['Lunes','Miércoles','Viernes'],throw:'throwL1',speedDays:['Martes','Miércoles','Viernes'],note:'Sistema de 16 semanas (2 ciclos). Cada día: movilidad → tiro (L/X/V) → gimnasio → correr (M/X/V, rutina propia cada día).'}),
-  assemble({src:LVL2,mob:'movDyn',throwDays:['Martes','Jueves','Sábado'],throw:'throwL2',speedDays:['Martes','Miércoles','Viernes'],note:'8 semanas. Gimnasio L/X/V · tiro 3X Advanced M/J/S · correr M/X/V.'}),
-  assemble({src:LVL3,mob:'movL3',throwDays:['Lunes','Miércoles','Viernes'],throw:'throwL3',speedDays:['Martes','Miércoles','Viernes'],note:'8 semanas. Requiere ratio potencia/peso 1.3. Movilidad de cadera + 3X Torsion + correr M/X/V.'}),
-  /* Pre-Season ya viene armado día a día (estructura oficial), no pasa por assemble() */
-  Object.assign({},PRE,{note:'28 días · 5 días/semana. Día 1·3·5 = movilidad + drills de tiro / bull pen · Día 2·4 = movilidad + gimnasio + anaeróbico.'}),
-  assemble({src:INSEA,mob:'movPre',throwDays:['Lunes','Miércoles','Viernes'],throw:'throwIn',speedDays:['Martes','Miércoles','Viernes'],note:'4 semanas de mantenimiento alrededor de la rotación del abridor. Gym L/J · tiro + 3X Mechanics Series L/X/V · correr M/X/V.'})
-];
-
-/* =====================================================================
-   BIBLIOTECA DE EJERCICIOS (por parte del cuerpo) — sin seguir rutina
-   ===================================================================== */
-const CI=(n,ref,note)=>({n,ref:ref||'lift',note:note||''});
-const CATALOG=[
- {icon:'🦵',name:{es:'Piernas',en:'Legs',fr:'Jambes'},items:[
-   CI('Back Squat','lift'),CI('Front Squat','lift'),CI('Box Squat','lift'),CI('Overhead Squat','lift'),
-   CI('Power Lunge','lift'),CI('Step Up','lift'),CI('3X Lateral Lunge','lift'),CI('RDL','lift'),
-   CI('Goodmorning','lift'),CI('Sumo Deadlift','lift'),
-   CI('Glute-Ham Raise','bw'),CI('Pavel Squat / Towel Ham Slide','bw')]},
- {icon:'🏋️',name:{es:'Pecho',en:'Chest',fr:'Poitrine'},items:[
-   CI('Bench Press','lift'),CI('3 Board Bench','lift'),CI('Incline Bench','lift'),CI('3 Board Close Grip Bench','lift'),
-   CI('DB DS SB Bench','bw'),CI('Towel Push Ups','bw'),CI('Stability Push Ups','bw'),CI('Towel Clock Push Up','bw')]},
- {icon:'🔙',name:{es:'Espalda',en:'Back',fr:'Dos'},items:[
-   CI('Pull-up (fat grip)','bw'),CI('Weighted Pull-up','bw'),CI('Fat Man Pull up','bw'),CI('Low Row','bw'),
-   CI('BB Bent over row','bw'),CI('Lat Pull Down','bw'),CI('Clean Pull','lift'),CI('Snatch Pull','lift'),
-   CI('Power Shrugs','lift'),CI('Hanging Scap Pulls','lift')]},
- {icon:'💪',name:{es:'Hombros',en:'Shoulders',fr:'Épaules'},items:[
-   CI('Shoulder Routine (3–8 lb)','routine'),CI('Push Press','lift'),CI('Power Jerk','lift'),
-   CI('Split Jerk','lift'),CI('Behind the neck press','lift')]},
- {icon:'⚡',name:{es:'Olímpicos / Potencia',en:'Olympic / Power',fr:'Olympiques / Puissance'},items:[
-   CI('Power Clean','lift'),CI('Hang Clean','lift'),CI('3-Position Clean','lift'),
-   CI('Below the Knee Clean','lift'),CI('Snatch','lift'),CI('Power Clean Front Squat (Chains)','lift')]},
- {icon:'🌀',name:{es:'Core / Abdominales',en:'Core / Abs',fr:'Gainage / Abdos'},items:[
-   CI('Core Routine #1','routine'),CI('Core Routine #2','routine'),CI('MB Russian Twist','bw'),
-   CI('Hanging Leg Raise','bw'),CI('Plate Wood Choppers','bw'),CI('Swiss Ball V-ups','bw'),
-   CI('BB Standing Trunk Rotation','lift')]},
- {icon:'✊',name:{es:'Antebrazo',en:'Forearm',fr:'Avant-bras'},items:[
-   CI('Forearm Routine #1','routine'),CI('Forearm Routine #2','routine')]},
- {icon:'⚾',name:{es:'Tiro — Balón medicinal',en:'Throwing — Med Ball',fr:'Lancer — Ballon médicinal'},items:[
-   CI('3X Med Ball Open Full Stride','throw',MB),CI('3X Med Ball Open On Knee','throw',MB),CI('3X Med Ball Open Momentum','throw',MB),
-   CI('3X Med Ball Separation Full Stride','throw',MB),CI('3X Med Ball Separation On Knee','throw',MB),CI('3X Med Ball Separation Momentum','throw',MB),
-   CI('3X Med Ball Separation Full Stride Lateral','throw',MB),CI('3X Med Ball Separation On Knee Lateral','throw',MB),CI('3X Med Ball Separation Momentum Lateral','throw',MB)]},
- {icon:'🎯',name:{es:'Tiro — Target Throws',en:'Throwing — Target Throws',fr:'Lancer — Target Throws'},items:[
-   CI('Target Throw Open On Knee','throw',PB),CI('Target Throw Open Full Stride','throw',PB),CI('Target Throw Open Momentum','throw',PB),
-   CI('Target Throw Separation On Knee','throw',PB),CI('Target Throw Separation Full Stride','throw',PB),CI('Target Throw Separation Momentum','throw',PB),
-   CI('Target Throw Separation On Knee Lateral','throw',PB),CI('Target Throw Separation Full Stride Lateral','throw',PB),
-   CI('Target Throw Separation Momentum Lateral','throw',PB),CI('Target Throw Separation Step Lateral','throw',PB)]},
- {icon:'💥',name:{es:'Tiro — Potencia y montículo',en:'Throwing — Power & Mound',fr:'Lancer — Puissance & Monticule'},items:[
-   CI('3X Power Throws','throw','45 → 120 ft'),CI('3X Power Step Throw','throw','60 ft'),CI('3X 2 Drive Throws','throw','60 ft'),
-   CI('3X Overhead Loads','throw','Barra 45 lb'),CI('3X Overhead Drives','throw','Barra 45 lb'),
-   CI('3X Drive Drill — Chest Up','throw','60–90 ft'),CI('3X Drive Drill — Separation','throw','60–90 ft'),
-   CI('2 Phase Delivery','throw','60 ft'),CI('3X Load Series (montículo)','throw'),CI('3X Lateral Drives Over Mound','throw'),
-   CI('Pitching Stretch (montículo)','throw'),CI('Bull Pen','throw','60 ft')]},
- {icon:'🧬',name:{es:'Tiro — Drills avanzados',en:'Throwing — Advanced drills',fr:'Lancer — Drills avancés'},items:[
-   CI('Momentum Drills — 3 Step Walk','throw'),CI('Momentum Drills — 3 Step Sprint','throw'),CI('Momentum Drills — Drive','throw'),
-   CI('3X Ball Separation — Full Stride','throw'),CI('3X Ball Separation — Momentum','throw'),
-   CI('Assistance Throws Sep — On Knee','throw'),CI('Assistance Throws Sep — Full Stride','throw'),CI('Assistance Throws Sep — Momentum','throw'),
-   CI('Sled Torsion Loads','throw','2–4 × 20 ft'),CI('Sled Torsion Drives','throw','2–4 × 20 ft'),
-   CI('FVTT — Hold','throw'),CI('FVTT — Seated','throw'),CI('FVTT — Assistance','throw'),CI('FVTT — Release','throw'),
-   CI('Serie #1 — Leg Extension Throws','throw'),CI('Serie #2 — Full Stride Ext. Rotation','throw'),
-   CI('Serie #3 — Full Stride Separation','throw'),CI('Serie #4 — Lateral Stride Separation','throw'),
-   CI('Serie #5 — Slide Step','throw'),CI('Serie #6 — One Step Drive Over Mound','throw'),CI('Serie #7 — Hip Thrust','throw'),
-   CI('3X Mirror Drills','throw')]},
- {icon:'🔴',name:{es:'Balón medicinal',en:'Medicine ball',fr:'Ballon médicinal'},items:[
-   CI('MB Circuit — Nivel 1 (3 series)','routine'),CI('MB Circuit — Nivel 2 (3 series)','routine')]},
- {icon:'🧘',name:{es:'Movilidad',en:'Mobility',fr:'Mobilité'},items:[
-   CI('Movilidad 3X','routine'),CI('Movilidad — Calentamiento dinámico','routine'),
-   CI('Movilidad — Dinámica + Cadera','routine'),CI('Movilidad — Pre/In-Season','routine')]},
- {icon:'🏃',name:{es:'Correr / Velocidad',en:'Running / Speed',fr:'Course / Vitesse'},items:[
-   CI('Correr — Anaeróbico (Día 2)','routine'),CI('Correr — Anaeróbico (Día 3)','routine'),CI('Correr — Anaeróbico (Día 5)','routine'),
-   CI('Anaeróbico — Comba y Shuttle','routine'),CI('Anaeróbico — Sprints','routine')]}
-];
 function openCatItem(ci,ei){const c=CATALOG[ci];if(!c)return;openExInfo(c.items[ei])}
+
 
 /* =====================================================================
    ESTADO / STORAGE LOCAL
@@ -1268,7 +1081,7 @@ function updateAuthUI(){
   set('auBtn',reg?t('au_create'):t('au_enter'));
   set('auToggleTxt',reg?t('au_hasAcc'):t('au_noAcc'));
   set('auToggleBtn',reg?t('au_toLog'):t('au_toReg'));
-  const lk=document.getElementById('auLocalLink');if(lk)lk.textContent=t('au_local');
+  const lk=document.getElementById('auLocalLink');if(lk&&lk.parentElement)lk.parentElement.style.display='none';
 }
 function toggleAuthMode(){authMode=authMode==='register'?'login':'register';updateAuthUI()}
 async function doAuth(){
@@ -1286,6 +1099,8 @@ async function doAuth(){
 function useLocal(){CLOUD=false;hideAuth();showGate()}
 function logout(){try{firebase.auth().signOut()}catch(e){}
   if(cloudUnsub){cloudUnsub();cloudUnsub=null}CUR=null;
+  if(entUnsub){entUnsub();entUnsub=null}stopPresence();stopWatermark();
+  wipeProtectedContent();ENT=null;IS_ADMIN=false;ACCESS_STATE='unknown';hideAccessGate();
   document.getElementById('app').classList.add('hidden');document.getElementById('nav').classList.add('hidden');
   document.getElementById('gate').style.display='none';authMode='login';showAuth()}
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
@@ -1356,7 +1171,7 @@ function go(s){document.querySelectorAll('.screen').forEach(x=>x.classList.remov
   document.getElementById(s).classList.add('active');
   document.querySelectorAll('.nav-b').forEach(b=>b.classList.toggle('on',b.dataset.s===s||(s==='plan'&&b.dataset.s==='plans')));
   window.scrollTo(0,0);
-  if(s==='home')renderHome();if(s==='plans')renderPlans();if(s==='plan')renderPlan();if(s==='exercises'){EXCAT=null;renderExercises();}if(s==='progress')renderProgress();if(s==='profile')renderProfile();}
+  if(s==='home')renderHome();if(s==='plans')renderPlans();if(s==='plan')renderPlan();if(s==='exercises'){EXCAT=null;renderExercises();}if(s==='progress')renderProgress();if(s==='profile')renderProfile();if(s==='admin')renderAdmin();}
 
 /* =====================================================================
    CÁLCULO
@@ -1371,9 +1186,11 @@ function calcWeight(ex,pct){if(pct==null||ex.ref==='bw'||ex.ref==='routine')retu
    HOME
    ===================================================================== */
 function activePlanId(){
-  if(CUR.activePlan&&PLANS.find(p=>p.id===CUR.activePlan))return CUR.activePlan;
-  if(CUR.sessions&&CUR.sessions.length)return CUR.sessions[CUR.sessions.length-1].plan;
-  const pk=Object.keys(CUR.progress||{});if(pk.length)return pk[0];
+  if(!PLANS.length)return null;                      // sin planes autorizados
+  const ok=id=>PLANS.some(p=>p.id===id);
+  if(CUR.activePlan&&ok(CUR.activePlan))return CUR.activePlan;
+  if(CUR.sessions&&CUR.sessions.length){const l=CUR.sessions[CUR.sessions.length-1].plan;if(ok(l))return l}
+  const pk=Object.keys(CUR.progress||{}).filter(ok);if(pk.length)return pk[0];
   return PLANS[0].id;
 }
 function setActivePlan(id){CUR.activePlan=id;save();closeModal();go('home');toast((PLANS.find(p=>p.id===id)||{}).name)}
@@ -1387,7 +1204,10 @@ function pickActivePlan(){
     <button class="btn dark" style="margin-top:6px" onclick="closeModal()">${t('close')}</button>`);
 }
 function renderHome(){
-  const el=document.getElementById('home');const plan=PLANS.find(p=>p.id===activePlanId())||PLANS[0];const prog=CUR.progress[plan.id];
+  const el=document.getElementById('home');const plan=PLANS.find(p=>p.id===activePlanId());
+  if(!plan){el.innerHTML=`<div style="margin:8px 4px 16px"><div class="sub">${greet()},</div><div class="title-xl">${esc(CUR.name.split(' ')[0])} 👊</div></div>
+    <div class="adm-empty"><div style="font-size:34px">🔒</div><p>${t('acc_noPlan')}</p></div>`;return}
+  const prog=CUR.progress[plan.id];
   const totalDays=plan.weeks.reduce((a,w)=>a+w.days.length,0);
   const doneDays=CUR.sessions.filter(s=>s.plan===plan.id).length;
   const pctDone=totalDays?Math.round(doneDays/totalDays*100):0;
@@ -1435,7 +1255,7 @@ function renderPlans(){const el=document.getElementById('plans');
     return`<div class="card plan-card tap" onclick="openPlan('${p.id}')"><div class="plan-ico">${LOGO}</div>
       <div style="flex:1"><b style="font-size:17px">${esc(tName(p.name))}</b><div class="sub">${p.weeks.length} ${t('weeks')} · ${tot} ${t('days')} · ${done} ${t('done')}</div>
       <div class="bar-track"><i style="width:${tot?Math.round(done/tot*100):0}%;background:linear-gradient(90deg,var(--red),#ff5a45)"></i></div></div><div class="caret">›</div></div>`}).join('')}`}
-function openPlan(id){VIEW.plan=id;go('plan')}
+function openPlan(id){if(!PLANS.some(p=>p.id===id)){toast(t('acc_noPlan'),'warn');return}VIEW.plan=id;go('plan')}
 
 /* =====================================================================
    BIBLIOTECA DE EJERCICIOS
@@ -1462,14 +1282,17 @@ function renderExercises(){const el=document.getElementById('exercises');
 }
 function openCat(ci){EXCAT=ci;window.scrollTo(0,0);renderExercises()}
 function closeCat(){EXCAT=null;window.scrollTo(0,0);renderExercises()}
-function startPlan(id){if(!hasMaxes(CUR.maxes)){askMaxes(()=>startPlan(id));return}
+function startPlan(id){
+  if(!PLANS.some(p=>p.id===id)){toast(t('acc_noPlan'),'warn');return}
+  if(!hasMaxes(CUR.maxes)){askMaxes(()=>startPlan(id));return}
   CUR.activePlan=id;VIEW.plan=id;const prog=CUR.progress[id];if(prog){VIEW.week=prog.week;VIEW.day=prog.day}else{VIEW.week=0;VIEW.day=0}
   openWorkout(id,VIEW.week,VIEW.day)}
 
 /* =====================================================================
    PLAN DETAIL
    ===================================================================== */
-function renderPlan(){const el=document.getElementById('plan');const plan=PLANS.find(p=>p.id===VIEW.plan)||PLANS[0];
+function renderPlan(){const el=document.getElementById('plan');const plan=PLANS.find(p=>p.id===VIEW.plan);
+  if(!plan){el.innerHTML=`<div class="adm-empty"><div style="font-size:34px">🔒</div><p>${t('acc_noPlan')}</p></div>`;return}
   const doneSet=new Set(CUR.sessions.filter(s=>s.plan===plan.id).map(s=>s.week+'-'+s.day));
   el.innerHTML=`<div style="display:flex;align-items:center;gap:12px;margin:6px 0 10px">
       <button class="wk-close" style="width:38px;height:38px" onclick="go('plans')">‹</button>
@@ -1534,85 +1357,14 @@ function exDesc(e){
 }
 function videoSoon(){toast(t('videoSoon'),'ok')}
 /* ---- VÍDEOS de YouTube por ejercicio (por palabras clave del nombre) ---- */
-function videoFor(e){if(!e)return null;const n=(e.n||'').toLowerCase();
-  /* variantes laterales: aún sin vídeo propio (no usar el de la versión frontal) */
-  if(/lateral|step lateral/.test(n)&&/med ball|target throw/.test(n))return null;
-  /* --- vídeos propios TopVelocity (subidos al canal, no listados) --- */
-  if(/3x drive drill.*separation|med throws.*drive/.test(n))return'Y8lGRnT2Pp0';
-  if(/3x load series/.test(n))return'QFeQSphj4Kk';
-  if(/3x power throws/.test(n))return'Vj8Hod1ypfQ';
-  if(/lateral drives over mound|drives over mound/.test(n))return'BANvLje5yFM';
-  if(/back squat/.test(n))return'J265IZwrKFI';
-  if(/below the knee clean|below knee clean/.test(n))return'smEvEJzD5T4';
-  if(/power lunge/.test(n))return'OZ294aZM4lY';
-  if(/hip thrust/.test(n))return'KDdQajqcelQ';
-  if(/3 position push|position push-?ups/.test(n))return'l3t9CspAbps';
-  if(/hughsten/.test(n))return'U57BeEYxT84';
-  if(/stability ball double|db stability ball/.test(n))return'Q9XkWtwhSjk';
-  if(/jump rope/.test(n))return'l9AOhuBtS28';
-  if(/hurdle step over/.test(n))return'TsGIY0QsDq0';
-  /* tiro — balón medicinal */
-  if(/med ball open.*(on knee|knee)/.test(n))return'soERA_Bi2_8';
-  if(/med ball open.*full stride/.test(n))return'6M_KDaJsS5I';
-  if(/med ball open.*momentum/.test(n))return'DerLdoM-1XQ';
-  if(/med ball separation.*(on knee|knee)/.test(n))return'Bcr3SuPHmzY';
-  if(/med ball separation.*full stride/.test(n))return'wyV7olkCW1c';
-  if(/med ball separation.*momentum/.test(n))return'tZSA8ZKXI3c';
-  /* tiro — target (béisbol) */
-  if(/target throw open.*(on knee|knee)/.test(n))return'qMyxMWudgZ8';
-  if(/target throw open.*full stride/.test(n))return'yGISjRVgfWE';
-  if(/target throw open.*momentum/.test(n))return'e0XZaA7i440';
-  if(/target throw separation.*(on knee|knee)/.test(n))return'wp5tEEBfbDU';
-  if(/target throw separation.*full stride/.test(n))return'sA68-QTx_kI';
-  if(/target throw separation.*momentum/.test(n))return'yp3nt512Q_o';
-  /* rutinas */
-  if(/mb circuit.*nivel 1|med ball routine.*1/.test(n))return'F5MFLHVL9gg';
-  if(/mb circuit.*nivel 2|med ball routine.*2/.test(n))return'prq4RPjcOSY';
-  if(/movilidad|mobility/.test(n))return'b2LOGTEqbC8';
-  if(/core routine #?\s*1/.test(n))return'ZNPOm8jMWV4';
-  if(/core routine #?\s*2/.test(n))return'3hWq4Pnwadk';
-  if(/forearm.*#?\s*2/.test(n))return'1BieyGIvWz4';
-  if(/forearm/.test(n))return'IUipali2c9c';
-  if(/bar warm/.test(n))return'bmJSTbcc3QA';
-  /* correr / velocidad */
-  if(/speed improvement/.test(n))return'qX4HUi8QoN8';
-  if(/hurdle drills/.test(n))return'mgKZBMyB228';
-  if(/plyometrics/.test(n))return'q3Wxbm4nzl4';
-  if(/rapid response/.test(n))return'fb7BnLQ--B0';
-  if(/side winders/.test(n))return'N-gksKdH4-A';
-  if(/ladder drills/.test(n))return'-liEZu8FklI';
-  if(/suicide/.test(n))return'HsSTs3U1PSc';
-  if(/resistance sprints/.test(n))return'kW3mLx54b5M';
-  /* levantamientos / peso corporal */
-  if(/incline bench/.test(n))return'lJ2o89kcnxY';
-  if(/board bench|close grip bench/.test(n))return'MRmfQd1duDA';
-  if(/towel clock push/.test(n))return'o0DB8tBzBuI';
-  if(/towel push/.test(n))return'zuwovao0lsQ';
-  if(/towel pull/.test(n))return'ViLyHUYP0zs';
-  if(/fat man pull/.test(n))return'I78lgjIgEfI';
-  if(/stability push/.test(n))return'yIlcHgMVvfU';
-  if(/pull-?up|lat pull/.test(n))return'sV7qd69cN-E';
-  if(/ds sb|db ds/.test(n))return'8k5YPKgwU3Q';
-  if(/low row/.test(n))return'Jk8-19zb5ow';
-  if(/power clean/.test(n))return'e8TpDdMYq4Y';
-  if(/hang clean/.test(n))return'kGUx6-pXU-k';
-  if(/clean pull/.test(n))return'psI4A7bc7Fo';
-  if(/power jerk/.test(n))return'zxocRqkvoaI';
-  if(/box squat/.test(n))return'7iw2gLZKZ0w';
-  if(/front squat/.test(n))return'uYumuL_G_V0';
-  if(/step up/.test(n))return'ZkRXmaks7_Q';
-  if(/goodmorning|good ?morning/.test(n))return'nWyx81AfTos';
-  if(/pavel/.test(n))return'y3HQ8igj8Fw';
-  if(/glute-?ham/.test(n))return'SBGYSfoqyfU';
-  if(/\brdl\b|romanian/.test(n))return'LRBBOUoeLvU';
-  return null;}
+function videoFor(e){if(!e)return null;return VIDEOS[e.n]||null}
 function openVideo(id){if(!id){videoSoon();return}window.open('https://www.youtube.com/watch?v='+id,'_blank','noopener')}
 /* botón de vídeo: real si hay link, si no aviso "próximamente" */
 function videoBtn(e,cls,style){const id=videoFor(e);
   const on=id?`onclick="event.stopPropagation();openVideo('${id}')"`:`onclick="event.stopPropagation();videoSoon()"`;
   return`<button class="btn${cls?' '+cls:''}"${style?` style="${style}"`:''} ${on}>${t('watchVideo')}</button>`;}
 /* índice de rutinas por título para resolver sus ejercicios internos */
-const ROUTINE_BY_TITLE={};Object.keys(ROUTINES).forEach(k=>{ROUTINE_BY_TITLE[ROUTINES[k].t]=ROUTINES[k]});
+/* ROUTINE_BY_TITLE se rellena en loadProtectedContent() */
 /* explicación + vídeo de un ejercicio (durante el entreno o en la biblioteca) */
 function openExInfo(e){if(!e)return;
   const ic=e.ref==='throw'?'⚾':e.ref==='routine'?'📋':e.ref==='bw'?'💪':'🏋️';
@@ -1660,7 +1412,12 @@ function previewDay(planId,wi,di){
 }
 /* ---- persistencia de la sesión ---- */
 function sessKey(){return 'rodo_sess_'+(CUR?CUR.id:'x')}
-function saveSess(){try{if(SESS)localStorage.setItem(sessKey(),JSON.stringify(SESS));else localStorage.removeItem(sessKey())}catch(e){}}
+/* Sólo se guarda el PROGRESO, nunca los ejercicios: el contenido
+   protegido no debe quedar en localStorage. Al reanudar se vuelve a
+   pedir a Firestore y se reconstruye el día. */
+function saveSess(){try{
+    if(SESS){const {ex,...light}=SESS;localStorage.setItem(sessKey(),JSON.stringify(light))}
+    else localStorage.removeItem(sessKey())}catch(e){}}
 function clearSess(){try{localStorage.removeItem(sessKey())}catch(e){}}
 function barWeight(){return U()==='lb'?45:20}
 function perSideStr(w){const bar=barWeight();if(w==null||w<=bar)return'';const s=Math.round((w-bar)/2*10)/10;if(s<=0)return'';return`${s} ${U()}/${t('perSide')}`}
@@ -1710,7 +1467,9 @@ function sugSetW(sug){if(!sug)return'';
   if(sug.total!=null)return`~${sug.total}<small> ${U()}</small>`;
   if(sug.added!=null)return`+${sug.added}<small> ${U()}</small>`;return''}
 
-function openWorkout(planId,wi,di){if(!hasMaxes(CUR.maxes)){askMaxes(()=>openWorkout(planId,wi,di));return}
+function openWorkout(planId,wi,di){
+  if(!PLANS.some(p=>p.id===planId)){toast(t('acc_noPlan'),'warn');return}
+  if(!hasMaxes(CUR.maxes)){askMaxes(()=>openWorkout(planId,wi,di));return}
   CUR.activePlan=planId;
   const plan=PLANS.find(p=>p.id===planId);const day=plan.weeks[wi].days[di];
   SESS={plan:planId,week:wi,day:di,dayName:day.d,tag:plan.weeks[wi].tag,ex:day.ex,idx:0,active:0,
@@ -1801,12 +1560,16 @@ function advanceActive(){const n=nextUndone();if(n===null){finishWorkout();retur
   SESS.active=n;SESS.idx=n;saveSess();
   const b=document.getElementById('wkBody');b.style.animation='none';void b.offsetWidth;b.style.animation='fadeUp .4s both';renderExercise()}
 function resumeSession(){let s=null;try{s=JSON.parse(localStorage.getItem(sessKey()))}catch(e){}
-  if(!s||!s.ex){toast('—','warn');return}
+  if(!s){toast('—','warn');return}
+  if(!s.ex){const pl=PLANS.find(p=>p.id===s.plan);
+    const day=pl&&pl.weeks[s.week]&&pl.weeks[s.week].days[s.day];
+    if(!day){clearSess();toast('—','warn');return}
+    s.ex=day.ex;}
   SESS=s;if(!SESS.done)SESS.done=SESS.ex.map(()=>false);if(SESS.active==null)SESS.active=SESS.idx||0;
   openWorkoutUI()}
 function maybeResumeSession(){
   let s=null;try{s=JSON.parse(localStorage.getItem(sessKey()))}catch(e){}
-  if(!s||!s.ex||!Array.isArray(s.done)){return}
+  if(!s||!Array.isArray(s.done)){return}
   if(s.done.every(Boolean)){clearSess();return}
   openModal(`<div style="text-align:center"><div style="font-size:44px;animation:pop .4s both">⏱️</div>
     <h2 style="font-weight:900;font-size:21px;margin:8px 0 4px">${t('resumeTitle')}</h2>
@@ -2128,6 +1891,9 @@ function renderProfile(){const el=document.getElementById('profile');const m=CUR
     <div class="h-sec">${t('coachAdjustTitle')}</div>
     ${Object.keys(CUR.adjust).length?`<div class="card"><div class="rt-list">${Object.entries(CUR.adjust).map(([k,v])=>`<div><span>${esc(k)}</span><small style="color:${v>1?'var(--ok)':v<1?'var(--warn)':'var(--muted)'}">×${v.toFixed(2)}</small></div>`).join('')}</div><button class="btn ghost sm" style="margin-top:10px;width:100%" onclick="resetAdjust()">${t('resetAdjust')}</button></div>`:`<div class="card"><p class="sub">${t('noAdjust')}</p></div>`}
 
+    ${IS_ADMIN?`<div class="h-sec">👑 ${t('adm_title')}</div>
+    <button class="btn" onclick="openAdmin()" style="background:linear-gradient(135deg,#E10600,#7a0300)">${t('admin_btn')}</button>`:''}
+
     <div class="h-sec">${t('dataSec')}</div>
     <button class="btn" onclick="shareApp()">${t('shareApp')}</button>
     <button class="btn dark" style="margin-top:10px" onclick="switchProfile()">${t('switchProfile')}</button>
@@ -2190,14 +1956,406 @@ document.getElementById('authLogo').innerHTML=LOGO;
 document.getElementById('brandLogo').innerHTML=LOGO;
 document.documentElement.lang=LANG;
 applyStaticI18n();
+/* =====================================================================
+   CONTROL DE ACCESO  (admin · permisos · presencia · solicitudes)
+   ---------------------------------------------------------------------
+   La autoridad SIEMPRE es Firestore. El cliente sólo pinta lo que el
+   servidor le deja leer: aunque alguien manipule el navegador, el
+   localStorage o las peticiones, las reglas de Firestore niegan la
+   lectura de las claves y por tanto del contenido.
+   ===================================================================== */
+const ADMIN_EMAIL='rodolfojosefigueredo@gmail.com';
+let ENT=null,IS_ADMIN=false,ACCESS_STATE='unknown',entUnsub=null,beatTimer=null;
+
+function isAdminEmail(e){return (e||'').trim().toLowerCase()===ADMIN_EMAIL}
+function planLabel(id){const m={lvl1:'Level 1 — Off-Season',lvl2:'Level 2 — Off-Season',lvl3:'Level 3 — Élite',pre:'3X Pre-Season (Abridor)',inseason:'In-Season (Mantenimiento)'};return m[id]||id}
+
+/* estado efectivo de una cuenta, calculado igual que en las reglas */
+function entStatus(e,admin){
+  if(admin)return 'active';
+  if(!e)return 'pending';
+  if(e.status==='blocked')return 'blocked';
+  if(e.status!=='active')return e.status||'pending';
+  const now=Date.now();
+  if(e.startAt&&now<e.startAt)return 'scheduled';
+  if(!e.indefinite&&e.endAt&&now>e.endAt)return 'expired';
+  return 'active';
+}
+function statusLabel(s){return t('st_'+s)||s}
+function statusColor(s){return{active:'var(--ok)',pending:'var(--warn)',scheduled:'#4aa3ff',expired:'var(--danger)',blocked:'var(--danger)'}[s]||'var(--muted)'}
+
+/* ---- presencia y registro de cuenta ---- */
+async function registerAccount(){
+  if(!(CLOUD&&AUTH))return;
+  const fs=firebase.firestore(),ref=fs.collection('accounts').doc(AUTH.uid);
+  try{
+    const snap=await ref.get();
+    if(!snap.exists){
+      await ref.set({email:AUTH.email,createdAt:Date.now(),lastLogin:Date.now(),lastSeen:Date.now(),loginCount:1});
+    }else{
+      await ref.update({lastLogin:Date.now(),lastSeen:Date.now(),loginCount:(snap.data().loginCount||0)+1});
+    }
+  }catch(e){console.warn('[RODO] cuenta:',e.message)}
+}
+function startPresence(){
+  stopPresence();
+  const beat=async()=>{
+    if(!(CLOUD&&AUTH)||document.hidden)return;
+    try{await firebase.firestore().collection('accounts').doc(AUTH.uid).update({lastSeen:Date.now()})}catch(e){}
+  };
+  beat();beatTimer=setInterval(beat,45000);
+  document.addEventListener('visibilitychange',beat);
+}
+function stopPresence(){if(beatTimer){clearInterval(beatTimer);beatTimer=null}}
+function isOnline(a){return a&&a.lastSeen&&(Date.now()-a.lastSeen)<120000}
+
+/* ---- solicitud de acceso (sin duplicados) ---- */
+async function ensureAccessRequest(){
+  if(!(CLOUD&&AUTH))return;
+  const ref=firebase.firestore().collection('accessRequests').doc(AUTH.uid);
+  try{
+    const s=await ref.get();
+    if(s.exists)return;                       // ya existe: no duplicamos
+    await ref.set({email:AUTH.email,createdAt:Date.now(),state:'open'});
+  }catch(e){console.warn('[RODO] solicitud:',e.message)}
+}
+
+/* ---- carga y vigilancia del permiso ---- */
+async function refreshEntitlement(){
+  IS_ADMIN=isAdminEmail(AUTH&&AUTH.email);
+  if(IS_ADMIN){ENT=null;ACCESS_STATE='active';return 'active'}
+  try{
+    const s=await firebase.firestore().collection('entitlements').doc(AUTH.uid).get();
+    ENT=s.exists?s.data():null;
+  }catch(e){ENT=null}
+  ACCESS_STATE=entStatus(ENT,false);
+  return ACCESS_STATE;
+}
+function watchEntitlement(){
+  if(entUnsub){entUnsub();entUnsub=null}
+  if(!(CLOUD&&AUTH)||IS_ADMIN)return;
+  entUnsub=firebase.firestore().collection('entitlements').doc(AUTH.uid).onSnapshot(s=>{
+    ENT=s.exists?s.data():null;
+    const st=entStatus(ENT,false);
+    if(st!==ACCESS_STATE){ACCESS_STATE=st;applyAccessChange()}
+    else if(st==='active'){
+      const ids=(ENT&&ENT.plans)||[];
+      const cur=PLANS.map(p=>p.id);
+      if(ids.length!==cur.length||ids.some(i=>!cur.includes(i)))applyAccessChange();
+    }
+  },()=>{});
+}
+/* el permiso cambió mientras la app estaba abierta: se aplica al momento */
+async function applyAccessChange(){
+  if(ACCESS_STATE!=='active'){
+    if(SESS){SESS=null;try{document.getElementById('workout').classList.remove('on')}catch(e){}}
+    wipeProtectedContent();showAccessGate();return;
+  }
+  await loadProtectedContent();
+  if(CUR){const a=document.querySelector('.screen.active');go(a?a.id:'home')}
+  toast(t('acc_updated'),'ok');
+}
+
+/* ---- pantalla de bloqueo / espera ---- */
+function showAccessGate(){
+  stopWatermark();
+  document.getElementById('app').classList.add('hidden');
+  document.getElementById('nav').classList.add('hidden');
+  document.getElementById('gate').style.display='none';
+  document.getElementById('auth').style.display='none';
+  const el=document.getElementById('accessGate');
+  const s=ACCESS_STATE;
+  let icon='⏳',title=t('acc_pendTitle'),msg=t('acc_pendMsg');
+  if(s==='scheduled'){icon='📅';title=t('acc_schedTitle');
+    msg=t('acc_schedMsg').replace('{d}',ENT&&ENT.startAt?new Date(ENT.startAt).toLocaleDateString():'—');}
+  else if(s==='expired'){icon='🔒';title=t('acc_blockedTitle');msg=t('acc_blockedMsg');}
+  else if(s==='blocked'){icon='🚫';title=t('acc_blockedTitle');msg=t('acc_blockedMsg');}
+  else if(s==='offline'){icon='📡';title=t('acc_offTitle');msg=t('acc_offMsg');}
+  el.innerHTML=`<div class="ag-box">
+      <div class="ag-ico">${icon}</div>
+      <h2 class="ag-t">${esc(title)}</h2>
+      <p class="ag-m">${esc(msg)}</p>
+      <div class="ag-mail">${esc((AUTH&&AUTH.email)||'')}</div>
+      <button class="btn ghost" style="margin-top:18px" onclick="${s==='offline'?'location.reload()':'recheckAccess()'}">${t('acc_recheck')}</button>
+      ${s==='offline'?'':`<button class="btn dark" style="margin-top:10px" onclick="logout()">${t('logout')}</button>`}
+    </div>`;
+  el.style.display='flex';
+}
+function hideAccessGate(){const e=document.getElementById('accessGate');if(e)e.style.display='none'}
+async function recheckAccess(){
+  toast(t('acc_checking'));
+  await refreshEntitlement();
+  if(ACCESS_STATE==='active'){await enterApp()}else{showAccessGate()}
+}
+
+/* ---- entrada a la app una vez autorizado ---- */
+async function enterApp(){
+  hideAccessGate();
+  const ok=await loadProtectedContent();
+  if(!ok&&!IS_ADMIN){ACCESS_STATE='pending';showAccessGate();return}
+  startWatermark();
+  showGate();
+}
+
+/* =====================================================================
+   PANEL DE ADMINISTRACIÓN
+   Sólo la cuenta administradora puede leer estos datos: las reglas de
+   Firestore lo imponen. Ocultar el botón es sólo cosmética.
+   ===================================================================== */
+let ADM={accounts:[],ents:{},reqs:[],log:[],tab:'users',q:'',filter:'all',sel:null,loading:false,err:''};
+
+function openAdmin(){if(!IS_ADMIN)return;go('admin');loadAdmin()}
+async function loadAdmin(){
+  if(!IS_ADMIN)return;
+  ADM.loading=true;ADM.err='';renderAdmin();
+  try{
+    const fs=firebase.firestore();
+    const [ac,en,rq,lg]=await Promise.all([
+      fs.collection('accounts').get(),
+      fs.collection('entitlements').get(),
+      fs.collection('accessRequests').get(),
+      fs.collection('adminLog').orderBy('ts','desc').limit(80).get()
+    ]);
+    ADM.accounts=ac.docs.map(d=>Object.assign({uid:d.id},d.data()));
+    ADM.ents={};en.docs.forEach(d=>ADM.ents[d.id]=d.data());
+    ADM.reqs=rq.docs.map(d=>Object.assign({uid:d.id},d.data()));
+    ADM.log=lg.docs.map(d=>d.data());
+    ADM.accounts.sort((a,b)=>(b.lastSeen||0)-(a.lastSeen||0));
+  }catch(e){ADM.err=e.message||String(e)}
+  ADM.loading=false;renderAdmin();
+}
+async function admLog(action,target,detail){
+  try{await firebase.firestore().collection('adminLog').add({ts:Date.now(),actor:AUTH.email,action,target:target||'',detail:detail||''})}catch(e){}
+}
+function admRowState(uid){return entStatus(ADM.ents[uid],isAdminEmail((ADM.accounts.find(a=>a.uid===uid)||{}).email))}
+function admOpenReqCount(){return ADM.reqs.filter(r=>r.state==='open').length}
+
+function renderAdmin(){
+  const el=document.getElementById('admin');
+  if(!IS_ADMIN){el.innerHTML='';return}
+  const on=ADM.accounts.filter(isOnline).length;
+  const tabs=[['users',t('adm_users'),ADM.accounts.length],['reqs',t('adm_requests'),admOpenReqCount()],['log',t('adm_history'),ADM.log.length]];
+  el.innerHTML=`<div style="display:flex;align-items:center;gap:12px;margin:6px 0 10px">
+      <button class="wk-close" style="width:38px;height:38px" onclick="go('profile')" aria-label="${t('close')}">‹</button>
+      <div><div class="title-xl" style="font-size:22px">${t('adm_title')}</div>
+      <div class="sub"><span class="dot-on"></span>${on} ${t('adm_online')} · ${ADM.accounts.length} ${t('adm_accounts')}</div></div>
+      <button class="btn ghost sm" style="margin-left:auto;width:auto;padding:8px 12px" onclick="loadAdmin()">↻</button></div>
+    <div class="adm-tabs">${tabs.map(([k,l,n])=>`<button class="adm-tab ${ADM.tab===k?'on':''}" onclick="admTab('${k}')">${esc(l)}${n?`<span class="adm-badge">${n}</span>`:''}</button>`).join('')}</div>
+    ${ADM.err?`<div class="card" style="border-color:var(--danger)"><b style="color:var(--danger)">${t('adm_error')}</b><div class="sub">${esc(ADM.err)}</div></div>`:''}
+    ${ADM.loading?`<div class="adm-empty"><div class="spin"></div><p>${t('adm_loading')}</p></div>`:admBody()}`;
+}
+function admTab(k){ADM.tab=k;renderAdmin()}
+function admBody(){return ADM.tab==='users'?admUsers():ADM.tab==='reqs'?admReqs():admLogView()}
+
+function admUsers(){
+  const fils=[['all',t('adm_all')],['active',t('st_active')],['pending',t('st_pending')],['scheduled',t('st_scheduled')],['expired',t('st_expired')],['blocked',t('st_blocked')]];
+  let list=ADM.accounts.slice();
+  if(ADM.q){const q=ADM.q.toLowerCase();list=list.filter(a=>(a.email||'').toLowerCase().includes(q))}
+  if(ADM.filter!=='all')list=list.filter(a=>admRowState(a.uid)===ADM.filter);
+  return `<input class="input txt" id="admQ" placeholder="${t('adm_search')}" value="${esc(ADM.q)}" oninput="ADM.q=this.value;admReRows()" style="margin-bottom:10px">
+    <div class="adm-fils">${fils.map(([k,l])=>`<button class="chip ${ADM.filter===k?'on':''}" onclick="ADM.filter='${k}';renderAdmin()">${esc(l)}</button>`).join('')}</div>
+    <div id="admRows">${admRows(list)}</div>`;
+}
+function admReRows(){
+  let list=ADM.accounts.slice();
+  if(ADM.q){const q=ADM.q.toLowerCase();list=list.filter(a=>(a.email||'').toLowerCase().includes(q))}
+  if(ADM.filter!=='all')list=list.filter(a=>admRowState(a.uid)===ADM.filter);
+  const c=document.getElementById('admRows');if(c)c.innerHTML=admRows(list);
+}
+function admRows(list){
+  if(!list.length)return `<div class="adm-empty"><div style="font-size:34px">🗂️</div><p>${t('adm_none')}</p></div>`;
+  return list.map(a=>{
+    const adm=isAdminEmail(a.email),st=admRowState(a.uid),e=ADM.ents[a.uid];
+    const plans=adm?ALL_PLAN_IDS.length:((e&&e.plans)||[]).length;
+    return `<button class="adm-row tap" onclick="admOpen('${a.uid}')">
+      <span class="adm-av" style="background:${statusColor(st)}22;color:${statusColor(st)}">${isOnline(a)?'<span class="dot-on"></span>':''}${esc((a.email||'?')[0].toUpperCase())}</span>
+      <span class="adm-info"><b>${esc(a.email||a.uid)}${adm?' <span class="adm-crown">ADMIN</span>':''}</b>
+        <span class="sub">${t('adm_lastSeen')}: ${a.lastSeen?fmtWhen(a.lastSeen):'—'} · ${plans} ${t('adm_plansShort')}</span></span>
+      <span class="adm-st" style="color:${statusColor(st)};border-color:${statusColor(st)}55">${esc(statusLabel(st))}</span></button>`;
+  }).join('');
+}
+function fmtWhen(ts){const d=Math.floor((Date.now()-ts)/60000);
+  if(d<2)return t('adm_now');if(d<60)return d+' min';if(d<1440)return Math.floor(d/60)+' h';
+  return new Date(ts).toLocaleDateString();}
+
+/* ---- editor de una cuenta ---- */
+function admOpen(uid){
+  const a=ADM.accounts.find(x=>x.uid===uid)||{uid};
+  const adm=isAdminEmail(a.email);
+  const e=ADM.ents[uid]||{status:'pending',startAt:null,endAt:null,indefinite:true,plans:[]};
+  const st=admRowState(uid);
+  const iso=ts=>ts?new Date(ts).toISOString().slice(0,10):'';
+  openModal(`<div style="display:flex;gap:12px;align-items:center;margin-bottom:4px">
+      <div class="adm-av big" style="background:${statusColor(st)}22;color:${statusColor(st)}">${esc((a.email||'?')[0].toUpperCase())}</div>
+      <div style="flex:1;min-width:0"><b style="font-size:16px;word-break:break-all">${esc(a.email||uid)}</b>
+      <div class="sub">${esc(statusLabel(st))}${isOnline(a)?' · <span style="color:var(--ok)">'+t('adm_onlineNow')+'</span>':''}</div></div></div>
+    ${adm?`<div class="card" style="border-color:var(--red);padding:12px;margin:10px 0"><b style="font-size:13px">👑 ${t('adm_isAdmin')}</b><div class="sub" style="font-size:12px">${t('adm_isAdminMsg')}</div></div>`:`
+    <div class="h-sec" style="margin-top:14px">${t('adm_period')}</div>
+    <div class="adm-dates">
+      <label class="adm-lab">${t('adm_from')}<input type="date" class="input" id="edStart" value="${iso(e.startAt)}"></label>
+      <label class="adm-lab">${t('adm_to')}<input type="date" class="input" id="edEnd" value="${iso(e.endAt)}" ${e.indefinite?'disabled':''}></label>
+    </div>
+    <label class="adm-check"><input type="checkbox" id="edInd" ${e.indefinite?'checked':''} onchange="document.getElementById('edEnd').disabled=this.checked"> ${t('adm_indef')}</label>
+    <div class="h-sec">${t('adm_plans')}</div>
+    <div class="adm-plans">${ALL_PLAN_IDS.map(id=>`<label class="adm-check"><input type="checkbox" class="edPlan" value="${id}" ${((e.plans)||[]).includes(id)?'checked':''}> ${esc(planLabel(id))}</label>`).join('')}</div>
+    <button class="btn" style="margin-top:16px" onclick="admSave('${uid}','active')">${t('adm_saveActive')}</button>
+    ${st==='blocked'
+      ? `<button class="btn ghost" style="margin-top:8px" onclick="admSave('${uid}','active')">${t('adm_unblock')}</button>`
+      : `<button class="btn ghost" style="margin-top:8px;color:var(--danger)" onclick="admBlock('${uid}')">${t('adm_block')}</button>`}
+    `}
+    <div class="h-sec">${t('adm_activity')}</div>
+    <div class="card" style="padding:12px"><div class="rt-list">
+      <div><span>${t('adm_created')}</span><small>${a.createdAt?new Date(a.createdAt).toLocaleDateString():'—'}</small></div>
+      <div><span>${t('adm_lastLogin')}</span><small>${a.lastLogin?new Date(a.lastLogin).toLocaleString():'—'}</small></div>
+      <div><span>${t('adm_lastSeen')}</span><small>${a.lastSeen?fmtWhen(a.lastSeen):'—'}</small></div>
+      <div><span>${t('adm_logins')}</span><small>${a.loginCount||0}</small></div>
+    </div></div>
+    <button class="btn dark" style="margin-top:12px" onclick="closeModal()">${t('close')}</button>`);
+}
+function admCollect(){
+  const s=document.getElementById('edStart').value,en=document.getElementById('edEnd').value;
+  const ind=document.getElementById('edInd').checked;
+  const plans=[...document.querySelectorAll('.edPlan')].filter(c=>c.checked).map(c=>c.value);
+  return {startAt:s?new Date(s+'T00:00:00').getTime():null,
+          endAt:(!ind&&en)?new Date(en+'T23:59:59').getTime():null,
+          indefinite:!!ind,plans};
+}
+async function admWrite(uid,data,action,detail){
+  try{
+    await firebase.firestore().collection('entitlements').doc(uid).set(
+      Object.assign({},data,{updatedAt:Date.now(),updatedBy:AUTH.email}),{merge:false});
+    const em=(ADM.accounts.find(a=>a.uid===uid)||{}).email||uid;
+    await admLog(action,em,detail||'');
+    ADM.ents[uid]=Object.assign({},data);
+    closeModal();toast(t('adm_saved'),'ok');
+    const r=ADM.reqs.find(x=>x.uid===uid);if(r&&r.state==='open'){r.state='approved'}
+    renderAdmin();
+  }catch(e){toast(t('adm_error')+': '+(e.message||e),'warn')}
+}
+function admSave(uid,status){
+  const a=ADM.accounts.find(x=>x.uid===uid)||{};
+  if(isAdminEmail(a.email)){toast(t('adm_isAdminMsg'),'warn');return}
+  const d=admCollect();
+  if(!d.plans.length){toast(t('adm_needPlan'),'warn');return}
+  if(!d.indefinite&&d.endAt&&d.startAt&&d.endAt<d.startAt){toast(t('adm_badDates'),'warn');return}
+  const det=`${d.plans.length} planes · ${d.indefinite?t('adm_indef'):(d.startAt?new Date(d.startAt).toLocaleDateString():'—')+' → '+(d.endAt?new Date(d.endAt).toLocaleDateString():'—')}`;
+  confirm2(t('adm_confirmSave'),det,t('adm_saveActive'),()=>{
+    admWrite(uid,Object.assign({status:'active'},d),'access_granted',det);
+    markRequestHandled(uid,'approved');
+  });
+}
+function admBlock(uid){
+  const a=ADM.accounts.find(x=>x.uid===uid)||{};
+  if(isAdminEmail(a.email)){toast(t('adm_isAdminMsg'),'warn');return}
+  confirm2(t('adm_confirmBlock'),a.email||uid,t('adm_block'),()=>{
+    const e=ADM.ents[uid]||{startAt:null,endAt:null,indefinite:true,plans:[]};
+    admWrite(uid,{status:'blocked',startAt:e.startAt||null,endAt:e.endAt||null,indefinite:e.indefinite!==false,plans:e.plans||[]},'blocked','');
+  },true);
+}
+async function markRequestHandled(uid,state){
+  try{await firebase.firestore().collection('accessRequests').doc(uid).set({state,handledAt:Date.now(),handledBy:AUTH.email},{merge:true})}catch(e){}
+}
+
+/* ---- bandeja de solicitudes ---- */
+function admReqs(){
+  const open=ADM.reqs.filter(r=>r.state==='open').sort((a,b)=>(b.createdAt||0)-(a.createdAt||0));
+  const done=ADM.reqs.filter(r=>r.state!=='open').sort((a,b)=>(b.handledAt||0)-(a.handledAt||0)).slice(0,20);
+  if(!open.length&&!done.length)return `<div class="adm-empty"><div style="font-size:34px">📭</div><p>${t('adm_noReqs')}</p></div>`;
+  return (open.length?`<div class="h-sec">${t('adm_pendingReqs')} (${open.length})</div>`+open.map(r=>`
+      <div class="card" style="padding:14px">
+        <b style="word-break:break-all">${esc(r.email||r.uid)}</b>
+        <div class="sub">${r.createdAt?new Date(r.createdAt).toLocaleString():''}</div>
+        <div style="display:flex;gap:8px;margin-top:10px">
+          <button class="btn sm" style="flex:1" onclick="admOpen('${r.uid}')">${t('adm_approve')}</button>
+          <button class="btn ghost sm" style="flex:1;color:var(--danger)" onclick="admReject('${r.uid}')">${t('adm_reject')}</button>
+        </div></div>`).join(''):`<div class="adm-empty"><div style="font-size:34px">✅</div><p>${t('adm_noPending')}</p></div>`)
+    +(done.length?`<div class="h-sec">${t('adm_handled')}</div>`+done.map(r=>`
+      <div class="adm-row" style="cursor:default"><span class="adm-info"><b>${esc(r.email||r.uid)}</b>
+      <span class="sub">${esc(r.state==='approved'?t('adm_approved'):t('adm_rejected'))} · ${r.handledAt?new Date(r.handledAt).toLocaleDateString():''}</span></span></div>`).join(''):'');
+}
+function admReject(uid){
+  const r=ADM.reqs.find(x=>x.uid===uid)||{};
+  confirm2(t('adm_confirmReject'),r.email||uid,t('adm_reject'),async()=>{
+    await markRequestHandled(uid,'rejected');
+    await admLog('rejected',r.email||uid,'');
+    const x=ADM.reqs.find(y=>y.uid===uid);if(x)x.state='rejected';
+    closeModal();toast(t('adm_saved'),'ok');renderAdmin();
+  },true);
+}
+
+/* ---- historial ---- */
+function admLogView(){
+  if(!ADM.log.length)return `<div class="adm-empty"><div style="font-size:34px">🗒️</div><p>${t('adm_noLog')}</p></div>`;
+  const ico={access_granted:'✅',blocked:'🚫',rejected:'❌',unblocked:'🔓'};
+  return `<div class="card" style="padding:0"><div class="rt-list" style="padding:6px 14px">`+
+    ADM.log.map(l=>`<div><span>${ico[l.action]||'•'} ${esc(t('adm_a_'+l.action)||l.action)} — ${esc(l.target||'')}</span>
+      <small>${new Date(l.ts).toLocaleString()}${l.detail?' · '+esc(l.detail):''}</small></div>`).join('')+
+    `</div></div>`;
+}
+
+/* =====================================================================
+   MARCA DE AGUA Y DISUASIÓN DE COPIA
+   En web/PWA no existe forma de impedir al 100 % una captura: una cámara
+   externa siempre puede fotografiar la pantalla. Lo que sí se hace aquí
+   es identificar cualquier copia que se filtre y poner difícil el
+   copiado, la impresión y la descarga.
+   ===================================================================== */
+let wmTimer=null;
+function wmText(){
+  const d=new Date();
+  const stamp=d.toLocaleDateString()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
+  return ((AUTH&&AUTH.email)||'RODOVELOCITY')+' · '+stamp;
+}
+function paintWatermark(){
+  const el=document.getElementById('wmLayer');if(!el)return;
+  const txt=esc(wmText());
+  const cols=3,rows=7,jx=(Math.random()*8-4),jy=(Math.random()*8-4);
+  let h='';
+  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+    const x=(c*(100/cols))+(r%2?100/cols/2:0)+jx/10, y=(r*(100/rows))+jy/10;
+    h+=`<span class="wm-i" style="left:${x}%;top:${y}%">${txt}</span>`;
+  }
+  el.innerHTML=h;
+}
+function startWatermark(){
+  const el=document.getElementById('wmLayer');if(!el)return;
+  el.style.display='block';paintWatermark();
+  clearInterval(wmTimer);wmTimer=setInterval(paintWatermark,20000);
+  document.body.classList.add('protected');
+}
+function stopWatermark(){
+  const el=document.getElementById('wmLayer');if(el){el.style.display='none';el.innerHTML=''}
+  clearInterval(wmTimer);wmTimer=null;
+  document.body.classList.remove('protected');
+}
+/* oculta el contenido cuando la app deja de estar visible */
+document.addEventListener('visibilitychange',()=>{
+  if(!document.body.classList.contains('protected'))return;
+  document.body.classList.toggle('veiled',document.hidden);
+});
+window.addEventListener('blur',()=>{if(document.body.classList.contains('protected'))document.body.classList.add('veiled')});
+window.addEventListener('focus',()=>document.body.classList.remove('veiled'));
+/* sin menú contextual ni arrastre dentro del contenido protegido */
+document.addEventListener('contextmenu',e=>{
+  if(document.body.classList.contains('protected')&&!e.target.closest('input,textarea'))e.preventDefault();
+});
+document.addEventListener('dragstart',e=>{if(document.body.classList.contains('protected'))e.preventDefault()});
+/* copiar/cortar deshabilitado fuera de los campos de formulario */
+['copy','cut'].forEach(ev=>document.addEventListener(ev,e=>{
+  if(document.body.classList.contains('protected')&&!e.target.closest('input,textarea'))e.preventDefault();
+}));
+
+
 (function boot(){
   const cloudOk=initFirebase();
   let splashDone=false,authKnown=false;
-  function routeAfterSplash(){
+  async function routeAfterSplash(){
     document.getElementById('splash').style.display='none';
-    if(!cloudOk){showGate();return}                 // sin Firebase → modo local
-    if(AUTH){hideAuth();showGate()}                 // sesión ya iniciada → perfiles
-    else{showAuth()}                                // pedir login
+    if(!cloudOk){ACCESS_STATE='offline';showAccessGate();return}   // sin Firebase no hay contenido
+    if(!AUTH){showAuth();return}
+    hideAuth();
+    if(ACCESS_STATE==='unknown')await refreshEntitlement();
+    if(ACCESS_STATE==='active')await enterApp(); else showAccessGate();
   }
   setTimeout(()=>{splashDone=true;routeAfterSplash()},3000);
   if(cloudOk){
@@ -2205,9 +2363,19 @@ applyStaticI18n();
       authKnown=true;
       if(user){
         AUTH=user;await loadCloud();startCloudSync();
-        if(splashDone){hideAuth();if(!CUR&&document.getElementById('app').classList.contains('hidden'))showGate()}
+        await registerAccount();
+        const st=await refreshEntitlement();
+        watchEntitlement();startPresence();
+        if(st!=='active')await ensureAccessRequest();
+        if(splashDone){
+          hideAuth();
+          if(st==='active'){if(!CUR&&document.getElementById('app').classList.contains('hidden'))await enterApp()}
+          else showAccessGate();
+        }
       }else{
         AUTH=null;if(cloudUnsub){cloudUnsub();cloudUnsub=null}
+        if(entUnsub){entUnsub();entUnsub=null}stopPresence();stopWatermark();
+        wipeProtectedContent();ENT=null;IS_ADMIN=false;ACCESS_STATE='unknown';hideAccessGate();
         if(splashDone)showAuth();
       }
     });
