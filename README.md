@@ -1,5 +1,9 @@
 # FM Velocity — TopVelocity Fusion Training App
 
+![FM Velocity by FM Athletes](fm-velocity-social.png)
+
+**by FM Athletes** · Live: https://fmvelocity.vercel.app
+
 A progressive web app for baseball pitchers to calculate strength training weights, track workouts, and sync across devices using the TopVelocity Fusion System methodology.
 
 ## Features
@@ -41,8 +45,8 @@ Every time you push changes to GitHub, Netlify will auto-deploy in seconds.
 
 ```bash
 # Clone the repo
-git clone https://github.com/fmrodolfo/rodovelocity.git
-cd rodovelocity
+git clone https://github.com/fmrodolfo/fmvelocity.git
+cd fmvelocity
 
 # Open in browser
 # On Mac:
@@ -73,7 +77,7 @@ To enable multi-device sync with Firebase:
 ## File Structure
 
 ```
-rodovelocity/
+fmvelocity/
 ├── index.html           # Main app (all-in-one file)
 ├── manifest.json        # PWA metadata
 ├── service-worker.js    # Offline caching
