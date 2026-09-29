@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'rodovelocity-v19';
+const CACHE_VERSION = 'fmvelocity-v20';
 const CACHE_NAME = CACHE_VERSION;
 const urlsToCache = [
   './',
@@ -7,7 +7,16 @@ const urlsToCache = [
   './logo.png',
   './icon-192.png',
   './icon-512.png',
-  './icon-maskable-512.png'
+  './icon-maskable-512.png',
+  './fm-velocity-icon.svg',
+  './fm-athletes.png',
+  './favicon.svg',
+  './montserrat-400.woff2',
+  './montserrat-600.woff2',
+  './montserrat-700.woff2',
+  './montserrat-800.woff2',
+  './montserrat-800-italic.woff2',
+  './montserrat-900-italic.woff2'
 ];
 
 // Install event - cache essential files

@@ -1,4 +1,4 @@
-# RODOVELOCITY — TopVelocity Fusion Training App
+# FM Velocity — TopVelocity Fusion Training App
 
 A progressive web app for baseball pitchers to calculate strength training weights, track workouts, and sync across devices using the TopVelocity Fusion System methodology.
 

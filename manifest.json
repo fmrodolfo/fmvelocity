@@ -1,18 +1,26 @@
 {
-  "name": "RODOVELOCITY",
-  "short_name": "RODOVELOCITY",
-  "description": "App de entrenamiento para pitchers de beisbol - sistema TopVelocity: calculo de pesos, seguimiento de entrenos y progreso.",
-  "start_url": "./?v=16",
-  "id": "/?v=16",
+  "name": "FM Velocity",
+  "short_name": "FM Velocity",
+  "description": "FM Velocity by FM Athletes — entrenamiento de velocidad para pitchers (sistema TopVelocity 3X): cálculo de pesos, seguimiento de entrenos y progreso.",
+  "start_url": "./?v=17",
+  "id": "/?v=17",
   "display": "standalone",
-  "display_override": ["standalone", "fullscreen", "minimal-ui"],
-  "background_color": "#0a0a0a",
-  "theme_color": "#0a0a0a",
+  "display_override": [
+    "standalone",
+    "fullscreen",
+    "minimal-ui"
+  ],
+  "background_color": "#061421",
+  "theme_color": "#061421",
   "orientation": "portrait",
   "scope": "./",
   "lang": "es",
   "dir": "ltr",
-  "categories": ["sports", "health", "fitness"],
+  "categories": [
+    "sports",
+    "health",
+    "fitness"
+  ],
   "icons": [
     {
       "src": "icon-192.png",
@@ -31,6 +39,12 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
+    },
+    {
+      "src": "favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
     }
   ]
 }

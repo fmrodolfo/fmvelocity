@@ -3,38 +3,83 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#0a0a0a">
+<meta name="theme-color" content="#061421">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="RODOVELOCITY">
-<meta name="application-name" content="RODOVELOCITY">
+<meta name="apple-mobile-web-app-title" content="FM Velocity">
+<meta name="application-name" content="FM Velocity">
+<meta name="description" content="FM Velocity by FM Athletes — entrenamiento de velocidad para pitchers con el sistema TopVelocity 3X.">
+<meta property="og:title" content="FM Velocity · by FM Athletes">
+<meta property="og:description" content="Entrenamiento de velocidad para pitchers con el sistema TopVelocity 3X.">
+<meta property="og:image" content="icon-512.png">
 <link rel="manifest" href="manifest.json">
-<link rel="apple-touch-icon" href="icon-192.png">
-<link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
-<link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
-<title>RODOVELOCITY</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
 <link rel="icon" type="image/png" sizes="512x512" href="icon-512.png">
+<link rel="preload" href="montserrat-900-italic.woff2" as="font" type="font/woff2" crossorigin>
+<title>FM Velocity · by FM Athletes</title>
+<script>
+/* Tema visual: se aplica antes de pintar para que no haya parpadeo. Si el usuario ya eligió uno en este
+   dispositivo se respeta; si no, FM Athletes (oscuro) es el tema por defecto. */
+(function(){var T={'fm':'#061421','fm-light':'#F4F6F9','classic':'#0a0a0a'},t='fm';
+  try{var v=localStorage.getItem('fmv_theme');if(v&&T[v])t=v}catch(e){}
+  document.documentElement.setAttribute('data-theme',t);
+  var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',T[t]);})();
+</script>
 <!-- Sin Firebase - datos guardados en localStorage del dispositivo -->
 <style>
+/* Temas. El tema se fija en <html data-theme="…"> (ver script del <head>). "fm" = FM Athletes (por defecto),
+   "fm-light" = FM Athletes claro, "classic" = el diseño rojo y negro original de la app. Sólo cambian colores y
+   tipografía; nada de lógica. Los nombres --red/--red-dark se conservan para no tocar cientos de reglas:
+   ahora significan "color de acento" del tema. --acc-txt es el acento cuando se usa como TEXTO (más oscuro en
+   el tema claro para cumplir WCAG AA) y --on-acc el texto que va encima de un botón de acento. */
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:400;font-display:swap;src:url(montserrat-400.woff2) format('woff2')}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:600;font-display:swap;src:url(montserrat-600.woff2) format('woff2')}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:700;font-display:swap;src:url(montserrat-700.woff2) format('woff2')}
+@font-face{font-family:'Montserrat';font-style:normal;font-weight:800 900;font-display:swap;src:url(montserrat-800.woff2) format('woff2')}
+@font-face{font-family:'Montserrat';font-style:italic;font-weight:800;font-display:swap;src:url(montserrat-800-italic.woff2) format('woff2')}
+@font-face{font-family:'Montserrat';font-style:italic;font-weight:900;font-display:swap;src:url(montserrat-900-italic.woff2) format('woff2')}
 :root{
-  --red:#E10600; --red-dark:#a30400; --red-glow:rgba(225,6,0,.45);
-  --bg:#0a0a0a; --bg2:#121214; --card:#17171a; --card2:#1e1e22;
-  --line:#2a2a2e; --txt:#f5f5f7; --muted:#9a9aa2; --white:#ffffff;
+  --red:#BB9740; --red-dark:#8A6D2A; --red-glow:rgba(187,151,64,.32); --acc-rgb:187,151,64; --acc2:#D1B062;
+  --acc-txt:#BB9740; --on-acc:#061421;
+  --bg:#061421; --bg2:#0B1827; --card:#111D2C; --card2:#1A2738; --deep:#040E19; --bg-rgb:6,20,33;
+  --line:#26374D; --txt:#F5F7FA; --muted:#9FAABB; --white:#ffffff; --hi:#ffffff; --grid:#ffffff; --logo-bg:#061421;
   --ok:#2ecc71; --warn:#f0a500; --danger:#ff3b30;
+  --f-body:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,system-ui,sans-serif;
+  --f-head:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,system-ui,sans-serif;
+  --head-style:italic; --head-w:900;
   --r:18px; --safe: env(safe-area-inset-bottom,0px);
+}
+:root[data-theme="fm-light"]{
+  --red:#BB9740; --red-dark:#8A6D2A; --red-glow:rgba(187,151,64,.28); --acc-rgb:187,151,64; --acc2:#D1B062;
+  --acc-txt:#7A5E1F; --on-acc:#061421;
+  --bg:#F4F6F9; --bg2:#FFFFFF; --card:#FFFFFF; --card2:#EEF1F5; --deep:#FFFFFF; --bg-rgb:244,246,249;
+  --line:#D5DBE4; --txt:#061421; --muted:#4B5668; --white:#061421; --hi:#061421; --grid:#061421; --logo-bg:#061421;
+  --danger:#C62828; --ok:#1E8E4E; --warn:#A86A00;
+}
+:root[data-theme="classic"]{
+  --red:#E10600; --red-dark:#a30400; --red-glow:rgba(225,6,0,.45); --acc-rgb:225,6,0; --acc2:#ff3b28;
+  --acc-txt:#FF4B3E; --on-acc:#ffffff;
+  --bg:#0a0a0a; --bg2:#121214; --card:#17171a; --card2:#1e1e22; --deep:#000000; --bg-rgb:10,10,10;
+  --line:#2a2a2e; --txt:#f5f5f7; --muted:#9a9aa2; --white:#ffffff; --hi:#ffffff; --grid:#ffffff; --logo-bg:#000000;
+  --f-body:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,system-ui,sans-serif;
+  --f-head:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,system-ui,sans-serif;
+  --head-style:normal; --head-w:900;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0}
 html,body{height:100%}
-body{font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Inter,system-ui,sans-serif;
+body{font-family:var(--f-body);
   background:var(--bg);color:var(--txt);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 body::before{content:'';position:fixed;inset:0;z-index:-2;
-  background:radial-gradient(900px 500px at 80% -10%,rgba(225,6,0,.16),transparent 60%),
-    radial-gradient(700px 600px at -10% 110%,rgba(225,6,0,.10),transparent 55%),
-    linear-gradient(180deg,#0b0b0d,#050505)}
+  background:radial-gradient(900px 500px at 80% -10%,rgba(var(--acc-rgb),.16),transparent 60%),
+    radial-gradient(700px 600px at -10% 110%,rgba(var(--acc-rgb),.10),transparent 55%),
+    linear-gradient(180deg,var(--bg),var(--deep))}
 body::after{content:'';position:fixed;inset:0;z-index:-1;opacity:.04;pointer-events:none;
-  background-image:linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px);background-size:44px 44px}
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:44px 44px}
 img{display:block}
 button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit}
 input,select,textarea{font-family:inherit}
@@ -75,17 +120,17 @@ input,select,textarea{font-family:inherit}
     opacity:1;
     transform:scale(1) rotateY(0deg);
     filter:blur(0);
-    text-shadow:0 0 20px rgba(225,6,0,0.6)
+    text-shadow:0 0 20px rgba(var(--acc-rgb),0.6)
   }
 }
 
 /* Logo pulse glow */
 @keyframes logoPulse{
   0%,100%{
-    filter:drop-shadow(0 0 10px rgba(225,6,0,0.4))
+    filter:drop-shadow(0 0 10px rgba(var(--acc-rgb),0.4))
   }
   50%{
-    filter:drop-shadow(0 0 25px rgba(225,6,0,0.8))
+    filter:drop-shadow(0 0 25px rgba(var(--acc-rgb),0.8))
   }
 }
 
@@ -99,7 +144,7 @@ input,select,textarea{font-family:inherit}
   35%{
     opacity:0.7;
     transform:translateY(0) scaleX(1);
-    text-shadow:-2px 0 #E10600,2px 0 rgba(255,255,255,0.3)
+    text-shadow:-2px 0 var(--red),2px 0 rgba(255,255,255,0.3)
   }
   70%{
     opacity:1;
@@ -108,7 +153,7 @@ input,select,textarea{font-family:inherit}
   100%{
     opacity:1;
     transform:translateY(0) scaleX(1);
-    text-shadow:0 0 15px rgba(225,6,0,0.5)
+    text-shadow:0 0 15px rgba(var(--acc-rgb),0.5)
   }
 }
 
@@ -157,7 +202,7 @@ input,select,textarea{font-family:inherit}
 
 #splash{
   position:fixed;inset:0;z-index:1000;
-  background:linear-gradient(180deg,#0a0a0a 0%,#1a0a0a 50%,#0a0a0a 100%);
+  background:linear-gradient(180deg,var(--bg) 0%,var(--card) 50%,var(--bg) 100%);
   display:flex;align-items:center;justify-content:center;
   overflow:hidden;
   animation:splashExit 3s ease-in forwards;
@@ -170,8 +215,8 @@ input,select,textarea{font-family:inherit}
   position:absolute;
   inset:0;
   background-image:
-    linear-gradient(0deg,rgba(225,6,0,0.05) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(225,6,0,0.05) 1px,transparent 1px);
+    linear-gradient(0deg,rgba(var(--acc-rgb),0.05) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(var(--acc-rgb),0.05) 1px,transparent 1px);
   background-size:40px 40px;
   background-position:0 0;
   animation:gridMove 4s linear infinite;
@@ -186,8 +231,8 @@ input,select,textarea{font-family:inherit}
   inset:0;
   background:repeating-linear-gradient(
     0deg,
-    rgba(225,6,0,0.08) 0px,
-    rgba(225,6,0,0.08) 2px,
+    rgba(var(--acc-rgb),0.08) 0px,
+    rgba(var(--acc-rgb),0.08) 2px,
     transparent 2px,
     transparent 4px
   );
@@ -213,12 +258,12 @@ input,select,textarea{font-family:inherit}
   align-items:center;
   justify-content:center;
   overflow:hidden;
-  background:#000;
+  background:var(--logo-bg);
   border-radius:28px;
-  border:2px solid rgba(225,6,0,0.35);
+  border:2px solid rgba(var(--acc-rgb),0.35);
   animation:logoEnter 1.2s cubic-bezier(0.34,1.56,0.64,1) both,
             logoPulse 2.5s ease-in-out 1.2s infinite;
-  box-shadow:0 0 40px rgba(225,6,0,0.35),0 10px 30px rgba(0,0,0,0.4)
+  box-shadow:0 0 40px rgba(var(--acc-rgb),0.35),0 10px 30px rgba(0,0,0,0.4)
 }
 
 .logo-splash svg,.logo-splash img{
@@ -239,7 +284,7 @@ input,select,textarea{font-family:inherit}
 }
 
 .splash-title span{
-  color:var(--red);
+  color:var(--acc-txt);
   display:block;
   animation:titleGlitch 1.4s cubic-bezier(0.25,0.46,0.45,0.94) 0.5s both
 }
@@ -255,12 +300,12 @@ input,select,textarea{font-family:inherit}
 }
 
 .topbar{display:flex;align-items:center;justify-content:space-between;padding:22px 18px 10px;position:sticky;top:0;z-index:30;
-  background:linear-gradient(180deg,rgba(10,10,10,.92),rgba(10,10,10,.55) 70%,transparent);backdrop-filter:blur(6px)}
+  background:linear-gradient(180deg,rgba(var(--bg-rgb),.92),rgba(var(--bg-rgb),.55) 70%,transparent);backdrop-filter:blur(6px)}
 .brand{display:flex;align-items:center;gap:10px;font-weight:900;letter-spacing:1px;font-size:19px}
-.brand .lg{width:34px;height:34px;border-radius:10px;background:#000;border:1px solid #2a2a2e;display:grid;place-items:center;overflow:hidden;
+.brand .lg{width:34px;height:34px;border-radius:10px;background:var(--logo-bg);border:1px solid var(--line);display:grid;place-items:center;overflow:hidden;
   box-shadow:0 6px 18px var(--red-glow);animation:glow 3.5s infinite}
 .brand .lg svg,.brand .lg img{width:100%;height:100%;object-fit:cover}
-.brand b{color:var(--white)} .brand span{color:var(--red)}
+.brand b{color:var(--white)} .brand span{color:var(--acc-txt)}
 .avatar-mini{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--red);background:var(--card2)}
 .avatar-mini.ph{display:grid;place-items:center;font-weight:800;color:var(--white)}
 
@@ -272,48 +317,48 @@ input,select,textarea{font-family:inherit}
 .sub{color:var(--muted);font-size:14px}
 
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;width:100%;padding:16px;border-radius:15px;font-weight:800;font-size:16px;
-  background:linear-gradient(135deg,var(--red),#ff3b28);color:#fff;box-shadow:0 10px 26px var(--red-glow);transition:transform .12s,box-shadow .2s}
+  background:linear-gradient(135deg,var(--red),var(--acc2));color:var(--on-acc);box-shadow:0 10px 26px var(--red-glow);transition:transform .12s,box-shadow .2s}
 .btn:active{transform:scale(.97)}
 .btn.ghost{background:var(--card2);color:var(--txt);box-shadow:none;border:1px solid var(--line)}
 .btn.sm{width:auto;padding:11px 16px;font-size:14px;border-radius:12px}
-.btn.dark{background:#000;border:1px solid var(--line);box-shadow:none}
+.btn.dark{background:var(--deep);border:1px solid var(--line);box-shadow:none}
 .chip{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;border-radius:999px;background:var(--card2);border:1px solid var(--line);font-size:13px;font-weight:700;color:var(--muted)}
-.chip.on{background:var(--red);color:#fff;border-color:var(--red)}
+.chip.on{background:var(--red);color:var(--on-acc);border-color:var(--acc-txt)}
 
 /* gate + auth */
-#gate,#auth{position:fixed;inset:0;z-index:100;background:radial-gradient(700px 500px at 50% 0%,rgba(225,6,0,.18),transparent),#070707;
+#gate,#auth{position:fixed;inset:0;z-index:100;background:radial-gradient(700px 500px at 50% 0%,rgba(var(--acc-rgb),.18),transparent),var(--bg);
   display:none;flex-direction:column;align-items:center;justify-content:center;padding:26px;text-align:center}
-.gate-logo{width:104px;height:104px;border-radius:28px;background:#000;border:1px solid #26262a;display:grid;place-items:center;margin-bottom:18px;overflow:hidden;
+.gate-logo{width:104px;height:104px;border-radius:28px;background:var(--logo-bg);border:1px solid var(--line);display:grid;place-items:center;margin-bottom:18px;overflow:hidden;
   box-shadow:0 18px 50px var(--red-glow);animation:pop .6s both,glow 3.5s 1s infinite}
 .gate-logo svg,.gate-logo img{width:100%;height:100%;object-fit:cover}
 .gate-title{font-size:34px;font-weight:900;letter-spacing:2px}
-.gate-title span{color:var(--red)}
+.gate-title span{color:var(--acc-txt)}
 .gate-sub{color:var(--muted);margin:6px 0 30px;letter-spacing:3px;font-size:12px;text-transform:uppercase}
 .profile-grid{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;max-width:420px}
 .p-item{display:flex;flex-direction:column;align-items:center;gap:10px;animation:pop .5s both}
-.p-ava{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--line);background:var(--card2);transition:transform .15s;display:grid;place-items:center;font-size:34px;font-weight:900;color:#fff}
+.p-ava{width:96px;height:96px;border-radius:50%;object-fit:cover;border:3px solid var(--line);background:var(--card2);transition:transform .15s;display:grid;place-items:center;font-size:34px;font-weight:900;color:var(--hi)}
 .p-item:active .p-ava{transform:scale(.94)}
-.p-item .p-ava.add{border-style:dashed;border-color:var(--red);color:var(--red);background:transparent}
+.p-item .p-ava.add{border-style:dashed;border-color:var(--acc-txt);color:var(--acc-txt);background:transparent}
 .p-name{font-weight:700;font-size:15px}
 .auth-box{width:100%;max-width:340px}
 .auth-box .input{margin-bottom:12px}
 .auth-alt{color:var(--muted);font-size:13px;margin-top:18px}
-.auth-alt b{color:var(--red)}
-.link{color:var(--red);font-weight:700;text-decoration:underline;cursor:pointer}
+.auth-alt b{color:var(--acc-txt)}
+.link{color:var(--acc-txt);font-weight:700;text-decoration:underline;cursor:pointer}
 
 #nav{position:fixed;left:0;right:0;bottom:0;z-index:40;max-width:520px;margin:0 auto;
   display:flex;justify-content:space-around;padding:10px 8px calc(10px + var(--safe));
-  background:linear-gradient(180deg,rgba(16,16,18,.4),rgba(10,10,12,.96));backdrop-filter:blur(16px);border-top:1px solid var(--line)}
+  background:linear-gradient(180deg,rgba(var(--bg-rgb),.4),rgba(var(--bg-rgb),.96));backdrop-filter:blur(16px);border-top:1px solid var(--line)}
 .nav-b{display:flex;flex-direction:column;align-items:center;gap:4px;padding:6px 8px;border-radius:14px;color:var(--muted);font-size:10px;font-weight:700;transition:color .2s;position:relative}
 .nav-b svg{width:23px;height:23px}
-.nav-b.on{color:var(--red)}
+.nav-b.on{color:var(--acc-txt)}
 .nav-b.on::before{content:'';position:absolute;top:-1px;width:26px;height:3px;border-radius:3px;background:var(--red);box-shadow:0 0 12px var(--red-glow)}
 
 .stat-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
 .stat{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:13px 10px;text-align:center}
-.stat b{display:block;font-size:23px;font-weight:900;color:#fff}
+.stat b{display:block;font-size:23px;font-weight:900;color:var(--hi)}
 .stat small{color:var(--muted);font-size:11px;letter-spacing:.5px}
-.stat.red b{color:var(--red)}
+.stat.red b{color:var(--acc-txt)}
 .ring-wrap{display:flex;align-items:center;gap:18px}
 .ring{width:96px;height:96px;flex:0 0 auto;position:relative}
 .ring .pct{position:absolute;inset:0;display:grid;place-items:center;font-weight:900;font-size:20px}
@@ -321,7 +366,7 @@ input,select,textarea{font-family:inherit}
 .plan-card{display:flex;align-items:center;gap:14px;cursor:pointer}
 .cat-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px}
 .cat-card{display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:8px;min-height:116px;padding:16px 15px;border-radius:18px;background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);color:var(--txt);text-align:left;transition:transform .15s,border-color .15s}
-.cat-card:active{transform:scale(.96);border-color:var(--red)}
+.cat-card:active{transform:scale(.96);border-color:var(--acc-txt)}
 .cat-card .cat-ic{font-size:30px;line-height:1}
 .cat-card .cat-n{font-weight:800;font-size:15.5px;line-height:1.18}
 .cat-card .cat-c{font-size:12px;color:var(--muted);font-weight:600}
@@ -329,24 +374,24 @@ input,select,textarea{font-family:inherit}
 .rt-sub{display:flex;align-items:center;gap:10px;padding:9px 11px;border-radius:11px;background:var(--card2);border:1px solid var(--line)}
 .rt-sub-n{flex:1;font-size:13.5px;font-weight:700;line-height:1.2}
 .rt-sub-r{flex:0 0 auto;font-size:11.5px;color:var(--muted);font-weight:600}
-.rt-play{flex:0 0 auto;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--red);color:#fff;font-size:11px;box-shadow:0 3px 10px var(--red-glow)}
+.rt-play{flex:0 0 auto;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--red);color:var(--on-acc);font-size:11px;box-shadow:0 3px 10px var(--red-glow)}
 .rt-play:active{transform:scale(.9)}
 .rt-play.off{background:transparent;border:1px dashed var(--line);box-shadow:none}
 .ex-lib-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:2px}
 .ex-lib-card{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:13px 14px;border-radius:14px;background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);color:var(--txt);font-weight:700;font-size:14.5px;transition:transform .15s,border-color .15s}
-.ex-lib-card:active{transform:scale(.985);border-color:var(--red)}
+.ex-lib-card:active{transform:scale(.985);border-color:var(--acc-txt)}
 .ex-lib-card .elc-ic{flex:0 0 auto;font-size:20px;width:26px;text-align:center}
 .ex-lib-card .elc-n{flex:1;line-height:1.25}
 .ex-lib-card .elc-go{flex:0 0 auto;color:var(--muted);font-size:20px;font-weight:900}
 .plan-ico{width:52px;height:52px;border-radius:14px;display:grid;place-items:center;flex:0 0 auto;overflow:hidden;
-  background:#000;border:1px solid #26262a;box-shadow:0 8px 20px var(--red-glow)}
+  background:var(--logo-bg);border:1px solid var(--line);box-shadow:0 8px 20px var(--red-glow)}
 .plan-ico svg,.plan-ico img{width:100%;height:100%;object-fit:cover}
 .plan-ico.lock{background:var(--card2);color:var(--muted);box-shadow:none;font-size:22px;font-weight:900}
 .week{border:1px solid var(--line);border-radius:15px;margin-bottom:11px;overflow:hidden;background:var(--card);transition:border-color .2s}
-.week.open{border-color:var(--red)}
+.week.open{border-color:var(--acc-txt)}
 .week-h{display:flex;align-items:center;gap:12px;padding:15px;cursor:pointer}
 .week-num{width:38px;height:38px;border-radius:11px;background:var(--card2);display:grid;place-items:center;font-weight:900;font-size:15px;flex:0 0 auto}
-.week.open .week-num{background:var(--red);color:#fff}
+.week.open .week-num{background:var(--red);color:var(--on-acc)}
 .week-tag{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:800}
 .week-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
 .week.open .week-body{max-height:900px}
@@ -357,14 +402,14 @@ input,select,textarea{font-family:inherit}
 .caret{margin-left:auto;color:var(--muted);transition:transform .3s}
 .week.open .caret{transform:rotate(90deg)}
 
-#workout{position:fixed;inset:0;z-index:80;background:radial-gradient(600px 500px at 50% -5%,rgba(225,6,0,.18),transparent),#060606;display:none;flex-direction:column}
+#workout{position:fixed;inset:0;z-index:80;background:radial-gradient(600px 500px at 50% -5%,rgba(var(--acc-rgb),.18),transparent),var(--bg);display:none;flex-direction:column}
 #workout.on{display:flex;animation:fadeUp .4s both}
 .wk-top{display:flex;align-items:center;justify-content:space-between;padding:20px 18px 8px;position:relative;z-index:6}
 .wk-close{width:40px;height:40px;border-radius:50%;background:var(--card2);display:grid;place-items:center;font-size:20px;border:1px solid var(--line)}
 .wk-prog{height:6px;background:var(--card2);border-radius:6px;margin:6px 18px 0;overflow:hidden}
-.wk-prog i{display:block;height:100%;background:linear-gradient(90deg,var(--red),#ff5a45);border-radius:6px;transition:width .5s;box-shadow:0 0 12px var(--red-glow)}
+.wk-prog i{display:block;height:100%;background:linear-gradient(90deg,var(--red),var(--acc2));border-radius:6px;transition:width .5s;box-shadow:0 0 12px var(--red-glow)}
 .wk-body{flex:1;overflow-y:auto;padding:14px 18px 30px;display:flex;flex-direction:column}
-.ex-count{color:var(--red);font-weight:900;letter-spacing:2px;font-size:13px}
+.ex-count{color:var(--acc-txt);font-weight:900;letter-spacing:2px;font-size:13px}
 .ex-name{font-size:30px;font-weight:900;line-height:1.05;margin:6px 0 2px}
 .ex-ref{color:var(--muted);font-size:13px;margin-bottom:16px}
 .set-list{display:flex;flex-direction:column;gap:10px}
@@ -376,14 +421,14 @@ input,select,textarea{font-family:inherit}
 .set-w{font-size:24px;font-weight:900}
 .set-w small{font-size:13px;color:var(--muted);font-weight:700}
 .set-meta{font-size:12px;color:var(--muted)}
-.set-pct{margin-left:auto;font-size:12px;font-weight:800;color:var(--red);background:rgba(225,6,0,.12);padding:4px 9px;border-radius:8px}
-.rest{position:absolute;inset:0;z-index:5;background:rgba(6,6,6,.94);backdrop-filter:blur(10px);display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px}
+.set-pct{margin-left:auto;font-size:12px;font-weight:800;color:var(--acc-txt);background:rgba(var(--acc-rgb),.12);padding:4px 9px;border-radius:8px}
+.rest{position:absolute;inset:0;z-index:5;background:rgba(var(--bg-rgb),.94);backdrop-filter:blur(10px);display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px}
 .rest.on{display:flex;animation:fadeUp .3s both}
 .rest h3{letter-spacing:3px;color:var(--muted);font-size:13px;text-transform:uppercase}
 .timer-ring{width:220px;height:220px;position:relative;margin:16px 0}
 .timer-ring .t{position:absolute;inset:0;display:grid;place-items:center;font-size:56px;font-weight:900}
 .rest-actions{display:flex;gap:10px}
-.sheet{position:fixed;left:0;right:0;bottom:0;z-index:90;max-width:520px;margin:0 auto;background:linear-gradient(180deg,var(--card),#0d0d0f);
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:90;max-width:520px;margin:0 auto;background:linear-gradient(180deg,var(--card),var(--bg2));
   border-top-left-radius:26px;border-top-right-radius:26px;border-top:1px solid var(--line);padding:22px 20px calc(26px + var(--safe));
   transform:translateY(110%);transition:transform .4s cubic-bezier(.2,.8,.2,1);box-shadow:0 -20px 50px rgba(0,0,0,.6)}
 .sheet.on{transform:none}
@@ -397,23 +442,23 @@ input,select,textarea{font-family:inherit}
 .feel.f1{border-left:4px solid #3aa0ff}.feel.f2{border-left:4px solid var(--ok)}
 .feel.f3{border-left:4px solid var(--warn)}.feel.f4{border-left:4px solid #ff7a00}
 .feel.f5{border-left:4px solid var(--danger)}
-.coach-box{background:linear-gradient(135deg,rgba(225,6,0,.14),rgba(225,6,0,.03));border:1px solid rgba(225,6,0,.35);border-radius:15px;padding:15px;margin:14px 0;display:flex;gap:12px}
-.coach-ava{width:38px;height:38px;border-radius:11px;flex:0 0 auto;background:linear-gradient(135deg,var(--red),#ff4d38);display:grid;place-items:center;font-size:18px;box-shadow:0 6px 16px var(--red-glow)}
+.coach-box{background:linear-gradient(135deg,rgba(var(--acc-rgb),.14),rgba(var(--acc-rgb),.03));border:1px solid rgba(var(--acc-rgb),.35);border-radius:15px;padding:15px;margin:14px 0;display:flex;gap:12px}
+.coach-ava{width:38px;height:38px;border-radius:11px;flex:0 0 auto;background:linear-gradient(135deg,var(--red),var(--acc2));display:grid;place-items:center;font-size:18px;box-shadow:0 6px 16px var(--red-glow)}
 .coach-box p{font-size:14px;line-height:1.45}
-.coach-box .who{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--red);font-weight:800;margin-bottom:2px}
+.coach-box .who{font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--acc-txt);font-weight:800;margin-bottom:2px}
 .modal{position:fixed;inset:0;z-index:500;background:rgba(0,0,0,.7);backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;padding:22px}
 .modal.on{display:flex;animation:fadeUp .3s both}
-.modal-card{width:100%;max-width:420px;background:linear-gradient(180deg,var(--card),#0d0d0f);border:1px solid var(--line);border-radius:22px;padding:24px;max-height:88vh;overflow-y:auto}
+.modal-card{width:100%;max-width:420px;background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:22px;padding:24px;max-height:88vh;overflow-y:auto}
 .field{margin-bottom:15px}
 .field label{display:block;font-size:12px;letter-spacing:1px;text-transform:uppercase;color:var(--muted);font-weight:800;margin-bottom:7px}
-.input{width:100%;padding:15px;border-radius:13px;background:#000;border:1px solid var(--line);color:#fff;font-size:17px;font-weight:700;text-align:center}
+.input{width:100%;padding:15px;border-radius:13px;background:var(--deep);border:1px solid var(--line);color:var(--hi);font-size:17px;font-weight:700;text-align:center}
 .input.txt{text-align:left;font-weight:600;font-size:16px}
-.input:focus{outline:none;border-color:var(--red)}
+.input:focus{outline:none;border-color:var(--acc-txt)}
 textarea.input{text-align:left;font-weight:500;font-size:13px;font-family:monospace;min-height:130px;resize:vertical}
-.max-in{display:flex;align-items:center;gap:12px;background:#000;border:1px solid var(--line);border-radius:13px;padding:12px 14px;margin-bottom:12px}
+.max-in{display:flex;align-items:center;gap:12px;background:var(--deep);border:1px solid var(--line);border-radius:13px;padding:12px 14px;margin-bottom:12px}
 .max-in .mi-ico{width:40px;height:40px;border-radius:11px;background:var(--card2);display:grid;place-items:center;font-size:19px}
 .max-in .mi-t{flex:1}.max-in .mi-t b{font-size:15px}.max-in .mi-t small{color:var(--muted);font-size:11px;display:block}
-.max-in input{width:96px;background:transparent;border:none;color:var(--red);font-size:26px;font-weight:900;text-align:right}
+.max-in input{width:96px;background:transparent;border:none;color:var(--acc-txt);font-size:26px;font-weight:900;text-align:right}
 .max-in input:focus{outline:none}
 .max-in .unit{color:var(--muted);font-weight:800}
 .chart-card svg{width:100%;height:auto;display:block;overflow:hidden}
@@ -474,12 +519,12 @@ textarea.input{text-align:left;font-weight:500;font-size:13px;font-family:monosp
 .lang-b{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;padding:12px 6px;border-radius:14px;background:var(--card2);border:1px solid var(--line);transition:.18s}
 .lang-b .fl{font-size:24px}
 .lang-b b{font-size:12px}
-.lang-b.on{border-color:var(--red);background:rgba(225,6,0,.12);box-shadow:0 6px 16px var(--red-glow)}
+.lang-b.on{border-color:var(--acc-txt);background:rgba(var(--acc-rgb),.12);box-shadow:0 6px 16px var(--red-glow)}
 
 /* ============ REGISTRO DE PESO EN ACCESORIOS (punto 7) ============ */
 .set.log .set-info{display:flex;align-items:center;justify-content:space-between;gap:10px}
-.wlog{display:flex;align-items:center;gap:6px;background:#000;border:1px solid var(--line);border-radius:11px;padding:6px 10px}
-.wlog input{width:60px;background:transparent;border:none;color:var(--red);font-size:20px;font-weight:900;text-align:right}
+.wlog{display:flex;align-items:center;gap:6px;background:var(--deep);border:1px solid var(--line);border-radius:11px;padding:6px 10px}
+.wlog input{width:60px;background:transparent;border:none;color:var(--acc-txt);font-size:20px;font-weight:900;text-align:right}
 .wlog input:focus{outline:none}
 .wlog .u{color:var(--muted);font-weight:800;font-size:13px}
 .set-hint{font-size:11px;color:var(--muted);margin-top:3px}
@@ -488,11 +533,11 @@ textarea.input{text-align:left;font-weight:500;font-size:13px;font-family:monosp
 /* ============ SIGUIENTES EJERCICIOS (punto 8) ============ */
 .up-next{background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);border-radius:14px;padding:12px 14px;margin-bottom:16px}
 .up-next .un-h{display:flex;align-items:center;justify-content:space-between;cursor:pointer}
-.up-next .un-t{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--red);font-weight:800}
+.up-next .un-t{font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--acc-txt);font-weight:800}
 .up-next .un-list{margin-top:10px;display:flex;flex-direction:column;gap:7px}
 .up-next .un-i{display:flex;align-items:center;gap:10px;font-size:13.5px}
 .up-next .un-n{width:22px;height:22px;border-radius:7px;background:var(--card2);display:grid;place-items:center;font-size:11px;font-weight:800;color:var(--muted);flex:0 0 auto}
-.up-next .un-i.first .un-n{background:var(--red);color:#fff}
+.up-next .un-i.first .un-n{background:var(--red);color:var(--on-acc)}
 .up-next .un-x{color:var(--muted);font-size:12px;margin-left:auto}
 .up-next .un-caret{color:var(--muted);transition:transform .3s;font-size:18px}
 .up-next.closed .un-list{display:none}
@@ -500,7 +545,7 @@ textarea.input{text-align:left;font-weight:500;font-size:13px;font-family:monosp
 .up-done{color:var(--muted);font-size:12.5px;text-align:center;padding:6px}
 
 /* ============ PROGRESO PRO (punto 9) ============ */
-.pg-hero{background:linear-gradient(135deg,rgba(225,6,0,.16),rgba(225,6,0,.02));border:1px solid rgba(225,6,0,.3);border-radius:18px;padding:18px;margin-bottom:14px}
+.pg-hero{background:linear-gradient(135deg,rgba(var(--acc-rgb),.16),rgba(var(--acc-rgb),.02));border:1px solid rgba(var(--acc-rgb),.3);border-radius:18px;padding:18px;margin-bottom:14px}
 .pg-metric{display:flex;align-items:flex-end;gap:8px}
 .pg-metric b{font-size:40px;font-weight:900;line-height:1}
 .pg-metric .u{color:var(--muted);font-weight:800;font-size:15px;margin-bottom:5px}
@@ -515,16 +560,16 @@ textarea.input{text-align:left;font-weight:500;font-size:13px;font-family:monosp
 .daily-c .dc-lbl{font-size:11px;letter-spacing:.5px;text-transform:uppercase;color:var(--muted);font-weight:800}
 .daily-c .dc-val{font-size:22px;font-weight:900}
 .daily-c .dc-val small{font-size:12px;color:var(--muted);font-weight:700}
-.daily-c .dc-bar{height:7px;background:#000;border-radius:7px;overflow:hidden;margin-top:9px}
+.daily-c .dc-bar{height:7px;background:var(--deep);border-radius:7px;overflow:hidden;margin-top:9px}
 .daily-c .dc-bar i{display:block;height:100%;border-radius:7px;transition:width .5s}
 .daily-c .dc-btns{display:flex;gap:6px;margin-top:10px}
-.mini-b{flex:1;padding:8px;border-radius:10px;background:#000;border:1px solid var(--line);font-weight:800;font-size:14px;transition:.15s}
-.mini-b:active{transform:scale(.94);border-color:var(--red)}
+.mini-b{flex:1;padding:8px;border-radius:10px;background:var(--deep);border:1px solid var(--line);font-weight:800;font-size:14px;transition:.15s}
+.mini-b:active{transform:scale(.94);border-color:var(--acc-txt)}
 .goal-pill{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:999px;background:var(--card2);border:1px solid var(--line);font-weight:700;font-size:13px}
-.goal-pill.on{background:var(--red);border-color:var(--red);color:#fff}
-.ai-tip{background:linear-gradient(135deg,rgba(225,6,0,.12),rgba(225,6,0,.02));border:1px solid rgba(225,6,0,.3);border-radius:15px;padding:15px;display:flex;gap:12px;margin-bottom:14px}
-.ai-tip .ai-ava{width:40px;height:40px;border-radius:12px;flex:0 0 auto;background:linear-gradient(135deg,var(--red),#ff4d38);display:grid;place-items:center;font-size:20px;box-shadow:0 6px 16px var(--red-glow)}
-.ai-tip .who{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--red);font-weight:800;margin-bottom:3px}
+.goal-pill.on{background:var(--red);border-color:var(--acc-txt);color:var(--on-acc)}
+.ai-tip{background:linear-gradient(135deg,rgba(var(--acc-rgb),.12),rgba(var(--acc-rgb),.02));border:1px solid rgba(var(--acc-rgb),.3);border-radius:15px;padding:15px;display:flex;gap:12px;margin-bottom:14px}
+.ai-tip .ai-ava{width:40px;height:40px;border-radius:12px;flex:0 0 auto;background:linear-gradient(135deg,var(--red),var(--acc2));display:grid;place-items:center;font-size:20px;box-shadow:0 6px 16px var(--red-glow)}
+.ai-tip .who{font-size:10px;letter-spacing:1px;text-transform:uppercase;color:var(--acc-txt);font-weight:800;margin-bottom:3px}
 .ai-tip p{font-size:13.5px;line-height:1.5}
 .seg{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
 
@@ -534,12 +579,12 @@ textarea.input{text-align:left;font-weight:500;font-size:13px;font-family:monosp
 .ex-carousel .pad{flex:0 0 14px}
 .ex-chip{flex:0 0 auto;scroll-snap-align:center;width:150px;min-height:80px;background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:11px 13px;display:flex;flex-direction:column;gap:6px;transition:border-color .18s,background .18s;cursor:pointer}
 .ex-chip .ec-top{display:flex;align-items:center;gap:6px}
-.ex-chip .ec-n{width:22px;height:22px;border-radius:7px;background:#000;display:grid;place-items:center;font-size:12px;font-weight:900;color:var(--muted);flex:0 0 auto}
+.ex-chip .ec-n{width:22px;height:22px;border-radius:7px;background:var(--deep);display:grid;place-items:center;font-size:12px;font-weight:900;color:var(--muted);flex:0 0 auto}
 .ex-chip .ec-name{font-size:12.5px;font-weight:700;line-height:1.3;max-height:2.7em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:break-word}
 .ex-chip .ec-meta{font-size:11px;color:var(--muted);font-weight:700}
-.ex-chip.active{border-color:var(--red);background:rgba(225,6,0,.16)}
-.ex-chip.active .ec-n{background:var(--red);color:#fff}
-.ex-chip.viewing{border-color:#fff}
+.ex-chip.active{border-color:var(--acc-txt);background:rgba(var(--acc-rgb),.16)}
+.ex-chip.active .ec-n{background:var(--red);color:var(--on-acc)}
+.ex-chip.viewing{border-color:var(--hi)}
 .ex-chip.done{background:#0c0c0e;border-color:#1c1c20;opacity:.7}
 .ex-chip.done .ec-name{text-decoration:line-through;text-decoration-color:var(--muted);color:var(--muted)}
 .ex-chip.done .ec-meta{opacity:.5}
@@ -552,7 +597,7 @@ textarea.input{text-align:left;font-weight:500;font-size:13px;font-family:monosp
 .per-side{font-size:11px;color:#ffb03a;font-weight:700;margin-top:2px}
 .wk-actions{display:flex;flex-direction:column;gap:10px;margin-top:14px}
 .ex-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-.info-btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:12px;background:var(--card2);border:1px solid var(--red);color:var(--red);font-weight:800;font-size:12px;transition:.15s;box-shadow:0 4px 14px var(--red-glow)}
+.info-btn{flex:0 0 auto;display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:12px;background:var(--card2);border:1px solid var(--red);color:var(--acc-txt);font-weight:800;font-size:12px;transition:.15s;box-shadow:0 4px 14px var(--red-glow)}
 .info-btn:active{transform:scale(.94)}
 .info-btn svg{width:15px;height:15px}
 
@@ -561,18 +606,18 @@ textarea.input{text-align:left;font-weight:500;font-size:13px;font-family:monosp
 .flip{perspective:1100px;cursor:pointer}
 .flip-in{position:relative;transition:transform .55s cubic-bezier(.2,.8,.2,1);transform-style:preserve-3d;min-height:104px}
 .flip.flipped .flip-in{transform:rotateY(180deg)}
-.flip-face{border:1px solid var(--line);border-radius:15px;padding:14px;background:linear-gradient(180deg,var(--card2),#141416);backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.flip-face{border:1px solid var(--line);border-radius:15px;padding:14px;background:linear-gradient(180deg,var(--card2),var(--bg2));backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
 .flip-front{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between}
-.flip-back{position:relative;transform:rotateY(180deg);min-height:104px;display:flex;flex-direction:column;justify-content:space-between;border-color:rgba(225,6,0,.3);background:linear-gradient(135deg,rgba(225,6,0,.1),#141416)}
+.flip-back{position:relative;transform:rotateY(180deg);min-height:104px;display:flex;flex-direction:column;justify-content:space-between;border-color:rgba(var(--acc-rgb),.3);background:linear-gradient(135deg,rgba(var(--acc-rgb),.1),var(--bg2))}
 .flip-front .ff-top{display:flex;gap:11px;align-items:flex-start}
-.flip-front .ff-n{width:26px;height:26px;border-radius:8px;background:#000;display:grid;place-items:center;font-size:13px;font-weight:900;color:var(--muted);flex:0 0 auto}
+.flip-front .ff-n{width:26px;height:26px;border-radius:8px;background:var(--deep);display:grid;place-items:center;font-size:13px;font-weight:900;color:var(--muted);flex:0 0 auto}
 .flip-front b{font-size:15px;line-height:1.15;display:block}
 .flip-hint{font-size:11px;color:var(--muted);margin-top:8px}
 .flip-back p{font-size:13px;line-height:1.45;color:var(--txt)}
 .flip-back .btn{margin-top:10px}
 /* ---- pantalla de acceso / bloqueo ---- */
 #accessGate{position:fixed;inset:0;z-index:60;display:none;align-items:center;justify-content:center;padding:26px;
-  background:radial-gradient(700px 420px at 50% 0%,rgba(225,6,0,.16),transparent 70%),var(--bg)}
+  background:radial-gradient(700px 420px at 50% 0%,rgba(var(--acc-rgb),.16),transparent 70%),var(--bg)}
 .ag-box{max-width:420px;width:100%;text-align:center;animation:fadeUp .5s both}
 .ag-ico{font-size:54px;margin-bottom:10px;animation:pop .5s both}
 .ag-t{font-size:23px;font-weight:900;margin:6px 0 8px}
@@ -583,12 +628,12 @@ textarea.input{text-align:left;font-weight:500;font-size:13px;font-family:monosp
 .adm-tabs{display:flex;gap:8px;margin-bottom:12px}
 .adm-tab{flex:1;padding:10px 6px;border-radius:12px;background:var(--card2);border:1px solid var(--line);
   color:var(--muted);font-weight:800;font-size:12.5px;transition:.15s;position:relative}
-.adm-tab.on{color:#fff;border-color:var(--red);background:linear-gradient(180deg,rgba(225,6,0,.22),rgba(225,6,0,.06))}
+.adm-tab.on{color:var(--hi);border-color:var(--acc-txt);background:linear-gradient(180deg,rgba(var(--acc-rgb),.22),rgba(var(--acc-rgb),.06))}
 .adm-badge{display:inline-block;margin-left:5px;min-width:17px;padding:1px 5px;border-radius:999px;
-  background:var(--red);color:#fff;font-size:10.5px;font-weight:900}
+  background:var(--red);color:var(--on-acc);font-size:10.5px;font-weight:900}
 .adm-fils{display:flex;gap:7px;overflow-x:auto;padding-bottom:10px;margin-bottom:4px}
 .adm-fils .chip{flex:0 0 auto;cursor:pointer}
-.adm-fils .chip.on{color:#fff;border-color:var(--red);background:rgba(225,6,0,.16)}
+.adm-fils .chip.on{color:var(--hi);border-color:var(--acc-txt);background:rgba(var(--acc-rgb),.16)}
 .adm-row{display:flex;align-items:center;gap:12px;width:100%;text-align:left;padding:12px 13px;margin-bottom:8px;
   border-radius:14px;background:linear-gradient(180deg,var(--card),var(--bg2));border:1px solid var(--line);color:var(--txt)}
 .adm-row:active{transform:scale(.99)}
@@ -600,21 +645,21 @@ textarea.input{text-align:left;font-weight:500;font-size:13px;font-family:monosp
 .adm-info .sub{font-size:11.5px}
 .adm-st{flex:0 0 auto;font-size:10.5px;font-weight:900;text-transform:uppercase;letter-spacing:.5px;
   border:1px solid;border-radius:999px;padding:4px 9px}
-.adm-crown{font-size:9.5px;background:var(--red);color:#fff;border-radius:4px;padding:1px 5px;vertical-align:middle}
+.adm-crown{font-size:9.5px;background:var(--red);color:var(--on-acc);border-radius:4px;padding:1px 5px;vertical-align:middle}
 .dot-on{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-right:6px;
   box-shadow:0 0 8px var(--ok);animation:glowdot 1.8s infinite}
 @keyframes glowdot{0%,100%{opacity:1}50%{opacity:.45}}
 .adm-av .dot-on{position:absolute;top:-1px;right:-1px;margin:0;border:2px solid var(--bg2)}
 .adm-empty{text-align:center;padding:38px 10px;color:var(--muted)}
 .adm-empty p{margin-top:10px;font-size:14px}
-.spin{width:30px;height:30px;border:3px solid var(--line);border-top-color:var(--red);border-radius:50%;
+.spin{width:30px;height:30px;border:3px solid var(--line);border-top-color:var(--acc-txt);border-radius:50%;
   margin:0 auto;animation:spin .8s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
 .adm-dates{display:flex;gap:10px}
 .adm-lab{flex:1;display:flex;flex-direction:column;gap:5px;font-size:12px;color:var(--muted);font-weight:700}
 .adm-lab .input{width:100%}
 .adm-check{display:flex;align-items:center;gap:9px;padding:9px 2px;font-size:13.5px;font-weight:600;cursor:pointer}
-.adm-check input{width:18px;height:18px;accent-color:var(--red);flex:0 0 auto}
+.adm-check input{width:18px;height:18px;accent-color:var(--acc-txt);flex:0 0 auto}
 .adm-plans{background:var(--card2);border:1px solid var(--line);border-radius:14px;padding:6px 12px}
 input[type=date].input{color-scheme:dark;font-family:inherit}
 /* ---- marca de agua ---- */
@@ -628,6 +673,44 @@ body.protected input,body.protected textarea{-webkit-user-select:text;user-selec
 body.veiled #app,body.veiled #workout,body.veiled #modal{filter:blur(22px);transition:filter .12s}
 @media print{html,body{display:none!important}}
 
+
+/* ===== FM Athletes: títulos en sans geométrica extra negrita y cursiva ===== */
+.splash-title,.gate-title,.brand .bn,.title-xl,.ex-name,.set-w,.stat b,.ring .pct,.timer-ring .t,.week-num,.max-in input,.ex-count{
+  font-family:var(--f-head);font-style:var(--head-style);font-weight:var(--head-w)}
+.splash-title,.gate-title,.brand .bn{letter-spacing:.5px}
+/* cifra principal (peso de la serie / récords) en dorado cursiva con líneas de velocidad sutiles */
+.set-w{position:relative}
+:root:not([data-theme="classic"]) .set-w{color:var(--acc-txt)}
+:root:not([data-theme="classic"]) .set-w small{color:var(--muted)}
+:root:not([data-theme="classic"]) .stat b{color:var(--acc-txt)}
+:root:not([data-theme="classic"]) .set-w::before{content:'';position:absolute;left:-14px;top:50%;width:10px;height:9px;transform:translateY(-50%);
+  background:linear-gradient(var(--acc-txt),var(--acc-txt)) 0 0/100% 2px no-repeat,linear-gradient(var(--acc-txt),var(--acc-txt)) 3px 50%/70% 2px no-repeat,linear-gradient(var(--acc-txt),var(--acc-txt)) 5px 100%/50% 2px no-repeat;opacity:.55}
+.speedlines{display:inline-block;width:26px;height:12px;margin-right:6px;vertical-align:middle;
+  background:linear-gradient(90deg,transparent,var(--red)) 0 0/100% 2px no-repeat,linear-gradient(90deg,transparent,var(--red)) 6px 50%/78% 3px no-repeat,linear-gradient(90deg,transparent,var(--red)) 12px 100%/55% 2px no-repeat}
+@keyframes speedIn{from{transform:translateX(-30px);opacity:0}to{transform:none;opacity:1}}
+.splash-speed{display:block;margin:0 auto 6px;width:120px;height:18px;animation:speedIn .9s cubic-bezier(.2,.7,.2,1) .3s both;
+  background:linear-gradient(90deg,transparent,var(--red)) 0 0/100% 2px no-repeat,linear-gradient(90deg,transparent,var(--red)) 24px 50%/80% 3px no-repeat,linear-gradient(90deg,transparent,var(--red)) 48px 100%/60% 2px no-repeat}
+:root[data-theme="classic"] .splash-speed,:root[data-theme="classic"] .speedlines{display:none}
+/* "by FM Athletes" */
+.brand{gap:10px}
+.brand .bt{display:flex;flex-direction:column;line-height:1.05}
+.brand .by{display:flex;align-items:center;gap:5px;font-size:9.5px;font-weight:700;letter-spacing:.8px;color:var(--muted);text-transform:uppercase;font-style:normal;margin-top:3px}
+.brand .by img{width:14px;height:14px;border-radius:50%}
+.byfm{display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase}
+.byfm img{width:22px;height:22px;border-radius:50%}
+.theme-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.theme-b{display:flex;flex-direction:column;align-items:center;gap:8px;padding:12px 8px;border-radius:14px;background:var(--card2);border:1px solid var(--line);font-size:12px;font-weight:800;color:var(--txt)}
+.theme-b.on{border-color:var(--red);box-shadow:0 0 0 1px var(--red) inset}
+.theme-b .sw{width:44px;height:30px;border-radius:9px;display:block;border:1px solid rgba(127,127,127,.35)}
+/* tema claro: ajustes puntuales */
+:root[data-theme="fm-light"] body::after{opacity:.035}
+:root[data-theme="fm-light"] .modal{background:rgba(6,20,33,.45)}
+:root[data-theme="fm-light"] .sheet,:root[data-theme="fm-light"] .modal-card{box-shadow:0 -10px 40px rgba(6,20,33,.18)}
+:root[data-theme="fm-light"] .card,:root[data-theme="fm-light"] .cat-card,:root[data-theme="fm-light"] .ex-lib-card{box-shadow:0 2px 10px rgba(6,20,33,.05)}
+
+:root[data-theme="fm-light"] .per-side,:root[data-theme="fm-light"] [style*="color:#ffb03a"]{color:#8A5A00!important}
+:root[data-theme="fm-light"] .pb-t,:root[data-theme="fm-light"] .down,:root[data-theme="fm-light"] [style*="color:#3aa0ff"]{color:#1F6FB8!important}
+:root[data-theme="fm-light"] [style*="color:#ff7a00"]{color:#A04A00!important}
 </style>
 </head>
 <body>
@@ -638,17 +721,18 @@ body.veiled #app,body.veiled #workout,body.veiled #modal{filter:blur(22px);trans
   <div class="splash-lines"></div>
   <div class="splash-content">
     <div class="logo-splash">
-      <img src="logo.png" alt="RODOVELOCITY">
+      <img src="fm-velocity-icon.svg" alt="FM Velocity">
     </div>
-    <h1 class="splash-title">RODO<span>VELOCITY</span></h1>
+    <h1 class="splash-title"><i class="splash-speed"></i>FM<span>VELOCITY</span></h1>
     <div class="splash-subtitle">Baseball Training System</div>
+    <div class="byfm" style="animation:subtitleFade 1.2s ease-out 2s both"><img src="fm-athletes.png" alt="FM Athletes">by FM Athletes</div>
   </div>
 </div>
 
 <!-- ============ AUTH (solo si Firebase está configurado) ============ -->
 <div id="auth">
   <div class="gate-logo" id="authLogo"></div>
-  <div class="gate-title">RODO<span>VELOCITY</span></div>
+  <div class="gate-title">FM <span>VELOCITY</span></div>
   <div class="gate-sub" id="authSub">Entra en tu cuenta</div>
   <div class="auth-box">
     <input class="input txt" id="auEmail" type="email" placeholder="Email" autocomplete="email">
@@ -664,7 +748,7 @@ body.veiled #app,body.veiled #workout,body.veiled #modal{filter:blur(22px);trans
 <!-- ============ PROFILE GATE ============ -->
 <div id="gate">
   <div class="gate-logo" id="gateLogo"></div>
-  <div class="gate-title">RODO<span>VELOCITY</span></div>
+  <div class="gate-title">FM <span>VELOCITY</span></div>
   <div class="gate-sub" id="gateSubL">Elige tu perfil</div>
   <div class="profile-grid" id="profileGrid"></div>
   <div class="auth-alt" id="gateAccount"></div>
@@ -675,7 +759,7 @@ body.veiled #app,body.veiled #workout,body.veiled #modal{filter:blur(22px);trans
   <div class="topbar">
     <div class="brand">
       <div class="lg" id="brandLogo"></div>
-      <div>RODO<span>VELOCITY</span></div>
+      <div class="bt"><div class="bn">FM <span>VELOCITY</span></div><div class="by"><img src="fm-athletes.png" alt="">by FM Athletes</div></div>
     </div>
     <img class="avatar-mini" id="topAva" onclick="go('profile')" alt="">
   </div>
@@ -717,8 +801,8 @@ body.veiled #app,body.veiled #workout,body.veiled #modal{filter:blur(22px);trans
   <div class="rest" id="rest">
     <h3 id="restTitle">Descanso</h3>
     <div class="timer-ring">
-      <svg viewBox="0 0 220 220"><circle cx="110" cy="110" r="100" stroke="#222" stroke-width="12" fill="none"/>
-      <circle id="restRing" cx="110" cy="110" r="100" stroke="var(--red)" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="628" stroke-dashoffset="0" transform="rotate(-90 110 110)"/></svg>
+      <svg viewBox="0 0 220 220"><circle cx="110" cy="110" r="100" style="stroke:var(--line)" stroke-width="12" fill="none"/>
+      <circle id="restRing" cx="110" cy="110" r="100" style="stroke:var(--red)" stroke-width="12" fill="none" stroke-linecap="round" stroke-dasharray="628" stroke-dashoffset="0" transform="rotate(-90 110 110)"/></svg>
       <div class="t" id="restT">60</div>
     </div>
     <div class="rest-actions">
@@ -751,12 +835,12 @@ body.veiled #app,body.veiled #workout,body.veiled #modal{filter:blur(22px);trans
 
 <script>
 /* =====================================================================
-   RODOVELOCITY
+   FM VELOCITY (antes RODOVELOCITY) · by FM Athletes
    ===================================================================== */
 
 /* ✅ Datos guardados en localStorage (cada dispositivo guarda los suyos) */
 
-const LOGO=`<img src="logo.png" alt="RODOVELOCITY" style="width:100%;height:100%;object-fit:cover">`;
+const LOGO=`<img src="fm-velocity-icon.svg" alt="FM Velocity" style="width:100%;height:100%;object-fit:cover">`;
 
 /* =====================================================================
    FIREBASE — login por correo/contraseña + sincronización
@@ -812,7 +896,7 @@ const I18N={
   quitTitle:'¿Seguro que quieres salir?',loseProgress:'Perderás el progreso de este día.',keepTraining:'Seguir entrenando 🔥',yesQuit:'Sí, salir',yourCoach:'Tu coach',
   feelQ:'¿Cómo te sentiste físicamente?',f1:'Muy fácil',f1d:'Podía con bastante más',f2:'Bien / sólido',f2d:'Exigente pero controlado',f3:'Duro',f3d:'Me costó terminar',f4:'Al fallo',f4d:'No me quedaban reps',f5:'Molestia / dolor',f5d:'Noté el hombro o una articulación',
   progressSub:'Tu asistente diario de rendimiento',bodyWeight:'Peso corporal',logWeight:'Registrar peso',noWeight:'Registra tu peso para empezar',height:'Altura',age:'Edad',goal:'Objetivo',goalCut:'Definir',goalGain:'Ganar músculo',goalMaintain:'Mantener',myData:'Mis datos',setData:'Configurar mis datos',
-  kcalToday:'Calorías hoy',waterToday:'Agua hoy',target:'objetivo',assistant:'Asistente RODO',evolutionMaxes:'Evolución de máximos',volPerSession:'Volumen por sesión (t)',feelEffort:'Sensación / esfuerzo',easyToPain:'1 fácil · 5 molestia',
+  kcalToday:'Calorías hoy',waterToday:'Agua hoy',target:'objetivo',assistant:'Asistente FM',evolutionMaxes:'Evolución de máximos',volPerSession:'Volumen por sesión (t)',feelEffort:'Sensación / esfuerzo',easyToPain:'1 fácil · 5 molestia',
   save:'Guardar',cancel:'Cancelar',close:'Cerrar',understood:'Entendido',reset:'Reiniciar',
   language:'Idioma',coachIA:'Coach IA',smartCoach:'Coach inteligente',coachDesc:'Ajusta tus pesos según cómo te sientes. Siempre activo, sin internet.',coachAdjustTitle:'Ajustes del coach por ejercicio',noAdjust:'Aún no hay ajustes. El coach los creará según tus sensaciones al entrenar.',resetAdjust:'Reiniciar ajustes',dataSec:'Datos',savedLocalT:'Guardados localmente',savedLocalD:'Tus datos se guardan en este dispositivo. Cada teléfono/PC guarda los suyos.',shareApp:'📲 Compartir la app',switchProfile:'Cambiar de perfil',howCoach:'🧠 ¿Cómo funciona el coach?',deleteProfile:'Eliminar este perfil',
   logLast:'última vez',logWeightUsed:'Peso que usaste',tapToLog:'Toca para anotar el peso',
@@ -860,7 +944,7 @@ const I18N={
   quitTitle:'Sure you want to quit?',loseProgress:"You'll lose this day's progress.",keepTraining:'Keep training 🔥',yesQuit:'Yes, quit',yourCoach:'Your coach',
   feelQ:'How did it feel physically?',f1:'Very easy',f1d:'Could do a lot more',f2:'Good / solid',f2d:'Hard but controlled',f3:'Tough',f3d:'Struggled to finish',f4:'To failure',f4d:'No reps left',f5:'Discomfort / pain',f5d:'Felt shoulder or a joint',
   progressSub:'Your daily performance assistant',bodyWeight:'Body weight',logWeight:'Log weight',noWeight:'Log your weight to start',height:'Height',age:'Age',goal:'Goal',goalCut:'Cut',goalGain:'Build muscle',goalMaintain:'Maintain',myData:'My data',setData:'Set up my data',
-  kcalToday:'Calories today',waterToday:'Water today',target:'target',assistant:'RODO Assistant',evolutionMaxes:'Maxes evolution',volPerSession:'Volume per session (t)',feelEffort:'Feeling / effort',easyToPain:'1 easy · 5 pain',
+  kcalToday:'Calories today',waterToday:'Water today',target:'target',assistant:'FM Assistant',evolutionMaxes:'Maxes evolution',volPerSession:'Volume per session (t)',feelEffort:'Feeling / effort',easyToPain:'1 easy · 5 pain',
   save:'Save',cancel:'Cancel',close:'Close',understood:'Got it',reset:'Reset',
   language:'Language',coachIA:'AI Coach',smartCoach:'Smart coach',coachDesc:'Adjusts your weights based on how you feel. Always on, offline.',coachAdjustTitle:'Coach adjustments per exercise',noAdjust:'No adjustments yet. The coach creates them from how you feel while training.',resetAdjust:'Reset adjustments',dataSec:'Data',savedLocalT:'Saved locally',savedLocalD:'Your data is stored on this device. Each phone/PC keeps its own.',shareApp:'📲 Share the app',switchProfile:'Switch profile',howCoach:'🧠 How does the coach work?',deleteProfile:'Delete this profile',
   logLast:'last time',logWeightUsed:'Weight you used',tapToLog:'Tap to log the weight',
@@ -908,7 +992,7 @@ const I18N={
   quitTitle:'Sûr de vouloir quitter ?',loseProgress:'Tu perdras la progression de ce jour.',keepTraining:'Continuer 🔥',yesQuit:'Oui, quitter',yourCoach:'Ton coach',
   feelQ:'Comment tu t\'es senti physiquement ?',f1:'Très facile',f1d:'Je pouvais bien plus',f2:'Bien / solide',f2d:'Exigeant mais maîtrisé',f3:'Dur',f3d:'Difficile à finir',f4:"À l'échec",f4d:'Plus de reps',f5:'Gêne / douleur',f5d:"J'ai senti l'épaule ou une articulation",
   progressSub:'Ton assistant de performance quotidien',bodyWeight:'Poids du corps',logWeight:'Enregistrer le poids',noWeight:'Enregistre ton poids pour commencer',height:'Taille',age:'Âge',goal:'Objectif',goalCut:'Sécher',goalGain:'Prendre du muscle',goalMaintain:'Maintenir',myData:'Mes données',setData:'Configurer mes données',
-  kcalToday:"Calories aujourd'hui",waterToday:"Eau aujourd'hui",target:'objectif',assistant:'Assistant RODO',evolutionMaxes:'Évolution des maxes',volPerSession:'Volume par séance (t)',feelEffort:'Ressenti / effort',easyToPain:'1 facile · 5 douleur',
+  kcalToday:"Calories aujourd'hui",waterToday:"Eau aujourd'hui",target:'objectif',assistant:'Assistant FM',evolutionMaxes:'Évolution des maxes',volPerSession:'Volume par séance (t)',feelEffort:'Ressenti / effort',easyToPain:'1 facile · 5 douleur',
   save:'Enregistrer',cancel:'Annuler',close:'Fermer',understood:'Compris',reset:'Réinitialiser',
   language:'Langue',coachIA:'Coach IA',smartCoach:'Coach intelligent',coachDesc:'Ajuste tes poids selon ton ressenti. Toujours actif, hors ligne.',coachAdjustTitle:'Ajustements du coach par exercice',noAdjust:'Aucun ajustement pour le moment. Le coach les crée selon ton ressenti.',resetAdjust:'Réinitialiser les ajustements',dataSec:'Données',savedLocalT:'Enregistré localement',savedLocalD:'Tes données sont sur cet appareil. Chaque téléphone/PC garde les siennes.',shareApp:"📲 Partager l'app",switchProfile:'Changer de profil',howCoach:'🧠 Comment marche le coach ?',deleteProfile:'Supprimer ce profil',
   logLast:'dernière fois',logWeightUsed:'Poids utilisé',tapToLog:'Touche pour noter le poids',
@@ -921,6 +1005,20 @@ const I18N={
  }
 };
 function t(k){const d=I18N[LANG]||I18N.es;return d[k]!==undefined?d[k]:(I18N.es[k]!==undefined?I18N.es[k]:k)}
+/* ---- tema visual (sólo aspecto; se guarda en este dispositivo) ---- */
+const THEMES=[{id:'fm',sw:'linear-gradient(135deg,#061421 55%,#BB9740 55%)',meta:'#061421'},
+  {id:'fm-light',sw:'linear-gradient(135deg,#FFFFFF 55%,#BB9740 55%)',meta:'#F4F6F9'},
+  {id:'classic',sw:'linear-gradient(135deg,#0a0a0a 55%,#E10600 55%)',meta:'#0a0a0a'}];
+const THEME_TXT={es:{title:'Diseño','fm':'FM Athletes','fm-light':'FM Athletes claro','classic':'Clásico'},
+  en:{title:'Design','fm':'FM Athletes','fm-light':'FM Athletes light','classic':'Classic'},
+  fr:{title:'Design','fm':'FM Athletes','fm-light':'FM Athletes clair','classic':'Classique'}};
+function themeTxt(k){return (THEME_TXT[LANG]||THEME_TXT.es)[k]||k}
+function curTheme(){return document.documentElement.getAttribute('data-theme')||'fm'}
+function cssv(n){return getComputedStyle(document.documentElement).getPropertyValue(n).trim()}
+function setTheme(id){if(!THEMES.some(x=>x.id===id))return;document.documentElement.setAttribute('data-theme',id);
+  try{localStorage.setItem('fmv_theme',id)}catch(e){}
+  const m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content',THEMES.find(x=>x.id===id).meta);
+  rerender()}
 function setLang(l){LANG=l;try{localStorage.setItem('rodo_lang',l)}catch(e){}document.documentElement.lang=l;applyStaticI18n();rerender();
   if(document.getElementById('profile').classList.contains('active'))renderProfile()}
 function applyStaticI18n(){
@@ -993,7 +1091,7 @@ async function loadProtectedContent(){
     const common=await unseal(ENC.common,ck.data().k);
     ROUTINES=common.routines||{};CATALOG=common.catalog||[];VIDEOS=common.videos||{};
     Object.keys(ROUTINES).forEach(k=>{ROUTINE_BY_TITLE[ROUTINES[k].t]=ROUTINES[k]});
-  }catch(e){console.warn('[RODO] contenido común:',e.message);return false}
+  }catch(e){console.warn('[FMV] contenido común:',e.message);return false}
   const ids=IS_ADMIN?ALL_PLAN_IDS:((ENT&&ENT.plans)||[]);
   for(const id of ALL_PLAN_IDS){
     if(!ids.includes(id))continue;
@@ -1033,7 +1131,7 @@ function pushCloud(){if(!(CLOUD&&AUTH))return;
 function initFirebase(){
   if(typeof firebase==='undefined'||!FIREBASE_CONFIG||!FIREBASE_CONFIG.apiKey)return false;
   try{if(!firebase.apps.length)firebase.initializeApp(FIREBASE_CONFIG);CLOUD=true;return true}
-  catch(e){console.warn('[RODO] Firebase init falló:',e.message);CLOUD=false;return false}}
+  catch(e){console.warn('[FMV] Firebase init falló:',e.message);CLOUD=false;return false}}
 async function loadCloud(){
   if(!(CLOUD&&AUTH))return;
   try{
@@ -1048,7 +1146,7 @@ async function loadCloud(){
       // primera vez: sube lo que haya local a la nube
       pushCloud();
     }
-  }catch(e){console.warn('[RODO] loadCloud:',e.message)}
+  }catch(e){console.warn('[FMV] loadCloud:',e.message)}
 }
 function startCloudSync(){
   if(!(CLOUD&&AUTH))return;
@@ -1064,7 +1162,7 @@ function startCloudSync(){
     try{localStorage.setItem(LS,JSON.stringify(DB))}catch(e){}applyingRemote=false;
     if(CUR){const f=DB.profiles.find(p=>p.id===CUR.id);if(f){CUR=f;rerender()}else{switchProfile()}}
     else if(document.getElementById('gate').style.display!=='none')initGate();
-  },err=>console.warn('[RODO] sync:',err.message));
+  },err=>console.warn('[FMV] sync:',err.message));
 }
 function authErrMsg(code){const m={'auth/wrong-password':'e_badpass','auth/invalid-credential':'e_badpass','auth/user-not-found':'e_nouser','auth/email-already-in-use':'e_inuse','auth/weak-password':'e_weak','auth/invalid-email':'e_email'};
   return t(m[code]||'e_generic')}
@@ -1119,7 +1217,7 @@ function showGate(){initGate();applyStaticI18n();document.getElementById('gate')
 /* =====================================================================
    GATE / PERFILES
    ===================================================================== */
-const AV_COLORS=['#E10600','#ff7a00','#8e44ff','#00b3a4','#f0a500','#2ecc71'];
+const AV_COLORS=['#BB9740','#E10600','#ff7a00','#8e44ff','#00b3a4','#f0a500','#2ecc71'];
 function initGate(){
   const g=document.getElementById('profileGrid');g.innerHTML='';
   (DB.profiles||[]).forEach((p,i)=>{
@@ -1242,8 +1340,8 @@ function recentSessions(){const s=CUR.sessions.slice(-4).reverse();
   return`<div class="card">`+s.map(x=>{const pl=PLANS.find(p=>p.id===x.plan);
     return`<div class="hist-row"><div class="hi">✓</div><div style="flex:1"><b>S${x.week+1} · ${esc(tDay(x.dayName))}</b><div class="sub">${esc(pl?tName(pl.name):'')} · ${fmtDate(x.date)}</div></div>${x.avgFeel?feelBadge(x.avgFeel):''}</div>`}).join('')+`</div>`}
 function ringSVG(pct){const r=42,c=2*Math.PI*r,off=c-(pct/100)*c;
-  return`<div class="ring"><svg width="96" height="96" viewBox="0 0 96 96"><circle cx="48" cy="48" r="${r}" stroke="#26262a" stroke-width="9" fill="none"/>
-    <circle cx="48" cy="48" r="${r}" stroke="var(--red)" stroke-width="9" fill="none" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${off}" style="filter:drop-shadow(0 0 6px var(--red-glow))"/></svg><div class="pct">${pct}%</div></div>`}
+  return`<div class="ring"><svg width="96" height="96" viewBox="0 0 96 96"><circle cx="48" cy="48" r="${r}" stroke="${cssv('--line')}" stroke-width="9" fill="none"/>
+    <circle cx="48" cy="48" r="${r}" stroke="${cssv('--red')}" stroke-width="9" fill="none" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${off}" style="filter:drop-shadow(0 0 6px var(--red-glow))"/></svg><div class="pct">${pct}%</div></div>`}
 
 /* =====================================================================
    PLANS
@@ -1254,7 +1352,7 @@ function renderPlans(){const el=document.getElementById('plans');
   ${PLANS.map(p=>{const done=CUR.sessions.filter(s=>s.plan===p.id).length;const tot=p.weeks.reduce((a,w)=>a+w.days.length,0);
     return`<div class="card plan-card tap" onclick="openPlan('${p.id}')"><div class="plan-ico">${LOGO}</div>
       <div style="flex:1"><b style="font-size:17px">${esc(tName(p.name))}</b><div class="sub">${p.weeks.length} ${t('weeks')} · ${tot} ${t('days')} · ${done} ${t('done')}</div>
-      <div class="bar-track"><i style="width:${tot?Math.round(done/tot*100):0}%;background:linear-gradient(90deg,var(--red),#ff5a45)"></i></div></div><div class="caret">›</div></div>`}).join('')}`}
+      <div class="bar-track"><i style="width:${tot?Math.round(done/tot*100):0}%;background:linear-gradient(90deg,var(--red),var(--acc2))"></i></div></div><div class="caret">›</div></div>`}).join('')}`}
 function openPlan(id){if(!PLANS.some(p=>p.id===id)){toast(t('acc_noPlan'),'warn');return}VIEW.plan=id;go('plan')}
 
 /* =====================================================================
@@ -1540,7 +1638,7 @@ function renderExercise(){const e=SESS.ex[SESS.idx];const body=document.getEleme
   document.getElementById('wkBar').style.width=Math.round(doneCount/totalEx*100)+'%';
   const RO=SESS.idx!==SESS.active;   // previsualizando otro ejercicio → solo lectura
   let html=exCarousel();
-  if(RO)html+=`<div class="preview-banner"><div class="pb-t">👁️ ${t('previewOn')}</div><p><b style="color:#fff">${esc(exName(SESS.ex[SESS.active]))}</b> — ${t('previewNote')}</p></div>`;
+  if(RO)html+=`<div class="preview-banner"><div class="pb-t">👁️ ${t('previewOn')}</div><p><b style="color:var(--hi)">${esc(exName(SESS.ex[SESS.active]))}</b> — ${t('previewNote')}</p></div>`;
   html+=`<div class="ex-count">${t('exercise')} ${SESS.idx+1} ${t('of')} ${totalEx}${SESS.done[SESS.idx]?' · '+t('doneEx'):''}</div>
     <div class="ex-head"><div class="ex-name">${esc(exName(e))}</div>
       <button class="info-btn" onclick="exInfo(${SESS.idx})"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><circle cx="12" cy="12" r="10"/><path d="M12 16v-5M12 8h.01" stroke-linecap="round"/></svg>${t('howTo')}</button></div>`;
@@ -1551,7 +1649,7 @@ function renderExercise(){const e=SESS.ex[SESS.idx];const body=document.getEleme
   }else if(e.ref==='bw'){
     const sug=accessoryWeight(e);
     html+=`<div class="ex-ref">${t('bodyweight')}</div>`;
-    if(sug)html+=`<div class="coach-box" style="margin:0 0 12px;border-color:rgba(255,176,58,.4);background:linear-gradient(135deg,rgba(255,176,58,.13),rgba(255,176,58,.02))"><div class="coach-ava" style="background:linear-gradient(135deg,#ffb03a,#E10600)">💡</div><div><div class="who" style="color:#ffb03a">${t('sugWeight')}${sug.fixed?'':' · '+phaseName()}</div><p><b style="color:#fff;font-size:17px">${sugText(sug)}</b><br><span style="font-size:12px">${sug.fixed?t('fixedLight'):t('adjustLevel')+' · '+t('adaptsPhase')}</span></p></div></div>`;
+    if(sug)html+=`<div class="coach-box" style="margin:0 0 12px;border-color:rgba(255,176,58,.4);background:linear-gradient(135deg,rgba(255,176,58,.13),rgba(255,176,58,.02))"><div class="coach-ava" style="background:linear-gradient(135deg,#ffb03a,var(--red))">💡</div><div><div class="who" style="color:#ffb03a">${t('sugWeight')}${sug.fixed?'':' · '+phaseName()}</div><p><b style="color:var(--hi);font-size:17px">${sugText(sug)}</b><br><span style="font-size:12px">${sug.fixed?t('fixedLight'):t('adjustLevel')+' · '+t('adaptsPhase')}</span></p></div></div>`;
     html+=`<div class="set-list">`;
     e.s.forEach((st,i)=>{const done=SESS.setDone[SESS.idx][i];const sw=sug?sugSetW(sug):'';
       html+=`<div class="set ${done?'done':''} ${RO?'ro':''}" ${RO?'':`onclick="toggleSet(${i})"`}><div class="set-chk">${done?'✓':i+1}</div><div class="set-info">${sw?`<div class="set-w">${sw}</div><div class="set-meta">${st.r} ${t('reps')}${st.tag?' · '+st.tag:''}</div>`:`<div class="set-w">${st.r}<small> ${t('reps')}${st.tag?' · '+st.tag:''}</small></div>`}</div></div>`});
@@ -1564,7 +1662,7 @@ function renderExercise(){const e=SESS.ex[SESS.idx];const body=document.getEleme
     html+=`</div>`;
     if(!RO)html+=`<div class="wk-actions"><button class="btn" onclick="finishActiveEx()">${t('finishEx')}</button></div>`;
   }else{const base=REF[e.ref](CUR.maxes);
-    html+=`<div class="ex-ref">${t('reference')}: <b style="color:#fff">${REF_LABEL[e.ref]}</b> · ${Math.round(base)} ${U()}${CUR.adjust[e.n]?` · coach ×${CUR.adjust[e.n].toFixed(2)}`:''}</div>`;
+    html+=`<div class="ex-ref">${t('reference')}: <b style="color:var(--hi)">${REF_LABEL[e.ref]}</b> · ${Math.round(base)} ${U()}${CUR.adjust[e.n]?` · coach ×${CUR.adjust[e.n].toFixed(2)}`:''}</div>`;
     if(e.note)html+=`<div class="coach-box" style="margin-top:0"><div class="coach-ava">🎯</div><div><div class="who">Nota</div><p>${esc(e.note)}</p></div></div>`;
     html+=`<div class="set-list">`;
     e.s.forEach((st,i)=>{const[reps,pct]=st;const w=calcWeight(e,pct);const done=SESS.setDone[SESS.idx][i];const ps=w!=null?perSideStr(w):'';
@@ -1772,19 +1870,19 @@ function dailyBarChart(kind,grad,target){const data=dailyHistory(kind,10);
   const bw=(W-2*pad)/n*0.62;const gid='bg_'+kind;
   const bars=data.map((d,i)=>{const h=(d.v/mx)*(H-2*pad);const cx=pad+i*(W-2*pad)/n+((W-2*pad)/n-bw)/2;const day=new Date(d.t).getDate();
     return`<rect x="${cx}" y="${H-pad-h}" width="${bw}" height="${h}" rx="5" fill="url(#${gid})"><animate attributeName="height" from="0" to="${h}" dur="0.6s" fill="freeze"/><animate attributeName="y" from="${H-pad}" to="${H-pad-h}" dur="0.6s" fill="freeze"/></rect>
-      <text x="${cx+bw/2}" y="${H-8}" font-size="11" fill="#8a8a92" text-anchor="middle">${day}</text>`}).join('');
+      <text x="${cx+bw/2}" y="${H-8}" font-size="11" fill="${cssv('--muted')}" text-anchor="middle">${day}</text>`}).join('');
   const ty=target?H-pad-(target/mx)*(H-2*pad):null;
-  const tline=target?`<line x1="${pad}" x2="${W-pad}" y1="${ty}" y2="${ty}" stroke="#fff" stroke-width="1" stroke-dasharray="4 4" opacity="0.35"/><text x="${W-pad}" y="${ty-5}" font-size="10" fill="#9a9aa2" text-anchor="end">${t('target')} ${target}</text>`:'';
+  const tline=target?`<line x1="${pad}" x2="${W-pad}" y1="${ty}" y2="${ty}" stroke="${cssv('--hi')}" stroke-width="1" stroke-dasharray="4 4" opacity="0.35"/><text x="${W-pad}" y="${ty-5}" font-size="10" fill="${cssv('--muted')}" text-anchor="end">${t('target')} ${target}</text>`:'';
   return`<svg viewBox="0 0 ${W} ${H}" style="margin-top:10px"><defs><linearGradient id="${gid}" x1="0" x2="0" y1="0" y2="1">${grad}</linearGradient></defs>${bars}${tline}</svg>`}
 function weightChart(){const wl=(CUR.weightLog||[]).slice(-14);if(wl.length<2)return'';
   const W=460,H=170,pad=30;const xs=wl.map((_,i)=>pad+i*(W-2*pad)/(wl.length-1));
   const vals=wl.map(x=>x.kg);const mn=Math.min(...vals)-1,mx=Math.max(...vals)+1;const y=v=>H-pad-((v-mn)/(mx-mn||1))*(H-2*pad);
   const pts=wl.map((x,i)=>`${xs[i]},${y(x.kg)}`).join(' ');
   const area=`${pad},${H-pad} `+pts+` ${xs[xs.length-1]},${H-pad}`;
-  const grid=[0,.5,1].map(f=>`<line x1="${pad}" x2="${W-pad}" y1="${pad+f*(H-2*pad)}" y2="${pad+f*(H-2*pad)}" stroke="#26262a" stroke-width="1"/>`).join('');
-  const dots=wl.map((x,i)=>`<circle cx="${xs[i]}" cy="${y(x.kg)}" r="4" fill="#fff"/><text x="${xs[i]}" y="${y(x.kg)-10}" font-size="10" fill="#9a9aa2" text-anchor="middle">${x.kg}</text>`).join('');
-  return`<svg viewBox="0 0 ${W} ${H}" style="margin-top:10px"><defs><linearGradient id="wgc" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="rgba(225,6,0,.35)"/><stop offset="1" stop-color="rgba(225,6,0,0)"/></linearGradient></defs>
-    ${grid}<polygon points="${area}" fill="url(#wgc)"/><polyline points="${pts}" fill="none" stroke="var(--red)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>${dots}</svg>`}
+  const grid=[0,.5,1].map(f=>`<line x1="${pad}" x2="${W-pad}" y1="${pad+f*(H-2*pad)}" y2="${pad+f*(H-2*pad)}" stroke="${cssv('--line')}" stroke-width="1"/>`).join('');
+  const dots=wl.map((x,i)=>`<circle cx="${xs[i]}" cy="${y(x.kg)}" r="4" fill="${cssv('--hi')}"/><text x="${xs[i]}" y="${y(x.kg)-10}" font-size="10" fill="${cssv('--muted')}" text-anchor="middle">${x.kg}</text>`).join('');
+  return`<svg viewBox="0 0 ${W} ${H}" style="margin-top:10px"><defs><linearGradient id="wgc" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="rgba(${cssv('--acc-rgb')},.35)"/><stop offset="1" stop-color="rgba(${cssv('--acc-rgb')},0)"/></linearGradient></defs>
+    ${grid}<polygon points="${area}" fill="url(#wgc)"/><polyline points="${pts}" fill="none" stroke="${cssv('--red')}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>${dots}</svg>`}
 function logBodyWeight(){const u=U();const last=curWeight();
   openModal(`<h2 style="font-weight:900;font-size:20px">${t('logWeight')}</h2>
     <p class="sub" style="margin:6px 0 14px">${t('bodyWeight')}</p>
@@ -1837,9 +1935,9 @@ function weightMiniChart(){const wl=CUR.weightLog.slice(-14);if(wl.length<2)retu
   const vals=wl.map(x=>x.kg);const mn=Math.min(...vals)-1,mx=Math.max(...vals)+1;const y=v=>H-pad-((v-mn)/(mx-mn||1))*(H-2*pad);
   const pts=wl.map((x,i)=>`${xs[i]},${y(x.kg)}`).join(' ');
   const area=`${pad},${H-pad} `+pts+` ${xs[xs.length-1]},${H-pad}`;
-  return`<svg viewBox="0 0 ${W} ${H}" style="margin-top:10px"><defs><linearGradient id="wg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="rgba(225,6,0,.35)"/><stop offset="1" stop-color="rgba(225,6,0,0)"/></linearGradient></defs>
-    <polygon points="${area}" fill="url(#wg)"/><polyline points="${pts}" fill="none" stroke="var(--red)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-    ${wl.map((x,i)=>`<circle cx="${xs[i]}" cy="${y(x.kg)}" r="3.5" fill="#fff"/>`).join('')}</svg>`}
+  return`<svg viewBox="0 0 ${W} ${H}" style="margin-top:10px"><defs><linearGradient id="wg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="rgba(${cssv('--acc-rgb')},.35)"/><stop offset="1" stop-color="rgba(${cssv('--acc-rgb')},0)"/></linearGradient></defs>
+    <polygon points="${area}" fill="url(#wg)"/><polyline points="${pts}" fill="none" stroke="${cssv('--red')}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    ${wl.map((x,i)=>`<circle cx="${xs[i]}" cy="${y(x.kg)}" r="3.5" fill="${cssv('--hi')}"/>`).join('')}</svg>`}
 function weightRing(){
   const wl=CUR.weightLog||[];const w=curWeight();const u=U();
   if(!w)return`<div class="dc-lbl" style="margin-bottom:8px">⚖️ ${t('bodyWeight')}</div><p class="sub">${t('noWeight')}</p>
@@ -1852,7 +1950,7 @@ function weightRing(){
   return`<div class="dc-lbl" style="margin-bottom:10px">⚖️ ${t('bodyWeight')}</div>
   <div style="display:flex;align-items:center;gap:18px">
     <div style="width:132px;height:132px;flex:0 0 auto;position:relative">
-      <svg width="132" height="132" viewBox="0 0 132 132"><circle cx="66" cy="66" r="${r}" stroke="#26262a" stroke-width="11" fill="none"/>
+      <svg width="132" height="132" viewBox="0 0 132 132"><circle cx="66" cy="66" r="${r}" stroke="${cssv('--line')}" stroke-width="11" fill="none"/>
         <circle cx="66" cy="66" r="${r}" stroke="${col}" stroke-width="11" fill="none" stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${off}" transform="rotate(-90 66 66)" style="filter:drop-shadow(0 0 7px ${col}99)"><animate attributeName="stroke-dashoffset" from="${c}" to="${off}" dur="0.9s" fill="freeze"/></circle></svg>
       <div style="position:absolute;inset:0;display:grid;place-items:center;text-align:center"><div><div style="font-size:32px;font-weight:900;line-height:1">${w}</div><div style="font-size:12px;color:var(--muted);font-weight:800">${u}</div></div></div>
     </div>
@@ -1892,11 +1990,11 @@ function lineChart(mh){const W=460,H=180,pad=30;const xs=mh.map((_,i)=>mh.length
   const all=mh.flatMap(m=>[m.squat,m.bench,m.clean]);const mn=Math.min(...all)*0.9,mx=Math.max(...all)*1.05;const y=v=>H-pad-((v-mn)/(mx-mn))*(H-2*pad);
   const line=(k,c)=>{const pts=mh.map((m,i)=>`${xs[i]},${y(m[k])}`);const dots=mh.map((m,i)=>`<circle cx="${xs[i]}" cy="${y(m[k])}" r="4" fill="${c}"/>`).join('');
     return`<polyline points="${pts.join(' ')}" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>${dots}`};
-  return`<svg viewBox="0 0 ${W} ${H}" style="margin-top:10px">${[0,.5,1].map(f=>`<line x1="${pad}" x2="${W-pad}" y1="${pad+f*(H-2*pad)}" y2="${pad+f*(H-2*pad)}" stroke="#26262a" stroke-width="1"/>`).join('')}${line('squat','#E10600')}${line('bench','#3aa0ff')}${line('clean','#2ecc71')}</svg>`}
+  return`<svg viewBox="0 0 ${W} ${H}" style="margin-top:10px">${[0,.5,1].map(f=>`<line x1="${pad}" x2="${W-pad}" y1="${pad+f*(H-2*pad)}" y2="${pad+f*(H-2*pad)}" stroke="${cssv('--line')}" stroke-width="1"/>`).join('')}${line('squat',cssv('--red'))}${line('bench','#3aa0ff')}${line('clean','#2ecc71')}</svg>`}
 function volChart(sessions){const s=sessions.slice(-10);const W=460,H=150,pad=24,bw=(W-2*pad)/s.length*0.6;const mx=Math.max(...s.map(x=>x.vol||0),1);
   return`<svg viewBox="0 0 ${W} ${H}" style="margin-top:10px">${s.map((x,i)=>{const h=((x.vol||0)/mx)*(H-2*pad);const cx=pad+i*(W-2*pad)/s.length+((W-2*pad)/s.length-bw)/2;
     return`<rect x="${cx}" y="${H-pad-h}" width="${bw}" height="${h}" rx="4" fill="url(#g1)"><animate attributeName="height" from="0" to="${h}" dur="0.6s" fill="freeze"/><animate attributeName="y" from="${H-pad}" to="${H-pad-h}" dur="0.6s" fill="freeze"/></rect>`}).join('')}
-    <defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#ff5a45"/><stop offset="1" stop-color="#a30400"/></linearGradient></defs></svg>`}
+    <defs><linearGradient id="g1" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="${cssv('--acc2')}"/><stop offset="1" stop-color="${cssv('--red-dark')}"/></linearGradient></defs></svg>`}
 function feelChart(sessions){const s=sessions.slice(-12);const W=460,H=130,pad=20;const xs=s.map((_,i)=>s.length===1?W/2:pad+i*(W-2*pad)/(s.length-1));
   const y=v=>pad+((v-1)/4)*(H-2*pad);const pts=s.map((x,i)=>`${xs[i]},${y(x.avgFeel)}`);const cols=['','#3aa0ff','#2ecc71','#f0a500','#ff7a00','#ff3b30'];
   return`<svg viewBox="0 0 ${W} ${H}" style="margin-top:6px"><polyline points="${pts.join(' ')}" fill="none" stroke="#555" stroke-width="2"/>${s.map((x,i)=>`<circle cx="${xs[i]}" cy="${y(x.avgFeel)}" r="5" fill="${cols[x.avgFeel]}"/>`).join('')}</svg>`}
@@ -1917,6 +2015,9 @@ function renderProfile(){const el=document.getElementById('profile');const m=CUR
     <div class="h-sec">🌐 ${t('language')}</div>
     <div class="lang-row">${LANGS.map(l=>`<button class="lang-b ${LANG===l.c?'on':''}" onclick="setLang('${l.c}')"><span class="fl">${l.fl}</span><b>${l.n}</b></button>`).join('')}</div>
 
+    <div class="h-sec">🎨 ${themeTxt('title')}</div>
+    <div class="theme-row">${THEMES.map(th=>`<button class="theme-b ${curTheme()===th.id?'on':''}" onclick="setTheme('${th.id}')"><span class="sw" style="background:${th.sw}"></span>${themeTxt(th.id)}</button>`).join('')}</div>
+
     <div class="h-sec">${t('yourMaxes')} (1RM)</div>
     ${hasMaxes(m)?`<div class="stat-row"><div class="stat"><b>${m.squat}</b><small>SQUAT</small></div><div class="stat"><b>${m.bench}</b><small>BENCH</small></div><div class="stat"><b>${m.clean}</b><small>CLEAN</small></div></div><button class="btn ghost" style="margin-top:10px" onclick="editMaxes()">${t('editMaxes')}</button>`:`<button class="btn" onclick="editMaxes()">${t('introMaxes')}</button>`}
 
@@ -1927,7 +2028,7 @@ function renderProfile(){const el=document.getElementById('profile');const m=CUR
     ${Object.keys(CUR.adjust).length?`<div class="card"><div class="rt-list">${Object.entries(CUR.adjust).map(([k,v])=>`<div><span>${esc(k)}</span><small style="color:${v>1?'var(--ok)':v<1?'var(--warn)':'var(--muted)'}">×${v.toFixed(2)}</small></div>`).join('')}</div><button class="btn ghost sm" style="margin-top:10px;width:100%" onclick="resetAdjust()">${t('resetAdjust')}</button></div>`:`<div class="card"><p class="sub">${t('noAdjust')}</p></div>`}
 
     ${IS_ADMIN?`<div class="h-sec">👑 ${t('adm_title')}</div>
-    <button class="btn" onclick="openAdmin()" style="background:linear-gradient(135deg,#E10600,#7a0300)">${t('admin_btn')}</button>`:''}
+    <button class="btn" onclick="openAdmin()" style="background:linear-gradient(135deg,var(--red),var(--red-dark))">${t('admin_btn')}</button>`:''}
 
     <div class="h-sec">${t('dataSec')}</div>
     <button class="btn" onclick="shareApp()">${t('shareApp')}</button>
@@ -1935,16 +2036,17 @@ function renderProfile(){const el=document.getElementById('profile');const m=CUR
     ${(CLOUD&&AUTH)?`<div class="card" style="margin-top:14px;padding:14px"><div class="sub" style="font-size:12px">${t('cloud_on')}</div><b style="font-size:13px">${esc(AUTH.email||'')}</b></div><button class="btn ghost" style="margin-top:6px" onclick="logout()">${t('logout')}</button>`:''}
     <button class="btn ghost" style="margin-top:10px" onclick="coachInfo()">${t('howCoach')}</button>
     <button class="btn ghost" style="margin-top:10px;color:var(--danger)" onclick="deleteProfile()">${t('deleteProfile')}</button>
-    <div style="text-align:center;color:var(--muted);font-size:11px;margin:20px 0 4px">RODOVELOCITY · TopVelocity Fusion System</div>`}
+    <div style="text-align:center;color:var(--muted);font-size:11px;margin:20px 0 8px">FM Velocity · TopVelocity Fusion System</div>
+    <div class="byfm" style="margin-bottom:6px"><img src="fm-athletes.png" alt="FM Athletes">by FM Athletes</div>`}
 function pickPhoto(){const f=document.getElementById('filePick');f.onchange=()=>{const file=f.files[0];if(!file)return;
   const rd=new FileReader();rd.onload=()=>{const img=new Image();img.onload=()=>{const c=document.createElement('canvas');const s=Math.min(img.width,img.height);
     c.width=c.height=256;const ctx=c.getContext('2d');ctx.drawImage(img,(img.width-s)/2,(img.height-s)/2,s,s,0,0,256,256);
     CUR.photo=c.toDataURL('image/jpeg',0.82);save();refreshTopAva();renderProfile();toast('Foto actualizada','ok')};img.src=rd.result};rd.readAsDataURL(file)};f.click()}
 function renameProfile(v){v=v.trim();if(!v)return;CUR.name=v;save();refreshTopAva();toast('✓','ok')}
 function resetAdjust(){confirm2(t('resetAdjust'),'—',t('reset'),()=>{CUR.adjust={};save();renderProfile();toast('✓','ok')})}
-function exportData(){const blob=new Blob([JSON.stringify(CUR,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='rodovelocity_'+CUR.name+'.json';a.click()}
+function exportData(){const blob=new Blob([JSON.stringify(CUR,null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='fmvelocity_'+CUR.name+'.json';a.click()}
 function deleteProfile(){confirm2(t('deleteProfile'),'—',t('deleteProfile'),()=>{DB.profiles=DB.profiles.filter(p=>p.id!==CUR.id);save();switchProfile()},true)}
-function shareApp(){const url=location.href;if(navigator.share){navigator.share({title:'RODOVELOCITY',text:'RODOVELOCITY 🔥',url}).catch(()=>{})}
+function shareApp(){const url=location.href;if(navigator.share){navigator.share({title:'FM Velocity',text:'FM Velocity · by FM Athletes 🔥',url}).catch(()=>{})}
   else if(navigator.clipboard){navigator.clipboard.writeText(url);toast('✓','ok')}else toast(url,'ok')}
 
 /* =====================================================================
@@ -2030,7 +2132,7 @@ async function registerAccount(){
     }else{
       await ref.update({lastLogin:Date.now(),lastSeen:Date.now(),loginCount:(snap.data().loginCount||0)+1});
     }
-  }catch(e){console.warn('[RODO] cuenta:',e.message)}
+  }catch(e){console.warn('[FMV] cuenta:',e.message)}
 }
 function startPresence(){
   stopPresence();
@@ -2052,7 +2154,7 @@ async function ensureAccessRequest(){
     const s=await ref.get();
     if(s.exists)return;                       // ya existe: no duplicamos
     await ref.set({email:AUTH.email,createdAt:Date.now(),state:'open'});
-  }catch(e){console.warn('[RODO] solicitud:',e.message)}
+  }catch(e){console.warn('[FMV] solicitud:',e.message)}
 }
 
 /* ---- carga y vigilancia del permiso ---- */
@@ -2339,7 +2441,7 @@ let wmTimer=null;
 function wmText(){
   const d=new Date();
   const stamp=d.toLocaleDateString()+' '+String(d.getHours()).padStart(2,'0')+':'+String(d.getMinutes()).padStart(2,'0');
-  return ((AUTH&&AUTH.email)||'RODOVELOCITY')+' · '+stamp;
+  return ((AUTH&&AUTH.email)||'FM Velocity')+' · '+stamp;
 }
 function paintWatermark(){
   const el=document.getElementById('wmLayer');if(!el)return;
