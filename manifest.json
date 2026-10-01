@@ -2,7 +2,7 @@
   "name": "FM Velocity",
   "short_name": "FM Velocity",
   "description": "FM Velocity by FM Athletes — entrenamiento de velocidad para pitchers (sistema TopVelocity 3X): cálculo de pesos, seguimiento de entrenos y progreso.",
-  "start_url": "./?v=17",
+  "start_url": "./?v=18",
   "id": "/?v=17",
   "display": "standalone",
   "display_override": [
