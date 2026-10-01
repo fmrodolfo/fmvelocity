@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'fmvelocity-v21';
+const CACHE_VERSION = 'fmvelocity-v22';
 const CACHE_NAME = CACHE_VERSION;
 const urlsToCache = [
   './',
